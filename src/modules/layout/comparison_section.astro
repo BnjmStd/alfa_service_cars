@@ -145,3 +145,19 @@
     </div>
   </div>
 </section>
+
+<script>
+  const slider = document.getElementById("slider");
+  const beforeImg = document.getElementById("beforeImg");
+  const line = document.getElementById("line");
+  const button = document.getElementById("button");
+
+  slider.addEventListener("input", (e) => {
+    const value = e.target.value;
+    // Cortamos la imagen de la derecha basándonos en el slider
+    beforeImg.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+    // Movemos la línea y el botón
+    line.style.left = `${value}%`;
+    button.style.left = `${value}%`;
+  });
+</script>
