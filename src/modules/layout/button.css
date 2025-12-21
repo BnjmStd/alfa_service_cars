@@ -7,6 +7,10 @@
   transition: all 0.3s ease;
   cursor: pointer;
   border: none;
+
+  /*shine*/
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary {
@@ -18,4 +22,35 @@
   background: var(--color-accent);
   color: white;
   box-shadow: 0 0 25px var(--color-accent-glow);
+}
+
+/* El "Rayo de Luz" */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg); /* Inclinamos la luz para que se vea dinámica */
+  transition: none;
+}
+
+/* Animación al hacer Hover */
+.btn:hover::after {
+  left: 150%; /* Viaja hasta el final a la derecha */
+  transition: left 0.6s ease-in-out; /* Duración del destello */
+}
+
+/* Efecto adicional de escala y sombra roja */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+  border-color: #fff;
 }

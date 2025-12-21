@@ -26,6 +26,94 @@ import Header from "~/components/Header.astro";
 </html>
 
 <style is:global>
+  @layer reset, theme, base, layout, utilities;
+
+  @layer theme {
+    :root {
+      /* Paleta de Colores Inspirada en Alfa Detailers + Apple Dark */
+      --color-bg-main: #000000; /* Negro Puro */
+      --color-bg-surface: #121212; /* Gris Carbón muy oscuro */
+      --color-text-main: #ffffff;
+      --color-text-muted: #a1a1a6; /* Gris Apple */
+
+      /* El Rojo del Logo (Acento) */
+      --color-accent: #d90429;
+      --color-accent-glow: rgba(217, 4, 41, 0.5);
+
+      /* Efectos de Vidrio (Glassmorphism) */
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-blur: 20px;
+
+      /* Tipografía */
+      --font-primary: "Inter", sans-serif;
+      --border-radius-lg: 24px;
+    }
+  }
+
+  @layer base {
+    body {
+      background-color: var(--color-bg-main);
+      color: var(--color-text-main);
+      font-family: var(--font-primary);
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+
+    h2.section-title {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+  }
+
+  @layer layout {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .grid-bento {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-bento {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+      }
+      .card-large {
+        grid-row: span 2;
+      }
+    }
+  }
+
+  /* 7. CAPA: UTILIDADES */
+  @layer utilities {
+    .text-gradient {
+      background: linear-gradient(45deg, #ffffff, var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-accent {
+      color: var(--color-accent);
+    }
+  }
+
   @layer reset {
     *,
     *::before,

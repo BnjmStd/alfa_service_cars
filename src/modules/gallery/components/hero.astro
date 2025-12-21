@@ -1,0 +1,83 @@
+<header class="gallery-header">
+  <div class="container">
+    <h1 class="gallery-title">Nuestra Obra.</h1>
+    <p class="gallery-subtitle">
+      Explora el arte y la precisión de cada proyecto. Desde restauraciones
+      clásicas hasta blindajes de vanguardia.
+    </p>
+
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="ceramico">Cerámico</button>
+      <button class="filter-btn" data-filter="polarizado">Polarizado</button>
+      <button class="filter-btn" data-filter="restauracion">Restauración</button
+      >
+      <button class="filter-btn" data-filter="grabado">Grabado</button>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* --- HEADER DE LA GALERÍA --- */
+  .gallery-header {
+    padding-top: 150px; /* Espacio para la navbar */
+    padding-bottom: 80px;
+    text-align: center;
+    background: linear-gradient(
+      to bottom,
+      var(--color-bg-main),
+      var(--color-bg-surface)
+    );
+  }
+
+  .gallery-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    background: linear-gradient(to bottom, #fff, #bbb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gallery-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin: 0 auto 50px;
+  }
+
+  /* --- FILTROS DE CATEGORÍA --- */
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+  }
+
+  .filter-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--color-text-muted);
+    padding: 10px 25px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .filter-btn.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+    box-shadow: 0 0 15px var(--color-accent-glow);
+  }
+</style>

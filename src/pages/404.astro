@@ -1,0 +1,104 @@
+<div class="glow-bg"></div>
+
+<div class="error-container">
+  <h1 class="error-code">404</h1>
+  <p class="error-message">
+    Parece que esta ruta no tiene el acabado que buscabas. <br />
+    <strong>Regresemos al estudio para brillar.</strong>
+  </p>
+
+  <a href="index.html" class="btn-back"> Volver al Inicio </a>
+</div>
+
+<style>
+  body,
+  html {
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .error-container {
+    position: relative;
+    z-index: 10;
+    padding: 20px;
+  }
+
+  /* El número 404 con efecto de brillo rojo sutil */
+  .error-code {
+    font-size: clamp(8rem, 20vw, 15rem);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(
+      to bottom,
+      #fff 30%,
+      var(--color-accent, #d90429)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0;
+    filter: drop-shadow(
+      0 0 30px var(--color-accent-glow, rgba(217, 4, 41, 0.3))
+    );
+  }
+
+  .error-message {
+    font-size: 1.5rem;
+    color: #86868b; /* Gris Apple */
+    margin-bottom: 40px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Efecto de luz roja de fondo (Nebulosa) */
+  .glow-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(
+      circle,
+      rgba(217, 4, 41, 0.15) 0%,
+      transparent 70%
+    );
+    z-index: 1;
+    filter: blur(80px);
+    animation: breathe 8s infinite ease-in-out;
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.8;
+    }
+  }
+
+  /* Estilo del botón (reutilizando el anterior) */
+  .btn-back {
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 40px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-back:hover {
+    background: #fff;
+    color: #000;
+  }
+</style>

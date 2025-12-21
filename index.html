@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Proyectos | Alfa Detailers Studio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Aquí irán tus estilos globales de las capas theme, reset, base, layout */
+        /* Asegúrate de copiar las `@layer theme`, `@layer reset`, `@layer base`, `@layer layout` 
+           de tu index.html original aquí. O mejor, si usas un archivo CSS externo (style.css), 
+           simplemente enlaza a él. */
+
+        /* Estilos específicos de esta página de galería */
+        @layer components {
+            /* --- NAVBAR (Puedes copiar la de index.html) --- */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                padding: 15px 0;
+            }
+            .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+            .nav-links { display: flex; gap: 30px; }
+            .nav-link { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.6); transition: 0.3s; }
+            .nav-link:hover { color: white; }
+            .logo-img { height: 40px; } /* Ajusta según tu logo */
+
+            /* --- HEADER DE LA GALERÍA --- */
+            .gallery-header {
+                padding-top: 150px; /* Espacio para la navbar */
+                padding-bottom: 80px;
+                text-align: center;
+                background: linear-gradient(to bottom, var(--color-bg-main), var(--color-bg-surface));
+            }
+
+            .gallery-title {
+                font-size: clamp(2.5rem, 5vw, 4rem);
+                font-weight: 800;
+                margin-bottom: 20px;
+                line-height: 1.1;
+                background: linear-gradient(to bottom, #fff, #bbb);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .gallery-subtitle {
+                font-size: 1.1rem;
+                color: var(--color-text-muted);
+                max-width: 700px;
+                margin: 0 auto 50px;
+            }
+
+            /* --- FILTROS DE CATEGORÍA --- */
+            .filter-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 60px;
+            }
+
+            .filter-btn {
+                background: var(--glass-bg);
+                border: 1px solid var(--glass-border);
+                color: var(--color-text-muted);
+                padding: 10px 25px;
+                border-radius: 999px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .filter-btn:hover {
+                color: white;
+                border-color: rgba(255,255,255,0.2);
+                background: rgba(255,255,255,0.08);
+            }
+
+            .filter-btn.active {
+                background: var(--color-accent);
+                border-color: var(--color-accent);
+                color: white;
+                box-shadow: 0 0 15px var(--color-accent-glow);
+            }
+
+            /* --- CUADRÍCULA DE LA GALERÍA (Similar a la sección) --- */
+            .gallery-grid-page {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 25px;
+                padding-bottom: 100px;
+            }
+
+            .gallery-item-page {
+                position: relative;
+                border-radius: var(--border-radius-lg);
+                overflow: hidden;
+                border: 1px solid var(--glass-border);
+                cursor: pointer;
+                aspect-ratio: 1 / 1; /* Cuadradas para que se vean bien en grid */
+            }
+
+            .gallery-item-page img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .gallery-item-page:hover img {
+                transform: scale(1.08);
+            }
+
+            .gallery-overlay-page {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 25px;
+                background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
+                transform: translateY(100%);
+                opacity: 0;
+                transition: all 0.4s ease-out;
+            }
+
+            .gallery-item-page:hover .gallery-overlay-page {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .overlay-title {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+                color: white;
+            }
+            .overlay-category {
+                font-size: 0.8rem;
+                color: var(--color-accent);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            /* --- Lightbox (Para ver imágenes en grande) --- */
+            .lightbox {
+                display: none; /* Inicialmente oculto */
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.9);
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .lightbox.active { opacity: 1; display: flex; }
+
+            .lightbox-img {
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: var(--border-radius-lg);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            }
+
+            .close-lightbox {
+                position: absolute;
+                top: 40px;
+                right: 40px;
+                color: white;
+                font-size: 2.5rem;
+                cursor: pointer;
+                background: rgba(0,0,0,0.4);
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.3s ease;
+            }
+            .close-lightbox:hover { background: rgba(255,255,255,0.2); }
+        }
+
+        /* --- UTILITIES (Copiar también de index.html) --- */
+        @layer utilities {
+            .text-accent { color: var(--color-accent); }
+        }
+
+        /* --- THEME (Copiar también de index.html) --- */
+        @layer theme {
+            :root {
+                --color-bg-main: #000000;
+                --color-bg-surface: #0a0a0a;
+                --color-text-main: #ffffff;
+                --color-text-muted: #86868b;
+                --color-accent: #D90429;
+                --color-accent-glow: rgba(217, 4, 41, 0.3);
+                --glass-bg: rgba(255, 255, 255, 0.03);
+                --glass-border: rgba(255, 255, 255, 0.08);
+                --border-radius-lg: 28px;
+            }
+        }
+        /* --- RESET (Copiar también de index.html) --- */
+        @layer reset {
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+            html { scroll-behavior: smooth; }
+            body { background: var(--color-bg-main); color: var(--color-text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+            a { text-decoration: none; color: inherit; }
+        }
+        /* --- LAYOUT (Copiar también de index.html) --- */
+        @layer layout {
+            .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+            .section { padding: 120px 0; }
+            .section-header { text-align: center; margin-bottom: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <div style="font-weight: 800; font-size: 1.2rem;">ALFA<span class="text-accent">.</span></div>
+            <div class="nav-links">
+                <a href="index.html#servicios" class="nav-link">Servicios</a>
+                <a href="index.html#proceso" class="nav-link">Proceso</a>
+                <a href="gallery.html" class="nav-link active">Galería</a>
+            </div>
+            <a href="index.html#contacto" class="btn" style="padding: 8px 20px; font-size: 0.8rem; background: white; color: black; border: none; border-radius: 100px;">Contacto</a>
+        </div>
+    </nav>
+
+    <header class="gallery-header">
+        <div class="container">
+            <h1 class="gallery-title">Nuestra Obra.</h1>
+            <p class="gallery-subtitle">
+                Explora el arte y la precisión de cada proyecto. Desde restauraciones clásicas hasta blindajes de vanguardia.
+            </p>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="ceramico">Cerámico</button>
+                <button class="filter-btn" data-filter="polarizado">Polarizado</button>
+                <button class="filter-btn" data-filter="restauracion">Restauración</button>
+                <button class="filter-btn" data-filter="grabado">Grabado</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="gallery-grid-page">
+            <div class="gallery-item-page" data-category="ceramico">
+                <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=600&auto=format&fit=crop" alt="Porsche 911 Cerámico">
+                <div class="gallery-overlay-page">
+                    <span class="overlay-category">Cerámico</span>
+                    <h3 class="overlay-title">Porsche 911 Carrera</h3>
+                </div>
+            </div>
+            <div class="gallery-item-page" data-category="polarizado">
+                <img src="https://images.unsplash.com/photo-1635776885479-408c448fbde0?q=80&w=600&auto=format&fit=crop" alt="Interior con polarizado">
+                <div class="gallery-overlay-page">
+                    <span class="overlay-category">Polarizado</span>
+                    <h3 class="overlay-title">BMW M4 Coupé</h3>
+                </div>
+            </div>
+            <div class="gallery-item-page" data-category="restauracion">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=600&auto=format&fit=crop" alt="Corvette restauración">
+                <div class="gallery-overlay-page">
+                    <span class="overlay-category">Restauración</span>
+                    <h3 class="overlay-title">Corvette Stingray</h3>
+                </div>
+            </div>
+            <div class="gallery-item-page" data-category="grabado">
+                <img src="https://images.unsplash.com/photo-1600706432619-6616519d6003?q=80&w=600&auto=format&fit=crop" alt="Grabado de patente">
+                <div class="gallery-overlay-page">
+                    <span class="overlay-category">Grabado</span>
+                    <h3 class="overlay-title">Grabado de Patente</h3>
+                </div>
+            </div>
+            <div class="gallery-item-page" data-category="ceramico">
+                <img src="https://images.unsplash.com/photo-1549488331-cf1b2413e2f5?q=80&w=600&auto=format&fit=crop" alt="Mustang con cerámico">
+                <div class="gallery-overlay-page">
+                    <span class="overlay-category">Cerámico</span>
+                    <h3 class="overlay-title">Ford Mustang GT</h3>
+                </div>
+            </div>
+            <div class="gallery-item-page" data-category="restauracion">
+                <img src="https://images.unsplash.com/photo-1582234032549-923f03b5f7e7?q=80&w=600&auto=format&fit=crop" alt="Mercedes Benz clásico">
+                <div class="gallery-overlay-page">
+                    <span class="overlay-category">Restauración</span>
+                    <h3 class="overlay-title">Mercedes Clásico</h3>
+                </div>
+            </div>
+            </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img src="" alt="Imagen grande" class="lightbox-img">
+    </div>
+
+    <script>
+        // --- Lightbox Functionality ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('.lightbox-img');
+        const closeLightbox = lightbox.querySelector('.close-lightbox');
+        const galleryItems = document.querySelectorAll('.gallery-item-page');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = item.querySelector('img').src;
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) { // Si hace clic fuera de la imagen
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // --- Filter Functionality ---
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryGrid = document.querySelector('.gallery-grid-page');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Eliminar 'active' de todos los botones
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Añadir 'active' al botón clickeado
+                button.classList.add('active');
+
+                const filter = button.dataset.filter; // 'all', 'ceramico', etc.
+
+                galleryItems.forEach(item => {
+                    const category = item.dataset.category;
+                    if (filter === 'all' || category === filter) {
+                        item.style.display = 'block'; // Mostrar
+                    } else {
+                        item.style.display = 'none'; // Ocultar
+                    }
+                });
+                // Pequeño truco para que el grid se reacomode con una transición suave
+                galleryGrid.style.transition = 'none';
+                void galleryGrid.offsetWidth; // Trigger reflow
+                galleryGrid.style.transition = 'all 0.4s ease';
+            });
+        });
+    </script>
+</body>
+</html>
