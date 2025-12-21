@@ -1,0 +1,82 @@
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source
+      src="https://cdn.pixabay.com/video/2023/08/13/175912-854241399_large.mp4"
+      type="video/mp4"
+    />
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">La Perfección en<br />Cada Detalle.</h1>
+    <p class="hero-subtitle">
+      Tratamiento Cerámico | Grabado de Patentes | Polarizados Premium
+    </p>
+    <div>
+      <a href="#servicios" class="btn btn-primary">Cotizar mi Auto</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* -- Hero Section (Video) -- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      linear-gradient(to top, var(--color-bg-main) 10%, rgba(0, 0, 0, 0.6) 60%),
+      radial-gradient(
+        circle at top right,
+        var(--color-accent-glow),
+        transparent 50%
+      );
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    padding-top: 60px; /* Compensar navbar */
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    /* Efecto de texto degradado metálico */
+    background: linear-gradient(to bottom right, #ffffff, #aaaaaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 40px;
+  }
+</style>

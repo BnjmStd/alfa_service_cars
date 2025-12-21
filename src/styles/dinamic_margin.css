@@ -1,0 +1,16 @@
+.layout-primary {
+  display: grid;
+  inline-size: 100%;
+  grid-template-columns:
+    [full-width]
+    minmax(2rem, 1fr)
+    [content-start]
+    min(1400px, 100% - 4rem)
+    [content-end]
+    minmax(2rem, 1fr)
+    [full-width-end];
+}
+
+.layout-primary > * {
+  grid-column: content-start / content-end;
+}

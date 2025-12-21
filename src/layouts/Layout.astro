@@ -1,22 +1,145 @@
+---
+import Footer from "~/components/Footer.astro";
+import Header from "~/components/Header.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <Header />
+
+    <main class="layout-primary main-content">
+      <div>
+        <slot />
+      </div>
+    </main>
+
+    <Footer />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  @layer reset {
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      text-wrap: balance; /* Evita saltos de línea feos */
+      line-height: 1.2;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      background-color: #fff;
+      color: #000;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased; /* Suaviza fuentes en WebKit */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    p {
+      text-wrap: pretty; /* Optimiza la distribución de palabras */
+      line-height: 1.5;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    /* 🔹 Evita subrayados en enlaces sin `href` */
+    a:not([href]) {
+      text-decoration: none;
+    }
+
+    /* 🔹 Mantiene la apariencia de los botones consistente */
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+
+    /* 🔹 Oculta el desplazamiento horizontal no deseado */
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth; /* Hace que el desplazamiento sea más fluido */
+    }
+
+    /* 🔹 Evita estilos heredados en listas */
+    ul,
+    ol {
+      list-style: none;
+    }
+    :root {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  .main-content {
+    min-block-size: 100vh;
+    inline-size: 100%;
+  }
+
+  .layout-primary {
+    display: grid;
+    grid-template-columns:
+      [full-width]
+      minmax(2rem, 1fr)
+      [content-start]
+      min(1400px, 100% - 4rem)
+      [content-end]
+      minmax(2rem, 1fr)
+      [full-width-end];
+  }
+
+  .layout-primary > * {
+    grid-column: content-start / content-end;
+  }
 </style>

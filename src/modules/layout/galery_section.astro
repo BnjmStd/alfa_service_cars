@@ -1,0 +1,133 @@
+<section
+  id="galeria"
+  class="section"
+  style="background: linear-gradient(to bottom, var(--color-bg-main), var(--color-bg-surface));"
+>
+  <div class="container">
+    <h2 class="section-title">
+      Resultados <span class="text-accent">Alfa</span>
+    </h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1080&auto=format&fit=crop"
+          alt="Porsche Detailing"
+          class="gallery-img"
+        />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Cerámico 5 Años</span>
+          <h4 class="gallery-title">Porsche 911 Carrera</h4>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1600706432619-6616519d6003?q=80&w=1080&auto=format&fit=crop"
+          alt="Grabado de vidrios"
+          class="gallery-img"
+          style="object-position: center;"
+        />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Normativa</span>
+          <h4 class="gallery-title">Grabado de Precisión</h4>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1635776885479-408c448fbde0?q=80&w=1080&auto=format&fit=crop"
+          alt="Interior Detailing"
+          class="gallery-img"
+        />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Interior</span>
+          <h4 class="gallery-title">Restauración de Piel</h4>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1080&auto=format&fit=crop"
+          alt="Chevrolet Corvette"
+          class="gallery-img"
+        />
+        <div class="gallery-overlay">
+          <span class="gallery-tag">Corrección de Pintura</span>
+          <h4 class="gallery-title">Corvette Stingray</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === NUEVA SECCIÓN: GALERÍA === */
+  .gallery-grid {
+    display: grid;
+    /* Columnas automáticas, mínimo 300px de ancho */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .gallery-item {
+    position: relative;
+    height: 300px;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Efecto Hover Imagen: Zoom */
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.1);
+  }
+
+  /* Overlay (Capa de texto sobre la imagen) */
+  .gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    /* Degradado oscuro desde abajo hacia arriba con un toque rojo */
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(217, 4, 41, 0.2) 50%,
+      transparent 100%
+    );
+
+    /* Estado inicial: oculto hacia abajo y transparente */
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease-out;
+  }
+
+  /* Efecto Hover Overlay: Aparece */
+  .gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .gallery-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: white;
+  }
+  .gallery-tag {
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>

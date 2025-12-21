@@ -1,0 +1,61 @@
+<header class="navbar">
+  <nav class="container nav-content">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="Alfa Detailers Studio" class="logo-img" />
+    </a>
+
+    <div class="nav-links">
+      <a href="#servicios" class="nav-link">Servicios</a>
+      <a href="#galeria" class="nav-link">Galería</a>
+    </div>
+
+    <a
+      href="#contacto"
+      class="btn btn-primary"
+      style="padding: 8px 20px; font-size: 0.9rem;">Agendar</a
+    >
+  </nav>
+</header>
+
+<style>
+  /* -- Header / Nav -- */
+  .navbar {
+    position: fixed;
+    top: 0;
+    inline-size: 100%;
+    padding-inline: 4rem;
+    z-index: 100;
+    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-main);
+  }
+
+  .logo-img {
+    height: 40px;
+    /* Filtro temporal si no tienes el logo transparente aún */
+    /* filter: invert(1) brightness(2); */
+  }
+</style>

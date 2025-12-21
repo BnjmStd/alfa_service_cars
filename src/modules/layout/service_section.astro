@@ -1,0 +1,106 @@
+<section id="servicios" class="section">
+  <div class="container">
+    <h2 class="section-title">
+      Nuestros <span class="text-gradient">Servicios</span>
+    </h2>
+
+    <div class="grid-bento">
+      <div class="bento-card card-large">
+        <div class="card-content">
+          <h3 class="card-title">Tratamiento Cerámico 9H</h3>
+          <p class="card-desc">
+            Blindaje de nanotecnología. Brillo extremo, repelencia al agua y
+            protección química hasta por 5 años.
+          </p>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div class="card-content">
+          <h3 class="card-title">Grabado de Patentes</h3>
+          <p class="card-desc">
+            Cumple la normativa con precisión láser. Grabado estético e
+            imborrable en vidrios y espejos.
+          </p>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div class="card-content">
+          <h3 class="card-title">Polarizados Nanocerámicos</h3>
+          <p class="card-desc">
+            Máximo rechazo de calor y filtro UV sin comprometer la visibilidad
+            nocturna.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* -- Tarjetas Servicios (Bento) -- */
+  .bento-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 320px;
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.4s ease,
+      border-color 0.4s ease;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Luz roja ambiental en hover */
+  .bento-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      800px circle at var(--mouse-x, center) var(--mouse-y, center),
+      var(--glass-bg),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .bento-card:hover::after {
+    /* Para un efecto pro, se necesita JS para seguir el mouse. 
+                    Por ahora usaremos un brillo fijo en la esquina */
+    background: radial-gradient(
+      circle at top right,
+      var(--color-accent-glow),
+      transparent 60%
+    );
+    opacity: 0.4;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 2;
+  }
+  .card-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .card-desc {
+    color: var(--color-text-muted);
+  }
+</style>

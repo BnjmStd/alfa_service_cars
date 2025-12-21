@@ -1,0 +1,83 @@
+<section
+  id="stats"
+  class="section"
+  style="background: var(--color-bg-surface);"
+>
+  <div class="container stats-grid">
+    <div>
+      <span class="stat-number" data-target="550">0</span>
+      <span class="stat-label">Autos Protegidos</span>
+    </div>
+    <div>
+      <span class="stat-number" data-target="9">0</span>
+      <span class="stat-label">Años de Garantía</span>
+    </div>
+    <div>
+      <span class="stat-number" data-target="100">0</span>
+      <span class="stat-label">% Brillo Espejo</span>
+    </div>
+    <div>
+      <span class="stat-number" data-target="24">0</span>
+      <span class="stat-label">Horas de Curado</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- CONTADORES (STATS) --- */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 4rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+  }
+  .stat-label {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+</style>
+
+<script>
+  // --- ANIMACIÓN DE CONTADORES ---
+  const countUp = (el) => {
+    const target = +el.getAttribute("data-target");
+    const count = +el.innerText;
+    const speed = target / 100;
+
+    if (count < target) {
+      el.innerText = Math.ceil(count + speed);
+      setTimeout(() => countUp(el), 30);
+    } else {
+      el.innerText = target + (target === 100 ? "%" : "+");
+    }
+  };
+
+  // --- INTERSECTION OBSERVER PARA REVELAR ELEMENTOS ---
+  const observerOptions = { threshold: 0.2 };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        entry.target.classList.add("visible"); // Para los pasos
+
+        // Si es un número, empezar cuenta
+        const numbers = entry.target.querySelectorAll(".stat-number");
+        numbers.forEach((num) => countUp(num));
+      }
+    });
+  }, observerOptions);
+
+  document
+    .querySelectorAll(".reveal, .stats-grid")
+    .forEach((el) => observer.observe(el));
+</script>
