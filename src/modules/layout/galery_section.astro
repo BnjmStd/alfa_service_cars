@@ -1,133 +1,184 @@
 <section
   id="galeria"
-  class="section"
-  style="background: linear-gradient(to bottom, var(--color-bg-main), var(--color-bg-surface));"
+  class="section gallery-section"
+  aria-labelledby="gallery-section-title"
 >
   <div class="container">
-    <h2 class="section-title">
+    <h2 id="gallery-section-title" class="section-title">
       Resultados <span class="text-accent">Alfa</span>
     </h2>
 
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img
-          src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1080&auto=format&fit=crop"
-          alt="Porsche Detailing"
-          class="gallery-img"
-        />
-        <div class="gallery-overlay">
-          <span class="gallery-tag">Cerámico 5 Años</span>
-          <h4 class="gallery-title">Porsche 911 Carrera</h4>
-        </div>
+    <div class="gallery-wrapper">
+      <div class="gallery-grid gallery-preview">
+        <!-- ITEM 1 -->
+        <article class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1080&auto=format&fit=crop"
+            alt="Porsche 911 Carrera con tratamiento cerámico"
+            class="gallery-img"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Cerámico 5 Años</span>
+            <h3 class="gallery-title">Porsche 911 Carrera</h3>
+          </div>
+        </article>
+
+        <!-- ITEM 2 -->
+        <article class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1600706432619-6616519d6003?q=80&w=1080&auto=format&fit=crop"
+            alt="Grabado de patentes en vidrios"
+            class="gallery-img"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Normativa</span>
+            <h3 class="gallery-title">Grabado de Precisión</h3>
+          </div>
+        </article>
+
+        <!-- ITEM 3 -->
+        <article class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1635776885479-408c448fbde0?q=80&w=1080&auto=format&fit=crop"
+            alt="Restauración interior de piel"
+            class="gallery-img"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Interior</span>
+            <h3 class="gallery-title">Restauración de Piel</h3>
+          </div>
+        </article>
+
+        <!-- ITEM 4 (cortado por mask) -->
+        <article class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1080&auto=format&fit=crop"
+            alt="Chevrolet Corvette con corrección de pintura"
+            class="gallery-img"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Corrección de Pintura</span>
+            <h3 class="gallery-title">Corvette Stingray</h3>
+          </div>
+        </article>
       </div>
 
-      <div class="gallery-item">
-        <img
-          src="https://images.unsplash.com/photo-1600706432619-6616519d6003?q=80&w=1080&auto=format&fit=crop"
-          alt="Grabado de vidrios"
-          class="gallery-img"
-          style="object-position: center;"
-        />
-        <div class="gallery-overlay">
-          <span class="gallery-tag">Normativa</span>
-          <h4 class="gallery-title">Grabado de Precisión</h4>
-        </div>
-      </div>
-
-      <div class="gallery-item">
-        <img
-          src="https://images.unsplash.com/photo-1635776885479-408c448fbde0?q=80&w=1080&auto=format&fit=crop"
-          alt="Interior Detailing"
-          class="gallery-img"
-        />
-        <div class="gallery-overlay">
-          <span class="gallery-tag">Interior</span>
-          <h4 class="gallery-title">Restauración de Piel</h4>
-        </div>
-      </div>
-
-      <div class="gallery-item">
-        <img
-          src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1080&auto=format&fit=crop"
-          alt="Chevrolet Corvette"
-          class="gallery-img"
-        />
-        <div class="gallery-overlay">
-          <span class="gallery-tag">Corrección de Pintura</span>
-          <h4 class="gallery-title">Corvette Stingray</h4>
-        </div>
+      <!-- MASK + CTA -->
+      <div class="gallery-mask">
+        <a href="/galeria" class="btn btn-primary gallery-cta">
+          Ver galería completa
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* === NUEVA SECCIÓN: GALERÍA === */
-  .gallery-grid {
-    display: grid;
-    /* Columnas automáticas, mínimo 300px de ancho */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
+  /* Wrapper con máscara */
+.gallery-wrapper {
+  position: relative;
+}
 
-  .gallery-item {
-    position: relative;
-    height: 300px;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--glass-border);
-    cursor: pointer;
-  }
+/* Preview: limita altura */
+.gallery-preview {
+  max-height: 640px; /* 3 items + hint del 4º */
+  overflow: hidden;
+}
 
-  .gallery-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
+/* Mask degradado */
+.gallery-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 
-  /* Efecto Hover Imagen: Zoom */
-  .gallery-item:hover .gallery-img {
-    transform: scale(1.1);
-  }
+  background: linear-gradient(
+    to top,
+    var(--color-bg-main) 25%,
+    rgba(0, 0, 0, 0.6) 60%,
+    transparent 100%
+  );
+}
 
-  /* Overlay (Capa de texto sobre la imagen) */
-  .gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px;
-    /* Degradado oscuro desde abajo hacia arriba con un toque rojo */
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(217, 4, 41, 0.2) 50%,
-      transparent 100%
-    );
+/* CTA sobre la mask */
+.gallery-cta {
+  pointer-events: auto;
+  transform: translateY(40px);
+  backdrop-filter: blur(8px);
+}
 
-    /* Estado inicial: oculto hacia abajo y transparente */
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.4s ease-out;
-  }
+/* Grid base */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
 
-  /* Efecto Hover Overlay: Aparece */
-  .gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.gallery-item {
+  position: relative;
+  height: 300px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+}
 
-  .gallery-title {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    color: white;
-  }
-  .gallery-tag {
-    font-size: 0.9rem;
-    color: var(--color-accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Hover imagen */
+.gallery-item:hover .gallery-img {
+  transform: scale(1.1);
+}
+
+/* Overlay */
+.gallery-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 30px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(217, 4, 41, 0.2),
+    transparent
+  );
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.gallery-title {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.gallery-tag {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 </style>
