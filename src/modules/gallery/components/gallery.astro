@@ -1,0 +1,189 @@
+---
+const images = [
+  {
+    src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=600",
+    title: "Porsche 911 Carrera",
+    category: "ceramico",
+    label: "Cerámico",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1635776885479-408c448fbde0?q=80&w=600",
+    title: "BMW M4 Coupé",
+    category: "polarizado",
+    label: "Polarizado",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=600",
+    title: "Corvette Stingray",
+    category: "restauracion",
+    label: "Restauración",
+  },
+];
+---
+
+<div class="gallery-grid-page">
+  {
+    images.map((img) => (
+      <div class="gallery-item-page" data-category={img.category}>
+        <img src={img.src} alt={img.title} loading="lazy" />
+        <div class="gallery-overlay-page">
+          <span class="overlay-category">{img.label}</span>
+          <h3 class="overlay-title">{img.title}</h3>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox">&times;</span>
+  <img class="lightbox-img" />
+</div>
+
+<script type="module">
+  const lightbox = document.getElementById("lightbox");
+  const img = lightbox.querySelector(".lightbox-img");
+
+  document.addEventListener("click", (e) => {
+    const item = e.target.closest(".gallery-item-page");
+    if (item) {
+      img.src = item.querySelector("img").src;
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    if (
+      e.target.classList.contains("close-lightbox") ||
+      e.target === lightbox
+    ) {
+      lightbox.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  });
+</script>
+
+
+<style>
+  /* =========================
+     GALLERY GRID
+  ========================== */
+  .gallery-grid-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding-bottom: 100px;
+  }
+
+  .gallery-item-page {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+  }
+
+  .gallery-item-page img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gallery-item-page:hover img {
+    transform: scale(1.08);
+  }
+
+  /* =========================
+     OVERLAY
+  ========================== */
+  .gallery-overlay-page {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 25px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.4) 70%,
+      transparent 100%
+    );
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  .gallery-item-page:hover .gallery-overlay-page {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .overlay-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: white;
+  }
+
+  .overlay-category {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* =========================
+     LIGHTBOX
+  ========================== */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.9);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  }
+
+  .close-lightbox {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+
+  .close-lightbox:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+</style>

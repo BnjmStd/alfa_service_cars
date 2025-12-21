@@ -10,13 +10,13 @@ import Header from "~/components/Header.astro";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>Alfa Detailers Studio</title>
   </head>
   <body>
     <Header />
 
     <main class="layout-primary main-content">
-      <div>
+      <div class="wrapper-container">
         <slot />
       </div>
     </main>
@@ -229,5 +229,9 @@ import Header from "~/components/Header.astro";
 
   .layout-primary > * {
     grid-column: content-start / content-end;
+  }
+
+  .wrapper-container {
+    min-block-size: 100vh;
   }
 </style>

@@ -7,6 +7,8 @@
     </p>
 
     <div class="filter-buttons">
+      <span class="filter-indicator"></span>
+
       <button class="filter-btn active" data-filter="all">Todos</button>
       <button class="filter-btn" data-filter="ceramico">Cerámico</button>
       <button class="filter-btn" data-filter="polarizado">Polarizado</button>
@@ -49,6 +51,8 @@
 
   /* --- FILTROS DE CATEGORÍA --- */
   .filter-buttons {
+    position: relative;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -57,7 +61,13 @@
   }
 
   .filter-btn {
+    position: relative;
+    z-index: 1;
+
     background: var(--glass-bg);
+
+    background-color: transparent;
+
     border: 1px solid var(--glass-border);
     color: var(--color-text-muted);
     padding: 10px 25px;
@@ -80,4 +90,64 @@
     color: white;
     box-shadow: 0 0 15px var(--color-accent-glow);
   }
+
+  /* INDICADOR DESLIZANTE */
+  .filter-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    background: var(--color-accent);
+    border-radius: 999px;
+
+    box-shadow: 0 0 18px var(--color-accent-glow);
+
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.2s ease;
+
+    opacity: 0;
+    pointer-events: none;
+  }
 </style>
+
+
+<script>
+  const container = document.querySelector(".filter-buttons");
+  const indicator = container.querySelector(".filter-indicator");
+  const buttons = container.querySelectorAll(".filter-btn");
+
+  function moveIndicator(target) {
+    const containerRect = container.getBoundingClientRect();
+    const rect = target.getBoundingClientRect();
+
+    indicator.style.width = `${rect.width}px`;
+    indicator.style.transform = `translateX(${rect.left - containerRect.left}px)`;
+    indicator.style.opacity = "1";
+  }
+
+  // Hover → sigue el mouse
+  buttons.forEach((btn) => {
+    btn.addEventListener("mouseenter", () => moveIndicator(btn));
+
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      moveIndicator(btn);
+    });
+  });
+
+  // Al salir, vuelve al activo
+  container.addEventListener("mouseleave", () => {
+    const active = container.querySelector(".filter-btn.active");
+    if (active) moveIndicator(active);
+  });
+
+  // Posición inicial
+  window.addEventListener("load", () => {
+    const active = container.querySelector(".filter-btn.active");
+    if (active) moveIndicator(active);
+  });
+</script>
