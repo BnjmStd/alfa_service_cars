@@ -1,0 +1,117 @@
+<section
+  class="section faq-section"
+  style="background: var(--color-bg-surface);"
+>
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="service-hero-subtitle">Dudas Comunes</p>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
+        Preguntas Frecuentes del <span class="text-accent">Cerámico</span>
+      </h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-question">
+          <span>+</span> ¿Cuánto dura el Tratamiento Cerámico?
+        </div>
+        <div class="faq-answer">
+          <p>
+            Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2
+            y 5 años, dependiendo del producto seleccionado, el mantenimiento
+            del vehículo y las condiciones ambientales.
+          </p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question">
+          <span>+</span> ¿Es necesario pulir el auto antes de aplicarlo?
+        </div>
+        <div class="faq-answer">
+          <p>
+            Sí, es esencial. Para asegurar una adhesión perfecta y resultados
+            óptimos, la pintura debe estar en su mejor estado: libre de
+            defectos, hologramas y contaminantes. Realizamos una corrección de
+            pintura profesional previa.
+          </p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question">
+          <span>+</span> ¿Cómo debo mantener mi auto con tratamiento cerámico?
+        </div>
+        <div class="faq-answer">
+          <p>
+            Recomendamos lavados regulares con productos de pH neutro, evitar
+            túneles de lavado con cepillos abrasivos y secar el vehículo con
+            toallas de microfibra de alta calidad. Ofrecemos kits de
+            mantenimiento específicos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- PREGUNTAS FRECUENTES (FAQ) --- */
+  .faq-section {
+    background: var(--color-bg-main);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--glass-border);
+    padding: 30px 0;
+  }
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    transition: color 0.3s ease;
+  }
+  .faq-question:hover {
+    color: var(--color-accent);
+  }
+  .faq-question.active {
+    color: var(--color-accent);
+  }
+
+  .faq-question span {
+    font-size: 1.8rem;
+    margin-left: 20px;
+    color: var(--color-text-muted);
+    transition: transform 0.3s ease;
+  }
+  .faq-question.active span {
+    transform: rotate(45deg); /* Gira el '+' a una 'x' */
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.4s ease-out,
+      padding 0.4s ease-out;
+    color: var(--color-text-muted);
+    padding-top: 0;
+    font-size: 1rem;
+  }
+  .faq-answer.active {
+    max-height: 200px; /* Suficientemente grande para el contenido */
+    padding-top: 20px;
+  }
+</style>
+
+<script is:inline>
+  // --- FAQ ACORDEÓN ---
+  document.querySelectorAll(".faq-question").forEach((question) => {
+    question.addEventListener("click", () => {
+      const answer = question.nextElementSibling;
+      question.classList.toggle("active");
+      answer.classList.toggle("active");
+    });
+  });
+</script>

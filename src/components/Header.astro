@@ -4,20 +4,39 @@ import "~/styles/button.css";
 
 <header class="navbar">
   <nav class="container nav-content">
+    <!-- Logo -->
     <a href="#" class="logo">
       <img src="logo.png" alt="Alfa Detailers Studio" class="logo-img" />
     </a>
 
+    <!-- Toggle -->
+    <input type="checkbox" id="nav-toggle" />
+
+    <!-- Botón hamburguesa -->
+    <label for="nav-toggle" class="hamburger">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 6H21M3 12H21M3 18H21"></path>
+      </svg>
+    </label>
+
+    <!-- Overlay -->
+    <label for="nav-toggle" class="overlay"></label>
+
+    <!-- Links -->
     <div class="nav-links">
+      <label for="nav-toggle" class="close-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18M6 18L18 6"></path>
+        </svg>
+      </label>
+
       <a href="#servicios" class="nav-link">Servicios</a>
       <a href="#galeria" class="nav-link">Galería</a>
+      <a href="#contacto" class="btn btn-primary mobile-btn">Agendar</a>
     </div>
 
-    <a
-      href="#contacto"
-      class="btn btn-primary"
-      style="padding: 8px 20px; font-size: 0.9rem;">Agendar</a
-    >
+    <!-- Botón desktop -->
+    <a href="#contacto" class="btn btn-primary desktop-btn"> Agendar </a>
   </nav>
 </header>
 
@@ -61,5 +80,139 @@ import "~/styles/button.css";
     height: 40px;
     /* Filtro temporal si no tienes el logo transparente aún */
     /* filter: invert(1) brightness(2); */
+  }
+</style>
+
+<style>
+  /* ====== NAVBAR ====== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 1rem 2rem;
+
+    position: relative;
+  }
+
+  /* ====== LOGO ====== */
+  .logo-img {
+    height: 40px;
+  }
+
+  /* ====== TOGGLE ====== */
+  #nav-toggle {
+    display: none;
+  }
+
+  /* ====== LINKS DESKTOP ====== */
+  .nav-links {
+    display: flex;
+    gap: 30px;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-main);
+  }
+
+  /* ====== BOTONES ====== */
+  .desktop-btn {
+    display: inline-flex;
+  }
+
+  .mobile-btn {
+    display: none;
+  }
+
+  /* ====== HAMBURGER ====== */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+  }
+
+  .hamburger svg,
+  .close-btn svg {
+    width: 26px;
+    height: 26px;
+    stroke: white;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .close-btn {
+    display: none;
+  }
+
+  /* ====== MOBILE ====== */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+
+    .desktop-btn {
+      display: none;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 260px;
+      background: #0f1016;
+      flex-direction: column;
+      padding: 80px 30px;
+      gap: 25px;
+      transition: right 0.2s ease-in-out;
+      z-index: 20;
+    }
+
+    #nav-toggle:checked ~ .nav-links {
+      right: 0;
+    }
+
+    .close-btn {
+      display: block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .mobile-btn {
+      display: inline-flex;
+      margin-top: 10px;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 10;
+    }
+
+    #nav-toggle:checked ~ .overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 </style>

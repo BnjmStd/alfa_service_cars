@@ -1,0 +1,79 @@
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="service-hero-subtitle">Beneficios Exclusivos</p>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
+        ¿Por qué elegir un <span class="text-accent">Cerámico Alfa</span>?
+      </h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-item reveal">
+        <span class="benefit-icon">✨</span>
+        <h3 class="benefit-title">Brillo Espejo Duradero</h3>
+        <p class="benefit-desc">
+          Intensifica el color y la profundidad de la pintura, creando un
+          acabado de showroom que perdura.
+        </p>
+      </div>
+      <div class="benefit-item reveal">
+        <span class="benefit-icon">💧</span>
+        <h3 class="benefit-title">Repelencia Extrema</h3>
+        <p class="benefit-desc">
+          El agua y la suciedad se deslizan, facilitando la limpieza y
+          manteniendo tu auto más limpio por más tiempo.
+        </p>
+      </div>
+      <div class="benefit-item reveal">
+        <span class="benefit-icon">🛡️</span>
+        <h3 class="benefit-title">Protección 9H</h3>
+        <p class="benefit-desc">
+          Resistencia superior a micro-rayas, químicos, UV y oxidación, con
+          hasta 5 años de garantía.
+        </p>
+      </div>
+      <div class="benefit-item reveal">
+        <span class="benefit-icon">🌿</span>
+        <h3 class="benefit-title">Mantenimiento Sencillo</h3>
+        <p class="benefit-desc">
+          Reduce la necesidad de lavados frecuentes y el uso de productos
+          agresivos, protegiendo el medio ambiente.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- BENEFICIOS (Grid de Iconos Grandes) --- */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+  }
+  .benefit-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: 40px 20px;
+    transition: transform 0.3s ease;
+  }
+  .benefit-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-accent);
+  }
+  .benefit-icon {
+    font-size: 3rem;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  .benefit-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .benefit-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+</style>

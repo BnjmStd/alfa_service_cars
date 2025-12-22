@@ -1,0 +1,73 @@
+<style>
+  /* --- HERO ESPECÍFICO DEL SERVICIO --- */
+  .service-hero {
+    position: relative;
+    height: 85vh; /* Un poco menos que el hero principal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+  .service-hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.4; /* Video más sutil */
+  }
+  .service-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, var(--color-bg-main) 10%, rgba(0, 0, 0, 0.6) 80%),
+      radial-gradient(
+        circle at top right,
+        var(--color-accent-glow),
+        transparent 50%
+      );
+    z-index: 0;
+  }
+  .service-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    padding-top: 60px;
+  }
+
+  .service-hero-title {
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    background: linear-gradient(to bottom right, #ffffff, #aaaaaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .service-hero-desc {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 40px;
+  }
+</style>
+
+<section class="service-hero">
+  <video class="service-hero-video" autoplay muted loop playsinline>
+    <source
+      src="https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4"
+      type="video/mp4"
+    />
+  </video>
+  <div class="service-hero-overlay"></div>
+  <div class="service-hero-content reveal">
+    <p class="service-hero-subtitle">Protección Avanzada</p>
+    <h1 class="service-hero-title">Tratamiento Cerámico 9H</h1>
+    <p class="service-hero-desc">
+      La nanotecnología que blinda tu auto contra los elementos, le da un brillo
+      espejo y lo mantiene impecable por años.
+    </p>
+    <a href="#cotizar-whatsapp" class="btn btn-primary">Solicitar Cotización</a>
+  </div>
+</section>
