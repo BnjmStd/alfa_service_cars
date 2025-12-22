@@ -1,7 +1,5 @@
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="/a.mp4" type="video/mp4" />
-  </video>
+  <img class="hero-video" src="/car1.jpeg" alt="Hero background" />
 
   <div class="hero-overlay"></div>
 
@@ -83,7 +81,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: 1;
+
+    mask: linear-gradient(to bottom, #000 60%, transparent);
   }
 
   .hero-overlay {
@@ -92,19 +92,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-      linear-gradient(to top, var(--color-bg-main) 10%, rgba(0, 0, 0, 0.6) 60%),
-      radial-gradient(
-        circle at top right,
-        var(--color-accent-glow),
-        transparent 50%
-      );
-    z-index: 0;
+    background: rgba(50, 50, 50, 0.8);
+    z-index: 2;
+    mask: linear-gradient(to bottom, #000 60%, transparent);
   }
 
   .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     text-align: center;
     max-width: 800px;
     padding-top: 60px; /* Compensar navbar */
@@ -126,24 +121,3 @@
     margin-bottom: 40px;
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const shineContainer = document.querySelector(".hero-shine");
-    const mask = document.getElementById("mask-fade-text-grefg");
-
-    if (shineContainer && mask) {
-      shineContainer.addEventListener("mouseenter", () => {
-        // Reiniciar animación
-        mask.classList.remove("animate-shine");
-        void mask.offsetWidth; // Force reflow
-        mask.classList.add("animate-shine");
-      });
-
-      // Opcional: limpiar al salir
-      shineContainer.addEventListener("mouseleave", () => {
-        mask.classList.remove("animate-shine");
-      });
-    }
-  });
-</script>
