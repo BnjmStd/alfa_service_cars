@@ -1,3 +1,17 @@
+---
+
+import { getCollection } from "astro:content";
+
+const ubicaciones = await getCollection("ubicaciones");
+const ubicacion = ubicaciones[0]; 
+
+
+console.log(ubicacion);
+
+
+---
+
+
 <section id="ubicacion" class="location-section">
   <div class="container location-grid">
     <div class="location-info reveal">
