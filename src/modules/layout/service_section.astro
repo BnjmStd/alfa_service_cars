@@ -5,46 +5,84 @@
     </h2>
 
     <div class="grid-bento">
-      <a class="bento-card card-large" href="/services">
+      <!-- CATEGORÍA PRINCIPAL -->
+      <a class="bento-card card-large" href="/servicios/detailing-proteccion">
         <div class="card-media">
-          <img src="/car1.jpeg" alt="" />
+          <img src="/car1.jpeg" alt="Detailing y protección vehicular" />
           <video src="/a.mp4" muted loop playsinline></video>
         </div>
 
         <div class="card-content">
-          <h3 class="card-title">Tratamiento Cerámico 9H</h3>
+          <h3 class="card-title">Detailing & Protección de Pintura</h3>
           <p class="card-desc">
-            Blindaje de nanotecnología. Brillo extremo, repelencia al agua y
-            protección química hasta por 5 años.
+            Pulido de carrocería, tratamientos sintético, acrílico y cerámico.
+            Recupera brillo, protege la pintura y prolonga la vida estética de
+            tu vehículo.
           </p>
         </div>
       </a>
 
-      <a class="bento-card">
+      <!-- CATEGORÍA VIDRIOS -->
+      <a class="bento-card" href="/servicios/vidrios-seguridad">
         <div class="card-media">
-          <img src="/car1.jpeg" alt="" />
-          <video src="/a.mp4" muted loop playsinline></video>
+          <img src="/vidrios.jpg" alt="Vidrios y seguridad vehicular" />
+          <video src="/vidrios.mp4" muted loop playsinline></video>
         </div>
 
         <div class="card-content">
-          <h3 class="card-title">Grabado de Patentes</h3>
+          <h3 class="card-title">Vidrios & Seguridad</h3>
           <p class="card-desc">
-            Cumple la normativa con precisión láser. Grabado estético e
-            imborrable en vidrios y espejos.
+            Reparación de piquetes y trizaduras, polarizado certificado y
+            láminas de seguridad para protección, normativa y tranquilidad al
+            conducir.
           </p>
         </div>
       </a>
 
-      <a class="bento-card">
+      <!-- CATEGORÍA LIMPIEZA -->
+      <a class="bento-card" href="/servicios/limpieza-tecnica">
         <div class="card-media">
-          <img src="/car1.jpeg" alt="" />
-          <video src="/a.mp4" muted loop playsinline></video>
+          <img src="/interior.jpg" alt="Limpieza técnica interior" />
+          <video src="/interior.mp4" muted loop playsinline></video>
         </div>
+
         <div class="card-content">
-          <h3 class="card-title">Polarizados Nanocerámicos</h3>
+          <h3 class="card-title">Limpieza Técnica & Sanitización</h3>
           <p class="card-desc">
-            Máximo rechazo de calor y filtro UV sin comprometer la visibilidad
-            nocturna.
+            Descontaminación con ozono, limpieza interior profunda y
+            sanitización del habitáculo para un ambiente más limpio y saludable.
+          </p>
+        </div>
+      </a>
+
+      <!-- CATEGORÍA TÉCNICA -->
+      <a class="bento-card" href="/servicios/servicios-tecnicos">
+        <div class="card-media">
+          <img src="/motor.jpg" alt="Servicios técnicos vehiculares" />
+          <video src="/motor.mp4" muted loop playsinline></video>
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">Servicios Técnicos</h3>
+          <p class="card-desc">
+            Lavado de motor profesional, limpieza controlada y mantención
+            estética técnica sin dañar sensores ni componentes eléctricos.
+          </p>
+        </div>
+      </a>
+
+      <!-- CATEGORÍA MOTOS -->
+      <a class="bento-card" href="/servicios/motos">
+        <div class="card-media">
+          <img src="/moto.jpg" alt="Detailing para motos" />
+          <video src="/moto.mp4" muted loop playsinline></video>
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">Detailing para Motos</h3>
+          <p class="card-desc">
+            Servicios Elite Wash, tratamientos acrílicos y coatings cerámicos
+            para proteger, embellecer y mantener tu moto en alto nivel.
           </p>
         </div>
       </a>
@@ -118,26 +156,8 @@
     color: var(--color-text-muted);
   }
 </style>
-
-<script>
-  document.querySelectorAll(".bento-card").forEach((card) => {
-    const video = card.querySelector("video");
-    if (!video) return;
-
-    card.addEventListener("mouseenter", () => {
-      video.currentTime = 0;
-      video.play();
-    });
-
-    card.addEventListener("mouseleave", () => {
-      video.pause();
-    });
-  });
-</script>
-
 <style>
   /* --- Bento Media Hover (IMG → VIDEO) --- */
-
   .card-media {
     position: absolute;
     inset: 0;
@@ -192,3 +212,19 @@
     z-index: 2;
   }
 </style>
+
+<script>
+  document.querySelectorAll(".bento-card").forEach((card) => {
+    const video = card.querySelector("video");
+    if (!video) return;
+
+    card.addEventListener("mouseenter", () => {
+      video.currentTime = 0;
+      video.play();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+    });
+  });
+</script>
