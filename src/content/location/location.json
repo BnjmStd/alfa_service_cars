@@ -21,7 +21,7 @@
     ],
     "cta": {
       "text": "¿Cómo llegar?",
-      "url": "https://maps.google.com",
+      "url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.178652310619!2d-70.57025812341492!3d-33.418548995831686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cefa96798431%3A0x679468087786419d!2sSantiago%2C%20Chile!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl",
       "target": "_blank"
     },
     "map": {
