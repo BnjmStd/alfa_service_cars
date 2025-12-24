@@ -1,58 +1,60 @@
 ---
-
 import { getCollection } from "astro:content";
 
-const ubicaciones = await getCollection("ubicaciones");
-const ubicacion = ubicaciones[0]; 
+const [currentLocation] = await getCollection("location");
 
+if (!currentLocation) return;
 
-console.log(ubicacion);
-
-
+const { map, badge, title, details, cta } = currentLocation.data;
 ---
-
 
 <section id="ubicacion" class="location-section">
   <div class="container location-grid">
     <div class="location-info reveal">
-      <span class="address-tag">Visita el Estudio</span>
+      <span class="address-tag">{badge}</span>
+
       <h2 class="location-title">
-        Estamos donde nace la <span class="text-accent">pasión</span>
+        {title.text.replace(title.highlight, "")}
+        <span class="text-accent">{title.highlight}</span>
       </h2>
 
       <ul class="location-details">
-        <li>
-          <span class="detail-icon">📍</span>
-          <div>
-            <strong>Dirección</strong><br />
-            Av. Las Condes 12345, Oficina 602<br />
-            Santiago, Chile.
-          </div>
-        </li>
-        <li>
-          <span class="detail-icon">🕒</span>
-          <div>
-            <strong>Horario de Atención</strong><br />
-            Lunes a Viernes: 09:00 - 19:00<br />
-            Sábados: 10:00 - 14:00
-          </div>
-        </li>
+        {
+          details.map((detail) => (
+            <li>
+              <span class="detail-icon">{detail.icon}</span>
+              <div>
+                <>
+                  <strong>{detail.label}</strong>
+                  <br />
+                </>
+                {detail.content.map((line) => (
+                  <>
+                    {line}
+                    <br />
+                  </>
+                ))}
+              </div>
+            </li>
+          ))
+        }
       </ul>
 
-      <a href="https://maps.google.com" target="_blank" class="btn btn-primary">
-        ¿Cómo llegar?
+      <a href={cta.url} target={cta.target} class="btn btn-primary">
+        {cta.text}
       </a>
     </div>
 
     <div class="map-container reveal">
       <iframe
         class="map-iframe"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.178652310619!2d-70.57025812341492!3d-33.418548995831686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cefa96798431%3A0x679468087786419d!2sSantiago%2C%20Chile!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl"
-        allowfullscreen=""
-        loading="lazy"
+        src={map.embedUrl}
+        loading={map.lazy ? "lazy" : "eager"}
+        allowfullscreen={map.allowFullscreen}
       >
       </iframe>
-      <div class="map-overlay"></div>
+
+      {map.overlay && <div class="map-overlay" />}
     </div>
   </div>
 </section>

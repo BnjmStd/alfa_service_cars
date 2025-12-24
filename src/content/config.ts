@@ -1,24 +1,17 @@
 import { defineCollection, z } from "astro:content";
 import { file, glob } from "astro/loaders";
 
-
-export const ubicacionCollection = defineCollection({
-  loader: glob({
-    pattern: "**/*.json",
-    base: "src/content/ubications",
-  }),
+export const location = defineCollection({
+  loader: file("src/content/location/location.json"),
 
   schema: z.object({
     id: z.string(),
     visible: z.boolean().default(true),
-
     badge: z.string(),
-
     title: z.object({
       text: z.string(),
       highlight: z.string(),
     }),
-
     details: z.array(
       z.object({
         icon: z.string(),
@@ -26,13 +19,11 @@ export const ubicacionCollection = defineCollection({
         content: z.array(z.string()),
       })
     ),
-
     cta: z.object({
       text: z.string(),
       url: z.string().url(),
       target: z.string().optional(),
     }),
-
     map: z.object({
       embedUrl: z.string().url(),
       lazy: z.boolean().optional(),
@@ -42,7 +33,6 @@ export const ubicacionCollection = defineCollection({
   }),
 });
 
-
 export const collections = {
-    ubicaciones: ubicacionCollection,
-}
+  location,
+};
