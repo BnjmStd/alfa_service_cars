@@ -3,7 +3,7 @@ interface BentoItem {
   title: string;
   description: string;
   imageSrc: string;
-  videoSrc?: string; 
+  videoSrc?: string;
   href: string;
 }
 
@@ -62,87 +62,26 @@ const itemsBento: BentoItem[] = [
     </h2>
 
     <div class="grid-bento">
-      <!-- CATEGORÍA PRINCIPAL -->
-      <a class="bento-card card-large" href="/servicios/detailing-proteccion">
-        <div class="card-media">
-          <img src="/car1.jpeg" alt="Detailing y protección vehicular" />
-          <video src="/a.mp4" muted loop playsinline></video>
-        </div>
+      {
+        itemsBento.map((item, index) => (
+          <a
+            class={`bento-card ${index === 0 ? "card-large" : ""}`}
+            href={item.href}
+          >
+            <div class="card-media">
+              <img src={item.imageSrc} alt={item.title} />
+              {item.videoSrc && (
+                <video src={item.videoSrc} muted loop playsinline />
+              )}
+            </div>
 
-        <div class="card-content">
-          <h3 class="card-title">Detailing & Protección de Pintura</h3>
-          <p class="card-desc">
-            Pulido de carrocería, tratamientos sintético, acrílico y cerámico.
-            Recupera brillo, protege la pintura y prolonga la vida estética de
-            tu vehículo.
-          </p>
-        </div>
-      </a>
-
-      <!-- CATEGORÍA VIDRIOS -->
-      <a class="bento-card" href="/servicios/vidrios-seguridad">
-        <div class="card-media">
-          <img src="/vidrios.jpg" alt="Vidrios y seguridad vehicular" />
-          <video src="/vidrios.mp4" muted loop playsinline></video>
-        </div>
-
-        <div class="card-content">
-          <h3 class="card-title">Vidrios & Seguridad</h3>
-          <p class="card-desc">
-            Reparación de piquetes y trizaduras, polarizado certificado y
-            láminas de seguridad para protección, normativa y tranquilidad al
-            conducir.
-          </p>
-        </div>
-      </a>
-
-      <!-- CATEGORÍA LIMPIEZA -->
-      <a class="bento-card" href="/servicios/limpieza-tecnica">
-        <div class="card-media">
-          <img src="/interior.jpg" alt="Limpieza técnica interior" />
-          <video src="/interior.mp4" muted loop playsinline></video>
-        </div>
-
-        <div class="card-content">
-          <h3 class="card-title">Limpieza Técnica & Sanitización</h3>
-          <p class="card-desc">
-            Descontaminación con ozono, limpieza interior profunda y
-            sanitización del habitáculo para un ambiente más limpio y saludable.
-          </p>
-        </div>
-      </a>
-
-      <!-- CATEGORÍA TÉCNICA -->
-      <a class="bento-card" href="/servicios/servicios-tecnicos">
-        <div class="card-media">
-          <img src="/motor.jpg" alt="Servicios técnicos vehiculares" />
-          <video src="/motor.mp4" muted loop playsinline></video>
-        </div>
-
-        <div class="card-content">
-          <h3 class="card-title">Servicios Técnicos</h3>
-          <p class="card-desc">
-            Lavado de motor profesional, limpieza controlada y mantención
-            estética técnica sin dañar sensores ni componentes eléctricos.
-          </p>
-        </div>
-      </a>
-
-      <!-- CATEGORÍA MOTOS -->
-      <a class="bento-card" href="/servicios/motos">
-        <div class="card-media">
-          <img src="/moto.jpg" alt="Detailing para motos" />
-          <video src="/moto.mp4" muted loop playsinline></video>
-        </div>
-
-        <div class="card-content">
-          <h3 class="card-title">Detailing para Motos</h3>
-          <p class="card-desc">
-            Servicios Elite Wash, tratamientos acrílicos y coatings cerámicos
-            para proteger, embellecer y mantener tu moto en alto nivel.
-          </p>
-        </div>
-      </a>
+            <div class="card-content">
+              <h3 class="card-title">{item.title}</h3>
+              <p class="card-desc">{item.description}</p>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>
