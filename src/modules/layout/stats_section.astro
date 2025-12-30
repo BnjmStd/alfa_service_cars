@@ -1,25 +1,40 @@
+---
+const statsData = [
+  {
+    label: "Autos Protegidos",
+    value: 550,
+  },
+  {
+    label: "Años de Garantía",
+    value: 9,
+  },
+  {
+    label: "% Brillo Espejo",
+    value: 100,
+  },
+  {
+    label: "Horas de Curado",
+    value: 24,
+  },
+];
+---
+
 <section
   id="stats"
   class="section"
   style="background: var(--color-bg-surface);"
 >
   <div class="container stats-grid">
-    <div>
-      <span class="stat-number" data-target="550">0</span>
-      <span class="stat-label">Autos Protegidos</span>
-    </div>
-    <div>
-      <span class="stat-number" data-target="9">0</span>
-      <span class="stat-label">Años de Garantía</span>
-    </div>
-    <div>
-      <span class="stat-number" data-target="100">0</span>
-      <span class="stat-label">% Brillo Espejo</span>
-    </div>
-    <div>
-      <span class="stat-number" data-target="24">0</span>
-      <span class="stat-label">Horas de Curado</span>
-    </div>
+    {
+      statsData.map((stat) => (
+        <div>
+          <span class="stat-number" data-target={stat.value}>
+            0
+          </span>
+          <span class="stat-label">{stat.label}</span>
+        </div>
+      ))
+    }
   </div>
 </section>
 

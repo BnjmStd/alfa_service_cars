@@ -1,12 +1,4 @@
 ---
-interface BentoItem {
-  title: string;
-  description: string;
-  imageSrc: string;
-  videoSrc?: string;
-  href: string;
-}
-
 const itemsBento: BentoItem[] = [
   {
     title: "Detailing & Protección Cerámica",
@@ -65,7 +57,7 @@ const itemsBento: BentoItem[] = [
       {
         itemsBento.map((item, index) => (
           <a
-            class={`bento-card ${index === 0 ? "card-large" : ""}`}
+            class={`bento-card ${index === 0 ? "card-large" : ""} ${index === 3 ? "card-wide" : ""}`}
             href={item.href}
           >
             <div class="card-media">
@@ -151,8 +143,7 @@ const itemsBento: BentoItem[] = [
   .card-desc {
     color: var(--color-text-muted);
   }
-</style>
-<style>
+
   /* --- Bento Media Hover (IMG → VIDEO) --- */
   .card-media {
     position: absolute;
@@ -208,10 +199,35 @@ const itemsBento: BentoItem[] = [
     z-index: 2;
   }
 </style>
+<style>
+  .grid-bento {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .grid-bento {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+    }
+    .card-large {
+      grid-row: span 2;
+    }
+
+    .card-wide {
+      grid-column: span 2;
+    }
+  }
+</style>
 
 <script>
-  document.querySelectorAll(".bento-card").forEach((card) => {
-    const video = card.querySelector("video");
+  import { $$, $ } from "~/lib/get_dom_element";
+
+  const cards = $$<HTMLElement>(".bento-card");
+
+  cards.forEach((card) => {
+    const video = $<HTMLVideoElement>("video", card);
     if (!video) return;
 
     card.addEventListener("mouseenter", () => {

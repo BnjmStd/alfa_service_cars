@@ -1,54 +1,31 @@
+---
+const galleryFilters = [
+  { label: "Todos", value: "all", active: true },
+  { label: "Cerámico", value: "ceramico" },
+  { label: "Polarizado", value: "polarizado" },
+  { label: "Restauración", value: "restauracion" },
+  { label: "Grabado", value: "grabado" },
+];
+---
+
 <nav class="filter-buttons" aria-label="Filtrar galería">
   <span class="filter-indicator" aria-hidden="true"></span>
 
-  <button
-    type="button"
-    class="filter-btn active"
-    data-filter="all"
-    aria-pressed="true"
-  >
-    Todos
-  </button>
-
-  <button
-    type="button"
-    class="filter-btn"
-    data-filter="ceramico"
-    aria-pressed="false"
-  >
-    Cerámico
-  </button>
-
-  <button
-    type="button"
-    class="filter-btn"
-    data-filter="polarizado"
-    aria-pressed="false"
-  >
-    Polarizado
-  </button>
-
-  <button
-    type="button"
-    class="filter-btn"
-    data-filter="restauracion"
-    aria-pressed="false"
-  >
-    Restauración
-  </button>
-
-  <button
-    type="button"
-    class="filter-btn"
-    data-filter="grabado"
-    aria-pressed="false"
-  >
-    Grabado
-  </button>
+  {
+    galleryFilters.map((filter) => (
+      <button
+        type="button"
+        class={`filter-btn ${filter.active ? "active" : ""}`}
+        data-filter={filter.value}
+        aria-pressed={filter.active ? "true" : "false"}
+      >
+        {filter.label}
+      </button>
+    ))
+  }
 </nav>
 
 <style>
-  /* --- FILTROS DE CATEGORÍA --- */
   .filter-buttons {
     position: relative;
 
@@ -116,36 +93,38 @@
   const container = document.querySelector(".filter-buttons");
   const indicator = container.querySelector(".filter-indicator");
   const buttons = container.querySelectorAll(".filter-btn");
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    function moveIndicator(target) {
+      const containerRect = container.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
 
-  function moveIndicator(target) {
-    const containerRect = container.getBoundingClientRect();
-    const rect = target.getBoundingClientRect();
+      indicator.style.width = `${rect.width}px`;
+      indicator.style.transform = `translateX(${rect.left - containerRect.left}px)`;
+      indicator.style.opacity = "1";
+    }
 
-    indicator.style.width = `${rect.width}px`;
-    indicator.style.transform = `translateX(${rect.left - containerRect.left}px)`;
-    indicator.style.opacity = "1";
-  }
+    // Hover → sigue el mouse
+    buttons.forEach((btn) => {
+      btn.addEventListener("mouseenter", () => moveIndicator(btn));
 
-  // Hover → sigue el mouse
-  buttons.forEach((btn) => {
-    btn.addEventListener("mouseenter", () => moveIndicator(btn));
-
-    btn.addEventListener("click", () => {
-      buttons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      moveIndicator(btn);
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        moveIndicator(btn);
+      });
     });
-  });
 
-  // Al salir, vuelve al activo
-  container.addEventListener("mouseleave", () => {
-    const active = container.querySelector(".filter-btn.active");
-    if (active) moveIndicator(active);
-  });
+    // Al salir, vuelve al activo
+    container.addEventListener("mouseleave", () => {
+      const active = container.querySelector(".filter-btn.active");
+      if (active) moveIndicator(active);
+    });
 
-  // Posición inicial
-  window.addEventListener("load", () => {
-    const active = container.querySelector(".filter-btn.active");
-    if (active) moveIndicator(active);
+    // Posición inicial
+    window.addEventListener("load", () => {
+      const active = container.querySelector(".filter-btn.active");
+      if (active) moveIndicator(active);
+    });
   });
 </script>

@@ -9,7 +9,6 @@ import Header from "~/components/Header.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <title>Alfa Detailers Studio</title>
   </head>
   <body>
@@ -83,22 +82,6 @@ import Header from "~/components/Header.astro";
 
     .section {
       padding: 100px 0;
-    }
-
-    .grid-bento {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    @media (min-width: 768px) {
-      .grid-bento {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, auto);
-      }
-      .card-large {
-        grid-row: span 2;
-      }
     }
   }
 

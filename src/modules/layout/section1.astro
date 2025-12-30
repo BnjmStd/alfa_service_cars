@@ -1,21 +1,46 @@
+---
+const heroData = {
+  background: {
+    src: "/car1.jpeg",
+    alt: "Hero background",
+  },
+  title: ["La Perfección en", "Cada Detalle"],
+  subtitle: "Tratamiento Cerámico | Grabado de Patentes | Polarizados Premium",
+  cta: {
+    text: "Cotizar mi Auto",
+    href: "#servicios",
+  },
+};
+---
+
 <section class="hero">
-  <img class="hero-video" src="/car1.jpeg" alt="Hero background" />
+  <img
+    class="hero-video"
+    src={heroData.background.src}
+    alt={heroData.background.alt}
+  />
 
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <div class="hero-shine">
-      <h1 class="hero-title">La Perfección en</h1>
-    </div>
+    {
+      heroData.title.map((line, index) => (
+        <div class="hero-shine">
+          <h1 class={`hero-title ${index === 1 ? "hero-title-2" : ""}`}>
+            {line}
+          </h1>
+        </div>
+      ))
+    }
 
-    <div class="hero-shine">
-      <h1 class="hero-title hero-title-2">Cada Detalle</h1>
-    </div>
     <p class="hero-subtitle">
-      Tratamiento Cerámico | Grabado de Patentes | Polarizados Premium
+      {heroData.subtitle}
     </p>
+
     <div>
-      <a href="#servicios" class="btn btn-primary">Cotizar mi Auto</a>
+      <a href={heroData.cta.href} class="btn btn-primary">
+        {heroData.cta.text}
+      </a>
     </div>
   </div>
 </section>
@@ -121,3 +146,28 @@
     margin-bottom: 40px;
   }
 </style>
+
+<script>
+  import { $$ } from "~/lib/get_dom_element";
+
+  document.addEventListener("astro:page-load", () => {
+    const anchors = $$<HTMLAnchorElement>('a[href^="#"]');
+
+    anchors.forEach((anchor) => {
+      anchor.addEventListener("click", (e: MouseEvent) => {
+        e.preventDefault();
+
+        const href = anchor.getAttribute("href");
+        if (!href) return;
+
+        const target = document.querySelector<HTMLElement>(href);
+        if (!target) return;
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+  });
+</script>

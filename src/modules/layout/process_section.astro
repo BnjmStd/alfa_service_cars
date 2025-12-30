@@ -1,45 +1,56 @@
+---
+const processData = {
+  title: "Nuestro",
+  titleAccent: "Proceso",
+  subtitle: "Calidad artesanal con tecnología de punta.",
+  steps: [
+    {
+      title: "Descontaminado Profundo",
+      description:
+        "Eliminamos impurezas férricas y minerales incrustados en los poros de la laca mediante descontaminación química y mecánica (Clay Bar).",
+    },
+    {
+      title: "Corrección de Pintura",
+      description:
+        "Pulido en múltiples etapas para eliminar micro-rayas (swirls) y devolver la profundidad original al color del vehículo.",
+    },
+    {
+      title: "Blindaje Cerámico",
+      description:
+        "Aplicación de recubrimientos de SiO2 que crean una capa rígida, ultra-brillante y repelente a líquidos sobre la superficie.",
+    },
+  ],
+};
+---
+
 <section id="proceso" class="section">
   <div class="container">
-    <div class="section-header reveal">
+    <div class="section-header">
       <h2 style="font-size: 3rem;">
-        Nuestro <span class="text-accent">Proceso</span>
+        {processData.title}{" "}
+        <span class="text-accent">{processData.titleAccent}</span>
       </h2>
+
       <p style="color: var(--color-text-muted);">
-        Calidad artesanal con tecnología de punta.
+        {processData.subtitle}
       </p>
     </div>
 
     <div class="steps-container">
-      <div class="step-item reveal">
-        <div class="step-num">01</div>
-        <div class="step-text">
-          <h4>Descontaminado Profundo</h4>
-          <p>
-            Eliminamos impurezas férricas y minerales incrustados en los poros
-            de la laca mediante descontaminación química y mecánica (Clay Bar).
-          </p>
-        </div>
-      </div>
-      <div class="step-item reveal">
-        <div class="step-num">02</div>
-        <div class="step-text">
-          <h4>Corrección de Pintura</h4>
-          <p>
-            Pulido en múltiples etapas para eliminar micro-rayas (swirls) y
-            devolver la profundidad original al color del vehículo.
-          </p>
-        </div>
-      </div>
-      <div class="step-item reveal">
-        <div class="step-num">03</div>
-        <div class="step-text">
-          <h4>Blindaje Cerámico</h4>
-          <p>
-            Aplicación de recubrimientos de SiO2 que crean una capa rígida,
-            ultra-brillante y repelente a líquidos sobre la superficie.
-          </p>
-        </div>
-      </div>
+      {
+        processData.steps.map((step, index) => (
+          <div class="step-item">
+            <div class="step-num">
+              {(index + 1).toString().padStart(2, "0")}
+            </div>
+
+            <div class="step-text">
+              <h4>{step.title}</h4>
+              <p>{step.description}</p>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -47,6 +58,7 @@
 <style>
   /* --- PASOS DEL PROCESO --- */
   .steps-container {
+    z-index: 10;
     position: relative;
     margin-top: 40px;
   }
@@ -54,7 +66,7 @@
     display: flex;
     gap: 30px;
     margin-bottom: 60px;
-    opacity: 0;
+    opacity: 1;
     transform: translateY(30px);
     transition: 0.8s ease-out;
   }
