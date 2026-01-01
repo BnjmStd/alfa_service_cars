@@ -1,0 +1,22 @@
+---
+export async function getStaticPaths() {
+  const servicios = [
+    {
+      id: "diseno-web",
+      nombre: "Diseño Web",
+      desc: "Creamos sitios hermosos.",
+    },
+    { id: "seo", nombre: "SEO", desc: "Aparece en los primeros resultados." },
+  ];
+
+  return servicios.map((servicio) => ({
+    params: { id: servicio.id }, // Este "id" debe coincidir con el nombre del archivo [id].astro
+    props: { servicio }, // Pasas los datos a la página
+  }));
+}
+
+const { id } = Astro.params;
+const { servicio } = Astro.props;
+---
+
+<h1>Servicio: {servicio.nombre}</h1>
