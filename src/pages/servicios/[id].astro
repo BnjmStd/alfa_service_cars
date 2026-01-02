@@ -1,5 +1,10 @@
 ---
+import { getCollection } from "astro:content";
+
 export async function getStaticPaths() {
+  const colletectionDetails = await getCollection("details");
+  console.log("DETAILS:", colletectionDetails);
+
   const servicios = [
     {
       id: "diseno-web",
@@ -10,8 +15,8 @@ export async function getStaticPaths() {
   ];
 
   return servicios.map((servicio) => ({
-    params: { id: servicio.id }, // Este "id" debe coincidir con el nombre del archivo [id].astro
-    props: { servicio }, // Pasas los datos a la página
+    params: { id: servicio.id },
+    props: { servicio },
   }));
 }
 

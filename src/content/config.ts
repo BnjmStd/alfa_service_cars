@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { file } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import {
   ctaBlockSchema,
   faqListSchema,
@@ -60,9 +60,13 @@ const sectionSchema = z.discriminatedUnion("type", [
   whatsappAnchorSchema,
 ]);
 
+const pageDetailsSchema = z.object({
+  sections: z.array(sectionSchema),
+});
+
 export const details = defineCollection({
-  loader: file("src/content/details/details.json"),
-  schema: sectionSchema,
+  loader: glob({ pattern: "**/*.json", base: "./src/content/details" }),
+  schema: pageDetailsSchema,
 });
 
 export const collections = {
