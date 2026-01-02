@@ -1,50 +1,15 @@
 ---
-const itemsBento: BentoItem[] = [
-  {
-    title: "Detailing & Protección Cerámica",
-    description:
-      "Corrección de pintura, brillo espejo y tratamientos cerámicos de hasta 36 meses de duración.",
-    imageSrc: "/images/detailing-carroceria.webp",
-    videoSrc: "/videos/pulido-proceso.mp4",
-    href: "/servicios/detailing-exterior",
-  },
-  {
-    title: "Polarizado & Seguridad",
-    description:
-      "Polarizado certificado legal y láminas de seguridad (4 a 14 mil) anti-robo.",
-    imageSrc: "/images/polarizado-seguridad.webp",
-    href: "/servicios/polarizado-laminas",
-  },
-  {
-    title: "Reparación de Parabrisas",
-    description:
-      "Solución técnica a piquetes y trizaduras. Evita el cambio del vidrio original.",
-    imageSrc: "/images/reparacion-parabrisas.webp",
-    href: "/servicios/reparacion-parabrisas",
-  },
-  {
-    title: "Lavado de Motor Profesional",
-    description:
-      "Limpieza técnica, segura y detallada sin dañar sensores ni componentes.",
-    imageSrc: "/images/lavado-motor.webp",
-    href: "/servicios/lavado-motor",
-  },
-  {
-    title: "Moto Detailing",
-    description:
-      "Elite Wash, tratamientos acrílicos y cerámicos exclusivos para motocicletas.",
-    imageSrc: "/images/moto-detailing.webp",
-    videoSrc: "/videos/moto-wash.mp4",
-    href: "/servicios/motos",
-  },
-  {
-    title: "Normativa & Sanitización",
-    description:
-      "Grabado de patentes, borrado técnico y descontaminación con Ozono.",
-    imageSrc: "/images/grabado-patentes.webp",
-    href: "/servicios/normativa-interior",
-  },
-];
+import { getCollection } from "astro:content";
+
+const collectionServices = await getCollection("services");
+
+const itemsBento = collectionServices.map((service) => ({
+  title: service.data.title,
+  description: service.data.description,
+  imageSrc: service.data.imageSrc,
+  videoSrc: service.data.videoSrc || null,
+  href: service.data.href,
+}));
 ---
 
 <section id="servicios" class="section">
@@ -77,7 +42,6 @@ const itemsBento: BentoItem[] = [
     </div>
   </div>
 </section>
-
 <style>
   /* -- Tarjetas Servicios (Bento) -- */
   .bento-card {

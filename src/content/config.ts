@@ -1,5 +1,12 @@
 import { defineCollection, z } from "astro:content";
-import { file, glob } from "astro/loaders";
+import { file } from "astro/loaders";
+import {
+  ctaBlockSchema,
+  faqListSchema,
+  featureListSchema,
+  heroVideoSchema,
+  whatsappAnchorSchema,
+} from "./details/schemas";
 
 export const location = defineCollection({
   loader: file("src/content/location/location.json"),
@@ -33,6 +40,33 @@ export const location = defineCollection({
   }),
 });
 
+export const services = defineCollection({
+  loader: file("src/content/services/services.json"),
+
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    imageSrc: z.string(),
+    videoSrc: z.string().optional(),
+    href: z.string(),
+  }),
+});
+
+const sectionSchema = z.discriminatedUnion("type", [
+  heroVideoSchema,
+  featureListSchema,
+  faqListSchema,
+  ctaBlockSchema,
+  whatsappAnchorSchema,
+]);
+
+export const details = defineCollection({
+  loader: file("src/content/details/details.json"),
+  schema: sectionSchema,
+});
+
 export const collections = {
   location,
+  services,
+  details,
 };

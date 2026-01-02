@@ -1,0 +1,50 @@
+[
+  {
+    "id": "detailing-proteccion-ceramica",
+    "title": "Detailing & Protección Cerámica",
+    "description": "Corrección de pintura, brillo espejo y tratamientos cerámicos de hasta 36 meses de duración.",
+    "imageSrc": "/images/detailing-carroceria.webp",
+    "videoSrc": "/videos/pulido-proceso.mp4",
+    "href": "/servicios/detailing-exterior"
+  },
+  {
+    "id": "polarizado-seguridad",
+    "title": "Polarizado & Seguridad",
+    "description": "Polarizado certificado legal y láminas de seguridad (4 a 14 mil) anti-robo.",
+    "imageSrc": "/images/polarizado-seguridad.webp",
+    "videoSrc": "/videos/polarizado-laminas.mp4",
+    "href": "/servicios/polarizado-laminas"
+  },
+  {
+    "id": "reparacion-parabrisas",
+    "title": "Reparación de Parabrisas",
+    "description": "Solución técnica a piquetes y trizaduras. Evita el cambio del vidrio original.",
+    "imageSrc": "/images/reparacion-parabrisas.webp",
+    "videoSrc": "/videos/reparacion-parabrisas.mp4",
+    "href": "/servicios/reparacion-parabrisas"
+  },
+  {
+    "id": "lavado-motor-profesional",
+    "title": "Lavado de Motor Profesional",
+    "description": "Limpieza técnica, segura y detallada sin dañar sensores ni componentes.",
+    "imageSrc": "/images/lavado-motor.webp",
+    "videoSrc": "/videos/lavado-motor.mp4",
+    "href": "/servicios/lavado-motor"
+  },
+  {
+    "id": "moto-detailing",
+    "title": "Moto Detailing",
+    "description": "Elite Wash, tratamientos acrílicos y cerámicos exclusivos para motocicletas.",
+    "imageSrc": "/images/moto-detailing.webp",
+    "videoSrc": "/videos/moto-wash.mp4",
+    "href": "/servicios/motos"
+  },
+  {
+    "id": "normativa-interior",
+    "title": "Normativa & Sanitización",
+    "description": "Grabado de patentes, borrado técnico y descontaminación con Ozono.",
+    "imageSrc": "/images/grabado-patentes.webp",
+    "videoSrc": "/videos/normativa-interior.mp4",
+    "href": "/servicios/normativa-interior"
+  }
+]
