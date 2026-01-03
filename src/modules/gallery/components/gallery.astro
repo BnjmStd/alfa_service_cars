@@ -1,34 +1,26 @@
 ---
-const images = [
-  {
-    src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=600",
-    title: "Porsche 911 Carrera",
-    category: "ceramico",
-    label: "Cerámico",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1635776885479-408c448fbde0?q=80&w=600",
-    title: "BMW M4 Coupé",
-    category: "polarizado",
-    label: "Polarizado",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=600",
-    title: "Corvette Stingray",
-    category: "restauracion",
-    label: "Restauración",
-  },
-];
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const todasLasFotos = await getCollection("gallery");
 ---
 
 <div class="gallery-grid-page">
   {
-    images.map((img) => (
-      <div class="gallery-item-page" data-category={img.category}>
-        <img src={img.src} alt={img.title} loading="lazy" />
+    todasLasFotos.map((item) => (
+      <div class="gallery-item-page" data-category={item.data.categoria}>
+        <Image
+          src={item.data.foto}
+          alt={item.data.titulo}
+          width={600}
+          height={400}
+          class="mi-clase-de-imagen"
+        />
+
         <div class="gallery-overlay-page">
-          <span class="overlay-category">{img.label}</span>
-          <h3 class="overlay-title">{img.title}</h3>
+          <span class="overlay-category">{item.data.categoria}</span>
+          <h3 class="overlay-title">{item.data.titulo}</h3>
+          {item.data.description && <p>{item.data.description}</p>}
         </div>
       </div>
     ))
