@@ -1,20 +1,26 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const [hero] = await getCollection("main");
+const data = hero.data;
+
 const heroData = {
   background: {
-    src: "/car1.jpeg",
-    alt: "Hero background",
+    src: data.background.src,
+    alt: data.background.alt,
   },
-  title: ["La Perfección en", "Cada Detalle"],
-  subtitle: "Tratamiento Cerámico | Grabado de Patentes | Polarizados Premium",
+  title: data.title,
+  subtitle: data.subtitle,
   cta: {
-    text: "Cotizar mi Auto",
-    href: "#servicios",
+    text: data.cta.text,
+    href: data.cta.href,
   },
 };
 ---
 
 <section class="hero">
-  <img
+  <Image
     class="hero-video"
     src={heroData.background.src}
     alt={heroData.background.alt}

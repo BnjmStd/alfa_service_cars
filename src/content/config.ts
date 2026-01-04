@@ -43,13 +43,14 @@ export const location = defineCollection({
 export const services = defineCollection({
   loader: file("src/content/services/services.json"),
 
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    imageSrc: z.string(),
-    videoSrc: z.string().optional(),
-    href: z.string(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      imageSrc: image(),
+      videoSrc: z.string().optional(),
+      href: z.string(),
+    }),
 });
 
 const sectionSchema = z.discriminatedUnion("type", [
@@ -81,9 +82,27 @@ const gallery = defineCollection({
     }),
 });
 
+export const main = defineCollection({
+  type: "data",
+  schema: ({ image }) =>
+    z.object({
+      background: z.object({
+        src: image(),
+        alt: z.string(),
+      }),
+      title: z.array(z.string()),
+      subtitle: z.string(),
+      cta: z.object({
+        text: z.string(),
+        href: z.string(),
+      }),
+    }),
+});
+
 export const collections = {
   location,
   services,
   details,
   gallery,
+  main,
 };

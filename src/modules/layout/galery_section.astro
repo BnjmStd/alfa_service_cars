@@ -1,4 +1,11 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const todasLasFotos = await getCollection("gallery");
+
+const previewFotos = todasLasFotos.slice(0, 3);
+
 const galleryData = {
   title: "Resultados",
   titleAccent: "Alfa",
@@ -6,26 +13,6 @@ const galleryData = {
     text: "Ver galería completa",
     href: "/galeria",
   },
-  items: [
-    {
-      src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1080&auto=format&fit=crop",
-      alt: "Porsche 911 Carrera con tratamiento cerámico",
-      tag: "Cerámico 5 Años",
-      title: "Porsche 911 Carrera",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1080&auto=format&fit=crop",
-      alt: "Grabado de patentes en vidrios",
-      tag: "Normativa",
-      title: "Grabado de Precisión",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1080&auto=format&fit=crop",
-      alt: "Restauración interior de piel",
-      tag: "Interior",
-      title: "Restauración de Piel",
-    },
-  ],
 };
 ---
 
@@ -43,19 +30,19 @@ const galleryData = {
     <div class="gallery-wrapper">
       <div class="gallery-grid gallery-preview">
         {
-          galleryData.items.map((item) => (
+          previewFotos.map((item) => (
             <article class="gallery-item">
-              <img
-                src={item.src}
-                alt={item.alt}
+              <Image
+                src={item.data.foto}
+                alt={item.data.titulo}
+                width={600}
+                height={400}
                 class="gallery-img"
-                loading="lazy"
-                decoding="async"
               />
 
               <div class="gallery-overlay">
-                <span class="gallery-tag">{item.tag}</span>
-                <h3 class="gallery-title">{item.title}</h3>
+                <span class="gallery-tag">{item.data.categoria}</span>
+                <h3 class="gallery-title">{item.data.titulo}</h3>
               </div>
             </article>
           ))
@@ -85,28 +72,15 @@ const galleryData = {
 
   /* Mask degradado */
   .gallery-mask {
-    position: absolute;
-    bottom: -50%;
-    left: 0;
-    width: 100%;
-    height: 220px;
+    padding-block-start: 20px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    pointer-events: none;
-
-    background: linear-gradient(
-      to top,
-      var(--color-bg-main) 25%,
-      rgba(0, 0, 0, 0.6) 60%,
-      transparent 100%
-    );
+    align-items: center;
   }
 
   /* CTA sobre la mask */
   .gallery-cta {
     pointer-events: auto;
-    transform: translateY(40px);
     backdrop-filter: blur(8px);
   }
 

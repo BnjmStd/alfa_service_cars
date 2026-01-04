@@ -1,14 +1,14 @@
 ---
+import { Image } from "astro:assets";
+import { BRAND } from "~/lib/brand";
 import "~/styles/button.css";
-
-const nameLogo = "logo_malo.jpeg";
 ---
 
 <header class="navbar">
   <nav class="container nav-content">
     <!-- Logo -->
     <a href="#" class="logo">
-      <img src={`/${nameLogo}`} alt="Alfa Detailers Studio" class="logo-img" />
+        <Image width={64} height={64} src={BRAND.logo} alt={BRAND.name} class="logo-img" />
     </a>
 
     <!-- Toggle -->

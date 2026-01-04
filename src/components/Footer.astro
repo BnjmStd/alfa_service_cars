@@ -1,6 +1,17 @@
+---
+import { Image } from "astro:assets";
+import { BRAND } from "~/lib/brand";
+---
+
 <footer class="footer" id="contacto">
   <div class="container footer-content">
-    <img src="logo.png" alt="Alfa Logo" class="footer-logo" />
+    <Image
+      width={64}
+      height={64}
+      src={BRAND.logo}
+      alt={BRAND.name}
+      class="footer-logo"
+    />
 
     <h3 class="footer-title">¿Listo para transformar tu vehículo?</h3>
     <p class="footer-text">Agenda tu cita en nuestro estudio.</p>

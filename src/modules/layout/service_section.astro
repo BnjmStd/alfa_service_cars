@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 const collectionServices = await getCollection("services");
@@ -26,7 +27,13 @@ const itemsBento = collectionServices.map((service) => ({
             href={item.href}
           >
             <div class="card-media">
-              <img src={item.imageSrc} alt={item.title} />
+              <Image
+                src={item.imageSrc}
+                alt={item.title}
+                width={800}
+                height={600}
+                class="bento-img"
+              />
               {item.videoSrc && (
                 <video src={item.videoSrc} muted loop playsinline />
               )}
@@ -64,7 +71,6 @@ const itemsBento = collectionServices.map((service) => ({
   .bento-card:hover {
     transform: translateY(-5px) scale(1.01);
     border-color: rgba(255, 255, 255, 0.2);
-
     cursor: pointer;
   }
 

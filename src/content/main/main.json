@@ -1,0 +1,12 @@
+{
+  "background": {
+    "src": "../../assets/main/car1.jpeg",
+    "alt": "Hero background"
+  },
+  "title": ["La Perfección en", "Cada Detalle"],
+  "subtitle": "Tratamiento Cerámico | Grabado de Patentes | Polarizados Premium",
+  "cta": {
+    "text": "Cotizar mi Auto",
+    "href": "#servicios"
+  }
+}
