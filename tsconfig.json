@@ -3,18 +3,17 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
-    "strictNullChecks": true, // add if using `base` template
-    "allowJs": true, // required, and included with all Astro templates
-    "baseUrl": ".",
+    "strictNullChecks": true,
+    "allowJs": true,
     "paths": {
-      "~/*": ["src/*"],
-      "@modules/*": ["src/modules/*"],
-      "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@pages/*": ["src/pages/*"],
-      "@utils/*": ["src/utils/*"],
-      "@lib/*": ["src/lib/*"]
+      "~/*": ["./src/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@lib/*": ["./src/lib/*"]
     }
   }
 }

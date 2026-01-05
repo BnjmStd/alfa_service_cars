@@ -1,6 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 
+import Faqs from "~/modules/services/components/faqs.astro";
+import Comparison_section from "~/modules/services/components/comparison_section.astro";
+import Hero from "~/modules/services/components/hero.astro";
+import Benefit from "~/modules/services/components/benefit.astro";
+import Last from "~/modules/services/components/last.astro";
+import Layout from "~/layouts/Layout.astro";
+import Sub from "~/layouts/sub.astro";
+
 export async function getStaticPaths() {
   const details = await getCollection("details");
 
@@ -12,3 +20,44 @@ export async function getStaticPaths() {
 
 const { servicio } = Astro.props;
 ---
+<Layout>
+  <Sub sections={servicio.sections} />
+</Layout>
+
+<style is:global>
+  @layer utilities {
+    .text-accent {
+      color: var(--color-accent);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .service-hero-subtitle {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+</style>
+
+<script>
+  const observerOptions = { threshold: 0.2 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  }, observerOptions);
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>

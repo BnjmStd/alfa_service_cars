@@ -1,3 +1,59 @@
+<section class="comparison-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="text-accent" style="font-weight: 700; letter-spacing: 2px;"
+        >EL PODER DEL DETAILING</span
+      >
+      <h2 class="location-title">Resultados que hablan.</h2>
+    </div>
+
+    <div class="comparison-container reveal">
+      <img
+        src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop"
+        class="comparison-img"
+        alt="Después"
+      />
+      <span class="label-comparison" style="right: 20px;">Después</span>
+
+      <img
+        id="beforeImg"
+        src="https://images.unsplash.com/photo-1507136566006-bb7aef55f175?q=80&w=1000&auto=format&fit=crop"
+        class="comparison-img img-before"
+        alt="Antes"
+      />
+      <span class="label-comparison" style="left: 20px;">Antes</span>
+
+      <div id="line" class="slider-line"></div>
+      <div id="button" class="slider-button"></div>
+
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        class="comparison-slider"
+        id="slider"
+      />
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const slider = document.getElementById("slider");
+  const beforeImg = document.getElementById("beforeImg");
+  const line = document.getElementById("line");
+  const button = document.getElementById("button");
+
+  slider.addEventListener("input", (e) => {
+    const value = e.target.value;
+    // Cortamos la imagen de la derecha basándonos en el slider
+    beforeImg.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+    // Movemos la línea y el botón
+    line.style.left = `${value}%`;
+    button.style.left = `${value}%`;
+  });
+</script>
+
 <style>
   @layer components {
     .comparison-section {
@@ -105,59 +161,3 @@
     }
   }
 </style>
-
-<section class="comparison-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="text-accent" style="font-weight: 700; letter-spacing: 2px;"
-        >EL PODER DEL DETAILING</span
-      >
-      <h2 class="location-title">Resultados que hablan.</h2>
-    </div>
-
-    <div class="comparison-container reveal">
-      <img
-        src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop"
-        class="comparison-img"
-        alt="Después"
-      />
-      <span class="label-comparison" style="right: 20px;">Después</span>
-
-      <img
-        id="beforeImg"
-        src="https://images.unsplash.com/photo-1507136566006-bb7aef55f175?q=80&w=1000&auto=format&fit=crop"
-        class="comparison-img img-before"
-        alt="Antes"
-      />
-      <span class="label-comparison" style="left: 20px;">Antes</span>
-
-      <div id="line" class="slider-line"></div>
-      <div id="button" class="slider-button"></div>
-
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value="50"
-        class="comparison-slider"
-        id="slider"
-      />
-    </div>
-  </div>
-</section>
-
-<script is:inline>
-  const slider = document.getElementById("slider");
-  const beforeImg = document.getElementById("beforeImg");
-  const line = document.getElementById("line");
-  const button = document.getElementById("button");
-
-  slider.addEventListener("input", (e) => {
-    const value = e.target.value;
-    // Cortamos la imagen de la derecha basándonos en el slider
-    beforeImg.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
-    // Movemos la línea y el botón
-    line.style.left = `${value}%`;
-    button.style.left = `${value}%`;
-  });
-</script>

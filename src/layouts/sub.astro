@@ -1,0 +1,57 @@
+---
+import Index from "~/modules/services/index.astro";
+
+export type HeroSection = {
+  id: string;
+  type: "hero-video";
+  title: string;
+  subtitle: string;
+  description: string;
+  videoSrc: string;
+  cta: {
+    text: string;
+    href: string;
+  };
+};
+
+export type FeatureSection = {
+  id: string;
+  type: "feature-list";
+  title: string;
+  subtitle: string;
+  description?: string;
+  features: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+};
+
+export type FaqSection = {
+  id: string;
+  type: "faq-list";
+  title: string;
+  subtitle: string;
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
+};
+
+export type CtaSection = {
+  id: string;
+  type: "cta-block";
+  title: string;
+  subtitle: string;
+  button: {
+    text: string;
+    href: string;
+  };
+};
+
+export type Section = HeroSection | FeatureSection | FaqSection | CtaSection;
+
+const { sections } = Astro.props as { sections: Section[] };
+---
+
+{sections.map((section) => <Index section={section} />)}

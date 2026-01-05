@@ -5,7 +5,7 @@
     "description": "Corrección de pintura, brillo espejo y tratamientos cerámicos de hasta 36 meses de duración.",
     "imageSrc": "../../assets/services/car1.jpeg",
     "videoSrc": "/videos/a.mp4",
-    "href": "/servicios/detailing-exterior"
+    "href": "/servicios/detailing-proteccion-ceramica"
   },
   {
     "id": "polarizado-seguridad",
@@ -13,7 +13,7 @@
     "description": "Polarizado certificado legal y láminas de seguridad (4 a 14 mil) anti-robo.",
     "imageSrc": "../../assets/services/car1.jpeg",
     "videoSrc": "/videos/a.mp4",
-    "href": "/servicios/polarizado-laminas"
+    "href": "/servicios/polarizado-seguridad"
   },
   {
     "id": "reparacion-parabrisas",
@@ -29,7 +29,7 @@
     "description": "Limpieza técnica, segura y detallada sin dañar sensores ni componentes.",
     "imageSrc": "../../assets/services/car1.jpeg",
     "videoSrc": "/videos/a.mp4",
-    "href": "/servicios/lavado-motor"
+    "href": "/servicios/lavado-motor-profesional"
   },
   {
     "id": "moto-detailing",
@@ -37,7 +37,7 @@
     "description": "Elite Wash, tratamientos acrílicos y cerámicos exclusivos para motocicletas.",
     "imageSrc": "../../assets/services/car1.jpeg",
     "videoSrc": "/videos/a.mp4",
-    "href": "/servicios/motos"
+    "href": "/servicios/moto-detailing"
   },
   {
     "id": "normativa-interior",

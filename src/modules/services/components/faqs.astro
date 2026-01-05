@@ -1,54 +1,36 @@
+---
+import type { FaqSection } from "~/layouts/sub.astro";
+
+const section = Astro.props as FaqSection;
+const { title, subtitle, faqs } = section;
+---
+
 <section
   class="section faq-section"
   style="background: var(--color-bg-surface);"
+  id={section.id}
 >
   <div class="container">
     <div class="section-header reveal">
-      <p class="service-hero-subtitle">Dudas Comunes</p>
+      <p class="service-hero-subtitle">{subtitle}</p>
       <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
-        Preguntas Frecuentes del <span class="text-accent">Cerámico</span>
+        {title}
       </h2>
     </div>
 
     <div class="faq-list">
-      <div class="faq-item reveal">
-        <div class="faq-question">
-          <span>+</span> ¿Cuánto dura el Tratamiento Cerámico?
-        </div>
-        <div class="faq-answer">
-          <p>
-            Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2
-            y 5 años, dependiendo del producto seleccionado, el mantenimiento
-            del vehículo y las condiciones ambientales.
-          </p>
-        </div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-question">
-          <span>+</span> ¿Es necesario pulir el auto antes de aplicarlo?
-        </div>
-        <div class="faq-answer">
-          <p>
-            Sí, es esencial. Para asegurar una adhesión perfecta y resultados
-            óptimos, la pintura debe estar en su mejor estado: libre de
-            defectos, hologramas y contaminantes. Realizamos una corrección de
-            pintura profesional previa.
-          </p>
-        </div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-question">
-          <span>+</span> ¿Cómo debo mantener mi auto con tratamiento cerámico?
-        </div>
-        <div class="faq-answer">
-          <p>
-            Recomendamos lavados regulares con productos de pH neutro, evitar
-            túneles de lavado con cepillos abrasivos y secar el vehículo con
-            toallas de microfibra de alta calidad. Ofrecemos kits de
-            mantenimiento específicos.
-          </p>
-        </div>
-      </div>
+      {
+        faqs.map((faq) => (
+          <div class="faq-item reveal">
+            <div class="faq-question">
+              <span>+</span> {faq.question}
+            </div>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

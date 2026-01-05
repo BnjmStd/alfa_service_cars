@@ -1,50 +1,34 @@
-<section class="section">
+---
+import type { FeatureSection } from "~/layouts/sub.astro";
+
+const section = Astro.props as FeatureSection;
+const { title, subtitle, features } = section;
+---
+
+<section class="section" id={section.id}>
   <div class="container">
     <div class="section-header reveal">
-      <p class="service-hero-subtitle">Beneficios Exclusivos</p>
+      <p class="service-hero-subtitle">{subtitle}</p>
       <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
-        ¿Por qué elegir un <span class="text-accent">Cerámico Alfa</span>?
+        {title}
       </h2>
     </div>
+
     <div class="benefits-grid">
-      <div class="benefit-item reveal">
-        <span class="benefit-icon">✨</span>
-        <h3 class="benefit-title">Brillo Espejo Duradero</h3>
-        <p class="benefit-desc">
-          Intensifica el color y la profundidad de la pintura, creando un
-          acabado de showroom que perdura.
-        </p>
-      </div>
-      <div class="benefit-item reveal">
-        <span class="benefit-icon">💧</span>
-        <h3 class="benefit-title">Repelencia Extrema</h3>
-        <p class="benefit-desc">
-          El agua y la suciedad se deslizan, facilitando la limpieza y
-          manteniendo tu auto más limpio por más tiempo.
-        </p>
-      </div>
-      <div class="benefit-item reveal">
-        <span class="benefit-icon">🛡️</span>
-        <h3 class="benefit-title">Protección 9H</h3>
-        <p class="benefit-desc">
-          Resistencia superior a micro-rayas, químicos, UV y oxidación, con
-          hasta 5 años de garantía.
-        </p>
-      </div>
-      <div class="benefit-item reveal">
-        <span class="benefit-icon">🌿</span>
-        <h3 class="benefit-title">Mantenimiento Sencillo</h3>
-        <p class="benefit-desc">
-          Reduce la necesidad de lavados frecuentes y el uso de productos
-          agresivos, protegiendo el medio ambiente.
-        </p>
-      </div>
+      {
+        features.map((feature) => (
+          <div class="benefit-item reveal">
+            <span class="benefit-icon">{feature.icon}</span>
+            <h3 class="benefit-title">{feature.title}</h3>
+            <p class="benefit-desc">{feature.description}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
 
 <style>
-  /* --- BENEFICIOS (Grid de Iconos Grandes) --- */
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

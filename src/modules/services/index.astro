@@ -1,51 +1,15 @@
 ---
+import Hero from "~/modules/services/components/hero.astro";
+import Benefit from "~/modules/services/components/benefit.astro";
 import Faqs from "~/modules/services/components/faqs.astro";
-import Comparison_section from "~/modules/services/components/comparison_section.astro";
-import Benefit from "./components/benefit.astro";
-import Hero from "./components/hero.astro";
-import Last from "./components/last.astro";
+import Last from "~/modules/services/components/last.astro";
+import WhatsappAnchor from "./components/whatsappAnchor.astro";
+
+const { section } = Astro.props;
 ---
 
-<Hero />
-<Benefit />
-<Faqs />
-<Comparison_section />
-<Last />
-
-<style is:global>
-  @layer utilities {
-    .text-accent {
-      color: var(--color-accent);
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: 0.8s ease-out;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .service-hero-subtitle {
-    color: var(--color-accent);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-  }
-</style>
-
-<script>
-  const observerOptions = { threshold: 0.2 };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-      }
-    });
-  }, observerOptions);
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-</script>
+{section.type === "hero-video" && <Hero {...section} />}
+{section.type === "feature-list" && <Benefit {...section} />}
+{section.type === "faq-list" && <Faqs {...section} />}
+{section.type === "cta-block" && <Last {...section} />}
+{section.type === "whatsapp-anchor" && <WhatsappAnchor {...section} />}

@@ -1,17 +1,18 @@
-<section class="section" style="text-align: center;">
+---
+import type { CtaSection } from "~/layouts/sub.astro";
+
+const section = Astro.props as CtaSection;
+const { title, subtitle, button } = section;
+---
+
+<section class="section" style="text-align: center;" id={section.id}>
   <div class="container reveal">
-    <p class="service-hero-subtitle">Cotiza Ahora</p>
+    <p class="service-hero-subtitle">{subtitle}</p>
     <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px;">
-      Prepara tu auto para el futuro.
+      {title}
     </h2>
-    <a href="#cotizar-whatsapp" class="btn btn-primary">Cotizar Tratamiento Cerámico</a
-    >
+    <a href={button.href} class="btn btn-primary">
+      {button.text}
+    </a>
   </div>
 </section>
-
-<div
-  id="cotizar-whatsapp"
-  style="display: none;"
-  data-service="Tratamiento Cerámico 9H"
->
-</div>

@@ -1,0 +1,15 @@
+---
+type WhatsappAnchorSection = {
+  id: string;
+  type: "whatsapp-anchor";
+  serviceName: string;
+};
+
+const section = Astro.props as WhatsappAnchorSection;
+---
+
+<div
+  id={section.id}
+  style="display: none;"
+  data-service={section.serviceName}
+></div>
