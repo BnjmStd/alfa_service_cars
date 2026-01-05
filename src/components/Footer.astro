@@ -1,25 +1,53 @@
 ---
 import { Image } from "astro:assets";
 import { BRAND } from "~/lib/brand";
+import Social from "./Social.astro";
+
+export const FOOTER = {
+  logo: {
+    src: BRAND.logo,
+    alt: BRAND.name,
+    width: 64,
+    height: 64,
+  },
+
+  title: "¿Listo para transformar tu vehículo?",
+  subtitle: "Agenda tu cita en nuestro estudio.",
+
+  cta: {
+    label: "WhatsApp Directo",
+    href: "https://wa.me/5210000000000",
+  },
+
+  copyright: "Alfa Detailers Studio © 2026. Todos los derechos reservados.",
+};
 ---
 
 <footer class="footer" id="contacto">
   <div class="container footer-content">
+    <Social />
     <Image
-      width={64}
-      height={64}
-      src={BRAND.logo}
-      alt={BRAND.name}
+      width={FOOTER.logo.width}
+      height={FOOTER.logo.height}
+      src={FOOTER.logo.src}
+      alt={FOOTER.logo.alt}
       class="footer-logo"
     />
 
-    <h3 class="footer-title">¿Listo para transformar tu vehículo?</h3>
-    <p class="footer-text">Agenda tu cita en nuestro estudio.</p>
+    <h3 class="footer-title">{FOOTER.title}</h3>
+    <p class="footer-text">{FOOTER.subtitle}</p>
 
-    <a href="#" class="btn btn-primary footer-btn">WhatsApp Directo</a>
+    <a
+      href={FOOTER.cta.href}
+      class="btn btn-primary footer-btn"
+      target="_blank"
+      rel="noopener"
+    >
+      {FOOTER.cta.label}
+    </a>
 
     <div class="footer-copy">
-      <p>Alfa Detailers Studio &copy; 2026. Todos los derechos reservados.</p>
+      <p>{FOOTER.copyright}</p>
     </div>
   </div>
 </footer>

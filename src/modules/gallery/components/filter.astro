@@ -1,23 +1,17 @@
 ---
-const galleryFilters = [
-  { label: "Todos", value: "all", active: true },
-  { label: "Cerámico", value: "ceramico" },
-  { label: "Polarizado", value: "polarizado" },
-  { label: "Restauración", value: "restauracion" },
-  { label: "Grabado", value: "grabado" },
-];
+import { galleryFilters } from "~/lib/galleryFilters";
 ---
 
 <nav class="filter-buttons" aria-label="Filtrar galería">
   <span class="filter-indicator" aria-hidden="true"></span>
 
   {
-    galleryFilters.map((filter) => (
+    galleryFilters.map((filter, i) => (
       <button
         type="button"
-        class={`filter-btn ${filter.active ? "active" : ""}`}
+        class={`filter-btn ${i === 0 ? "active" : ""}`}
         data-filter={filter.value}
-        aria-pressed={filter.active ? "true" : "false"}
+        aria-pressed={i === 0 ? "true" : "false"}
       >
         {filter.label}
       </button>
@@ -25,10 +19,61 @@ const galleryFilters = [
   }
 </nav>
 
+<script is:inline>
+  const container = document.querySelector(".filter-buttons");
+  const indicator = container.querySelector(".filter-indicator");
+  const buttons = container.querySelectorAll(".filter-btn");
+
+  function isDesktop() {
+    return window.matchMedia("(min-width: 768px)").matches;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!isDesktop()) return;
+    function moveIndicator(target) {
+      const containerRect = container.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
+
+      indicator.style.width = `${rect.width}px`;
+      indicator.style.transform = `translateX(${rect.left - containerRect.left}px)`;
+      indicator.style.opacity = "1";
+    }
+
+    // Hover → sigue el mouse
+    buttons.forEach((btn) => {
+      btn.addEventListener("mouseenter", () => moveIndicator(btn));
+
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        moveIndicator(btn);
+      });
+    });
+
+    // Al salir, vuelve al activo
+    container.addEventListener("mouseleave", () => {
+      const active = container.querySelector(".filter-btn.active");
+      if (active) moveIndicator(active);
+    });
+
+    // Posición inicial
+    window.addEventListener("load", () => {
+      const active = container.querySelector(".filter-btn.active");
+      if (active) moveIndicator(active);
+    });
+  });
+</script>
+
 <style>
+  /* MOBILE: ocultar efecto slider */
+  @media (max-width: 767px) {
+    .filter-indicator {
+      display: none;
+    }
+  }
+
   .filter-buttons {
     position: relative;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -88,43 +133,3 @@ const galleryFilters = [
     pointer-events: none;
   }
 </style>
-
-<script is:inline>
-  const container = document.querySelector(".filter-buttons");
-  const indicator = container.querySelector(".filter-indicator");
-  const buttons = container.querySelectorAll(".filter-btn");
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    function moveIndicator(target) {
-      const containerRect = container.getBoundingClientRect();
-      const rect = target.getBoundingClientRect();
-
-      indicator.style.width = `${rect.width}px`;
-      indicator.style.transform = `translateX(${rect.left - containerRect.left}px)`;
-      indicator.style.opacity = "1";
-    }
-
-    // Hover → sigue el mouse
-    buttons.forEach((btn) => {
-      btn.addEventListener("mouseenter", () => moveIndicator(btn));
-
-      btn.addEventListener("click", () => {
-        buttons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        moveIndicator(btn);
-      });
-    });
-
-    // Al salir, vuelve al activo
-    container.addEventListener("mouseleave", () => {
-      const active = container.querySelector(".filter-btn.active");
-      if (active) moveIndicator(active);
-    });
-
-    // Posición inicial
-    window.addEventListener("load", () => {
-      const active = container.querySelector(".filter-btn.active");
-      if (active) moveIndicator(active);
-    });
-  });
-</script>

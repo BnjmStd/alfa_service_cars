@@ -4,7 +4,7 @@ import Header from "~/components/Header.astro";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -29,22 +29,18 @@ import Header from "~/components/Header.astro";
 
   @layer theme {
     :root {
-     
-      --color-bg-main: #000000; /* Negro Puro */
-      --color-bg-surface: #121212; /* Gris Carbón muy oscuro */
+      --color-bg-main: #000000;
+      --color-bg-surface: #121212;
       --color-text-main: #ffffff;
-      --color-text-muted: #a1a1a6; /* Gris Apple */
+      --color-text-muted: #a1a1a6;
 
-      /* El Rojo del Logo (Acento) */
       --color-accent: #d90429;
       --color-accent-glow: rgba(217, 4, 41, 0.5);
 
-      /* Efectos de Vidrio (Glassmorphism) */
       --glass-bg: rgba(255, 255, 255, 0.05);
       --glass-border: rgba(255, 255, 255, 0.1);
       --glass-blur: 20px;
 
-      /* Tipografía */
       --font-primary: "Inter", sans-serif;
       --border-radius-lg: 24px;
     }
@@ -153,7 +149,7 @@ import Header from "~/components/Header.astro";
     }
 
     p {
-      text-wrap: pretty; /* Optimiza la distribución de palabras */
+      text-wrap: pretty;
       line-height: 1.5;
     }
 
@@ -164,12 +160,10 @@ import Header from "~/components/Header.astro";
       font: inherit;
     }
 
-    /* 🔹 Evita subrayados en enlaces sin `href` */
     a:not([href]) {
       text-decoration: none;
     }
 
-    /* 🔹 Mantiene la apariencia de los botones consistente */
     button {
       cursor: pointer;
       border: none;
@@ -177,17 +171,16 @@ import Header from "~/components/Header.astro";
       padding: 0;
     }
 
-    /* 🔹 Oculta el desplazamiento horizontal no deseado */
     html {
       overflow-x: hidden;
-      scroll-behavior: smooth; /* Hace que el desplazamiento sea más fluido */
+      scroll-behavior: smooth;
     }
 
-    /* 🔹 Evita estilos heredados en listas */
     ul,
     ol {
       list-style: none;
     }
+
     :root {
       interpolate-size: allow-keywords;
     }
@@ -218,3 +211,28 @@ import Header from "~/components/Header.astro";
     min-block-size: 100vh;
   }
 </style>
+
+<script>
+  import { $$ } from "~/lib/get_dom_element";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const anchors = $$<HTMLAnchorElement>('a[href^="#"]');
+
+    anchors.forEach((anchor) => {
+      anchor.addEventListener("click", (e: MouseEvent) => {
+        e.preventDefault();
+
+        const href = anchor.getAttribute("href");
+        if (!href) return;
+
+        const target = document.querySelector<HTMLElement>(href);
+        if (!target) return;
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+  });
+</script>

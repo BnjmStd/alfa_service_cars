@@ -8,7 +8,13 @@ import "~/styles/button.css";
   <nav class="container nav-content">
     <!-- Logo -->
     <a href="#" class="logo">
-        <Image width={64} height={64} src={BRAND.logo} alt={BRAND.name} class="logo-img" />
+      <Image
+        width={64}
+        height={64}
+        src={BRAND.logo}
+        alt={BRAND.name}
+        class="logo-img"
+      />
     </a>
 
     <!-- Toggle -->
@@ -31,9 +37,9 @@ import "~/styles/button.css";
           <path d="M6 6L18 18M6 18L18 6"></path>
         </svg>
       </label>
-
+      <a href="/" class="nav-link">Inicio</a>
       <a href="#servicios" class="nav-link">Servicios</a>
-      <a href="#galeria" class="nav-link">Galería</a>
+      <a href="/galeria" class="nav-link">Galería</a>
       <a href="#contacto" class="btn btn-primary mobile-btn">Agendar</a>
     </div>
 
@@ -43,9 +49,8 @@ import "~/styles/button.css";
 </header>
 
 <style>
-  /* -- Header / Nav -- */
   .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
     inline-size: 100%;
     padding-inline: 4rem;
@@ -80,29 +85,14 @@ import "~/styles/button.css";
 
   .logo-img {
     height: 40px;
-    /* Filtro temporal si no tienes el logo transparente aún */
-    /* filter: invert(1) brightness(2); */
   }
 </style>
 
 <style>
-  /* ====== NAVBAR ====== */
-  .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border);
-  }
-
   .nav-content {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
     padding: 1rem 2rem;
-
     position: relative;
   }
 

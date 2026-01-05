@@ -7,6 +7,7 @@ import {
   heroVideoSchema,
   whatsappAnchorSchema,
 } from "./details/schemas";
+import { GALLERY_CATEGORIES } from "~/lib/galleryCategories";
 
 export const location = defineCollection({
   loader: file("src/content/location/location.json"),
@@ -78,7 +79,7 @@ const gallery = defineCollection({
       titulo: z.string(),
       description: z.string().optional(),
       foto: image(),
-      categoria: z.string(),
+      categoria: z.enum(GALLERY_CATEGORIES),
     }),
 });
 

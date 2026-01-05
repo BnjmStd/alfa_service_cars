@@ -153,27 +153,3 @@ const heroData = {
   }
 </style>
 
-<script>
-  import { $$ } from "~/lib/get_dom_element";
-
-  document.addEventListener("astro:page-load", () => {
-    const anchors = $$<HTMLAnchorElement>('a[href^="#"]');
-
-    anchors.forEach((anchor) => {
-      anchor.addEventListener("click", (e: MouseEvent) => {
-        e.preventDefault();
-
-        const href = anchor.getAttribute("href");
-        if (!href) return;
-
-        const target = document.querySelector<HTMLElement>(href);
-        if (!target) return;
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      });
-    });
-  });
-</script>

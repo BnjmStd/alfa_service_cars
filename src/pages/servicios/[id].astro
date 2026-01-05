@@ -2,26 +2,13 @@
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const colletectionDetails = await getCollection("details");
-  console.log("DETAILS:", colletectionDetails);
+  const details = await getCollection("details");
 
-  const servicios = [
-    {
-      id: "diseno-web",
-      nombre: "Diseño Web",
-      desc: "Creamos sitios hermosos.",
-    },
-    { id: "seo", nombre: "SEO", desc: "Aparece en los primeros resultados." },
-  ];
-
-  return servicios.map((servicio) => ({
-    params: { id: servicio.id },
-    props: { servicio },
+  return details.map((entry) => ({
+    params: { id: entry.id },
+    props: { servicio: entry.data },
   }));
 }
 
-const { id } = Astro.params;
 const { servicio } = Astro.props;
 ---
-
-<h1>Servicio: {servicio.nombre}</h1>
