@@ -10,6 +10,7 @@ const heroData = {
     src: data.background.src,
     alt: data.background.alt,
   },
+  location: "talca, chile",
   title: data.title,
   subtitle: data.subtitle,
   cta: {
@@ -29,6 +30,10 @@ const heroData = {
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
+    <span class="hero-location">
+      {heroData.location}
+    </span>
+
     {
       heroData.title.map((line, index) => (
         <div class="hero-shine">
@@ -52,6 +57,25 @@ const heroData = {
 </section>
 
 <style>
+  .hero-location {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    position: relative;
+  }
+
+  .hero-location::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    margin: 8px auto 0;
+  }
+
   .hero-title {
     color: #ffffff;
     transition: color 0.5s ease;
@@ -77,7 +101,12 @@ const heroData = {
       rgba(222, 63, 63, 0) 100%
     );
     transform: skewX(-25deg);
-    animation: scan 2s infinite;
+    animation: scan 2s;
+    animation-play-state: paused;
+  }
+
+  .hero-title.is-visible::before {
+    animation-play-state: running;
   }
 
   .hero-title-2::before {
@@ -152,4 +181,3 @@ const heroData = {
     margin-bottom: 40px;
   }
 </style>
-

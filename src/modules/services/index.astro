@@ -4,7 +4,7 @@ import Benefit from "~/modules/services/components/benefit.astro";
 import Faqs from "~/modules/services/components/faqs.astro";
 import Last from "~/modules/services/components/last.astro";
 import WhatsappAnchor from "./components/whatsappAnchor.astro";
-
+import Process_section from "./components/process_section.astro";
 const { section } = Astro.props;
 ---
 
@@ -13,3 +13,4 @@ const { section } = Astro.props;
 {section.type === "faq-list" && <Faqs {...section} />}
 {section.type === "cta-block" && <Last {...section} />}
 {section.type === "whatsapp-anchor" && <WhatsappAnchor {...section} />}
+{section.type === "process-section" && <Process_section {...section} />}

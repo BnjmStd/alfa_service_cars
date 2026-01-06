@@ -112,36 +112,8 @@ const galleryData = {
     transform: scale(1.1);
   }
 
-  /* Overlay */
-  .gallery-overlay {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 30px;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.9),
-      rgba(217, 4, 41, 0.2),
-      transparent
-    );
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.4s ease;
-  }
-
   .gallery-item:hover .gallery-overlay {
     transform: translateY(0);
     opacity: 1;
-  }
-
-  .gallery-title {
-    font-size: 1.2rem;
-    color: white;
-  }
-
-  .gallery-tag {
-    font-size: 0.9rem;
-    color: var(--color-accent);
-    font-weight: 600;
-    text-transform: uppercase;
   }
 </style>

@@ -5,7 +5,6 @@ import Service_section from "./service_section.astro";
 import Galery_section from "./galery_section.astro";
 import Stats_section from "./stats_section.astro";
 import Ubi_section from "./ubi_section.astro";
-import Process_section from "./process_section.astro";
 ---
 
 <Section1 />
@@ -14,6 +13,50 @@ import Process_section from "./process_section.astro";
 <Galery_section />
 <Ubi_section />
 
-<!-- script observers -->
-<script></script>
+<script>
+  const titles = document.querySelectorAll(".hero-title");
 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  titles.forEach((title) => observer.observe(title));
+</script>
+
+<style is:global>
+  .gallery-title {
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .gallery-tag {
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  /* Overlay */
+  .gallery-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 30px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9),
+      rgba(217, 4, 41, 0.2),
+      transparent
+    );
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+</style>
