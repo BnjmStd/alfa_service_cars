@@ -1,61 +1,88 @@
 ---
+
+
+
 const values = [
   {
     title: "Técnica vs. Improvisación",
     desc: "No lavamos autos, aplicamos procesos. Desde el cuidado de sensores en el motor hasta la inyección de resinas, todo sigue un protocolo técnico riguroso.",
-    icon: "🛠️"
+    icon: "🛠️",
   },
   {
     title: "Seguridad Certificada",
     desc: "Cumplimos estrictamente la normativa chilena en polarizados y láminas de seguridad. Tu tranquilidad ante fiscalizaciones es nuestra prioridad.",
-    icon: "🛡️"
+    icon: "🛡️",
   },
   {
     title: "Honestidad ante todo",
     desc: "Si un parabrisas se puede reparar, lo haremos. Asesoramos según lo que tu vehículo realmente necesita, cuidando tu bolsillo y la originalidad del auto.",
-    icon: "🤝"
+    icon: "🤝",
   },
   {
     title: "Tecnología Avanzada",
     desc: "Usamos Ozono molecular, máquinas rotativas de precisión y selladores cerámicos de última generación. Invertimos en las mejores herramientas.",
-    icon: "🔬"
-  }
+    icon: "🔬",
+  },
 ];
 ---
 
 <section class="about-container">
-  
   <div class="hero-section">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Pasión por el Detalle, <span class="highlight">Compromiso con tu Seguridad</span></h1>
+      <h1>
+        Pasión por el Detalle, <span class="highlight"
+          >Compromiso con tu Seguridad</span
+        >
+      </h1>
       <p class="hero-subtitle">
-        En Alfa Detailing Talca elevamos el estándar del cuidado automotriz, combinando estética premium con soluciones de seguridad técnica.
+        En Alfa Detailing Talca elevamos el estándar del cuidado automotriz,
+        combinando estética premium con soluciones de seguridad técnica.
       </p>
     </div>
-    <img src="/images/taller-hero.webp" alt="Taller Alfa Detailing" class="hero-bg-img" />
+    <img
+      src="/images/taller-hero.webp"
+      alt="Taller Alfa Detailing"
+      class="hero-bg-img"
+    />
   </div>
 
   <div class="story-section wrapper">
     <div class="story-text">
       <span class="badge">Sobre Nosotros</span>
-      <h2>Más que estética, <br> <span class="text-gradient">ingeniería aplicada a tu vehículo</span></h2>
-      
+      <h2>
+        Más que estética, <br />
+        <span class="text-gradient">ingeniería aplicada a tu vehículo</span>
+      </h2>
+
       <div class="text-block">
         <p>
-          En <strong>Alfa Detailing</strong> entendemos que un vehículo es más que un medio de transporte; es una inversión. Nacimos en <strong>Talca</strong> con una misión clara: profesionalizar el servicio de estética y seguridad automotriz.
+          En <strong>Alfa Detailing</strong> entendemos que un vehículo es más que
+          un medio de transporte; es una inversión. Nacimos en <strong
+            >Talca</strong
+          > con una misión clara: profesionalizar el servicio de estética y seguridad
+          automotriz.
         </p>
         <p>
-          Nos diferenciamos por dejar atrás los métodos invasivos o caseros. Ya sea una limpieza de motor, una reparación de trizadura o un tratamiento cerámico, cada servicio es ejecutado con <strong>equipamiento específico y bajo estándares controlados</strong>.
+          Nos diferenciamos por dejar atrás los métodos invasivos o caseros. Ya
+          sea una limpieza de motor, una reparación de trizadura o un
+          tratamiento cerámico, cada servicio es ejecutado con <strong
+            >equipamiento específico y bajo estándares controlados</strong
+          >.
         </p>
         <p>
-            Somos expertos locales atendiendo a particulares y empresas que buscan un resultado superior, respaldado por certificaciones y garantías reales.
+          Somos expertos locales atendiendo a particulares y empresas que buscan
+          un resultado superior, respaldado por certificaciones y garantías
+          reales.
         </p>
       </div>
     </div>
-    
+
     <div class="story-image-container">
-      <img src="/images/equipo-trabajando.webp" alt="Equipo Alfa Detailing trabajando" />
+      <img
+        src="/images/equipo-trabajando.webp"
+        alt="Equipo Alfa Detailing trabajando"
+      />
       <div class="glow-effect"></div>
     </div>
   </div>
@@ -68,13 +95,15 @@ const values = [
       </div>
 
       <div class="values-grid">
-        {values.map((item) => (
-          <div class="value-card">
-            <div class="icon-wrapper">{item.icon}</div>
-            <h4>{item.title}</h4>
-            <p>{item.desc}</p>
-          </div>
-        ))}
+        {
+          values.map((item) => (
+            <div class="value-card">
+              <div class="icon-wrapper">{item.icon}</div>
+              <h4>{item.title}</h4>
+              <p>{item.desc}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -82,15 +111,17 @@ const values = [
   <div class="cta-section wrapper center">
     <div class="cta-card">
       <h2>¿Listo para renovar tu vehículo?</h2>
-      <p>Visítanos en Talca para una evaluación técnica gratuita. Elige calidad, elige seguridad.</p>
-      
+      <p>
+        Visítanos en Talca para una evaluación técnica gratuita. Elige calidad,
+        elige seguridad.
+      </p>
+
       <div class="cta-buttons">
         <a href="/contacto" class="btn btn-primary">Agendar Evaluación</a>
         <a href="/servicios" class="btn btn-outline">Ver Servicios</a>
       </div>
     </div>
   </div>
-
 </section>
 
 <style>
@@ -118,7 +149,7 @@ const values = [
     color: var(--color-text-main);
     background-color: var(--color-bg-main);
     line-height: 1.6;
-    overflow-x: hidden; /* Evita scroll horizontal indeseado */
+    overflow-x: hidden;
   }
 
   .wrapper {
@@ -127,18 +158,30 @@ const values = [
     padding: 5rem 1.5rem;
   }
 
-  .center { text-align: center; }
+  .center {
+    text-align: center;
+  }
 
-  h1, h2, h4 {
+  h1,
+  h2,
+  h4 {
     color: var(--color-text-main);
     line-height: 1.2;
     font-weight: 700;
   }
 
-  h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-  p { color: var(--color-text-muted); }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    color: var(--color-text-muted);
+  }
 
-  strong { color: var(--color-text-main); font-weight: 600; }
+  strong {
+    color: var(--color-text-main);
+    font-weight: 600;
+  }
 
   /* Texto resaltado en ROJO */
   .highlight {
@@ -162,8 +205,10 @@ const values = [
 
   .hero-bg-img {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     opacity: 0.6;
     z-index: 0;
@@ -171,8 +216,10 @@ const values = [
 
   .hero-overlay {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     /* Degradado para que el texto se lea bien sobre el negro */
     background: linear-gradient(to top, var(--color-bg-main), transparent);
     z-index: 1;
@@ -203,7 +250,9 @@ const values = [
   }
 
   @media (min-width: 900px) {
-    .story-section { grid-template-columns: 1fr 1fr; }
+    .story-section {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .badge {
@@ -220,7 +269,10 @@ const values = [
     border: 1px solid var(--color-accent-glow);
   }
 
-  .text-block p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+  .text-block p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
 
   /* Contenedor imagen con estilo */
   .story-image-container {
@@ -237,13 +289,17 @@ const values = [
     transition: transform 0.7s ease;
   }
 
-  .story-image-container:hover img { transform: scale(1.05); }
+  .story-image-container:hover img {
+    transform: scale(1.05);
+  }
 
   /* Resplandor rojo decorativo detrás de la imagen */
   .glow-effect {
     position: absolute;
-    top: -50px; right: -50px;
-    width: 150px; height: 150px;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
     background: var(--color-accent);
     filter: blur(80px);
     opacity: 0.4;
@@ -253,7 +309,9 @@ const values = [
 
   /* --- 3. VALUES SECTION (Glassmorphism) --- */
   .values-section {
-    background-color: var(--color-bg-surface); /* Fondo un poco más claro que el negro puro */
+    background-color: var(
+      --color-bg-surface
+    ); /* Fondo un poco más claro que el negro puro */
   }
 
   .values-grid {
@@ -262,8 +320,16 @@ const values = [
     gap: 2rem;
   }
 
-  @media (min-width: 640px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .values-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 640px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .values-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 
   .value-card {
     background: var(--glass-bg);
@@ -271,12 +337,14 @@ const values = [
     backdrop-filter: blur(var(--glass-blur)); /* Efecto borroso detrás */
     padding: 2rem;
     border-radius: var(--border-radius-lg);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .value-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
     border-color: var(--color-accent-glow); /* Borde brilla rojo al hover */
   }
 
@@ -284,19 +352,29 @@ const values = [
     font-size: 2.5rem;
     margin-bottom: 1rem;
     /* Filtro para que los emojis se vean un poco más integrados si quieres */
-    filter: grayscale(0.2); 
+    filter: grayscale(0.2);
   }
 
-  .value-card h4 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-white); }
-  .value-card p { font-size: 0.95rem; }
+  .value-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-white);
+  }
+  .value-card p {
+    font-size: 0.95rem;
+  }
 
   /* --- 4. CTA SECTION --- */
   .cta-section {
     position: relative;
   }
-  
+
   .cta-card {
-    background: linear-gradient(135deg, var(--color-bg-surface), var(--color-bg-main));
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-surface),
+      var(--color-bg-main)
+    );
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius-lg);
     padding: 4rem 2rem;
@@ -306,9 +384,10 @@ const values = [
 
   /* Decoración roja sutil en el CTA */
   .cta-card::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0; left: 50%;
+    top: 0;
+    left: 50%;
     transform: translateX(-50%);
     width: 60%;
     height: 5px;
@@ -360,5 +439,4 @@ const values = [
     background-color: var(--glass-bg);
     border-color: var(--color-text-main);
   }
-
 </style>
