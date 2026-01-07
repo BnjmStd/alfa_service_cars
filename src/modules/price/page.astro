@@ -1,6 +1,153 @@
 ---
 const { phone = "56912345678" } = Astro.props;
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const collectionServices = await getCollection("services");
+
+const itemsBento = collectionServices.map((service) => ({
+  title: service.data.title,
+  description: service.data.description,
+  imageSrc: service.data.imageSrc,
+  videoSrc: service.data.videoSrc || null,
+  href: service.data.href,
+  whatsappTag: service.data.title,
+}));
+
+const QUOTE_CONFIG = {
+  servicio: {
+    label: "1. Selecciona el tratamiento",
+    source: "services",
+  },
+  tamano: {
+    label: "2. Tipo de vehículo",
+    options: [
+      { label: "City Car", value: "City Car", icon: "🚗" },
+      { label: "Sedán", value: "Sedán", icon: "🚘" },
+      { label: "Hatchback", value: "Hatchback", icon: "🚖" },
+      {
+        label: "Motocicleta",
+        value: "Motocicleta",
+        icon: "🏍️",
+      },
+      { label: "Pick-up", value: "Pick-up", icon: "🛻" },
+      { label: "Van / Furgón", value: "Van / Furgón", icon: "🚐" },
+      { label: "Camioneta XL", value: "Camioneta XL", icon: "🚛" },
+      { label: "Deportivo", value: "Deportivo", icon: "🏎️" },
+    ],
+  },
+};
 ---
+
+<section id="cotizar" class="quote-section">
+  <div class="container">
+    <div class="quote-container reveal">
+      <span class="status-badge" id="status-text">Configura tu solicitud</span>
+      <h2 class="quote-title">
+        Lleva tu auto al <span class="text-accent">Siguiente Nivel</span>
+      </h2>
+
+      <label class="apple-label">1. Selecciona el tratamiento</label>
+      <div class="options-grid" data-group="servicio">
+        {
+          itemsBento.map((item) => (
+            <div class="option-card" data-value={item.whatsappTag}>
+              {item.imageSrc ? (
+                <Image src={item.imageSrc} alt={item.title} />
+              ) : (
+                <i>✨</i>
+              )}
+              <span>{item.title}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <label class="apple-label">2. Tamaño del vehículo</label>
+
+      <div class="options-grid" data-group="tamano">
+        {
+          QUOTE_CONFIG.tamano.options.map((option) => (
+            <div
+              class="option-card"
+              data-group="tamano"
+              data-value={option.value}
+            >
+              <i>{option.icon}</i>
+              <span>{option.label}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <label class="apple-label">3. Tus datos</label>
+      <input
+        type="text"
+        id="user-name"
+        class="apple-input"
+        placeholder="Nombre completo"
+      />
+
+      <button class="btn btn-primary" id="send-whatsapp">
+        Cotizar por WhatsApp
+      </button>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ phone }}>
+  // Variables de estado
+  let selectedServicio = "";
+  let selectedTamano = "";
+
+  // Seleccion de opciones con delegación de eventos
+  document.querySelectorAll(".options-grid .option-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const parent = card.parentElement;
+      const group = parent.dataset.group;
+
+      // Limpiar selección del grupo
+      parent
+        .querySelectorAll(".option-card")
+        .forEach((c) => c.classList.remove("selected"));
+
+      // Activar clickeado
+      card.classList.add("selected");
+
+      // Guardar valor
+      if (group === "servicio") selectedServicio = card.dataset.value;
+      if (group === "tamano") selectedTamano = card.dataset.value;
+
+      updateStatus();
+    });
+  });
+
+  function updateStatus() {
+    const statusText = document.getElementById("status-text");
+    if (selectedServicio && selectedTamano) {
+      statusText.innerText = "¡Listo para cotizar!";
+      statusText.style.borderColor = "white";
+      statusText.style.color = "white";
+    }
+  }
+
+  // Lógica de WhatsApp
+  document.getElementById("send-whatsapp").addEventListener("click", () => {
+    const name = document.getElementById("user-name").value;
+
+    if (!selectedServicio || !selectedTamano || !name) {
+      alert(
+        "Por favor completa todos los campos para darte un presupuesto exacto."
+      );
+      return;
+    }
+
+    const baseMsg = `Hola Alfa Detailers! 👋\n\nQuiero cotizar un servicio:\n\n✨ *Servicio:* ${selectedServicio}\n🚗 *Tamaño:* ${selectedTamano}\n👤 *Nombre:* ${name}\n\n¿Me podrían dar más información?`;
+
+    const encodedMsg = encodeURIComponent(baseMsg);
+    window.open(`https://wa.me/${phone}?text=${encodedMsg}`, "_blank");
+  });
+</script>
 
 <style>
   @layer components {
@@ -107,112 +254,3 @@ const { phone = "56912345678" } = Astro.props;
     }
   }
 </style>
-
-<section id="cotizar" class="quote-section">
-  <div class="container">
-    <div class="quote-container reveal">
-      <span class="status-badge" id="status-text">Configura tu solicitud</span>
-      <h2 class="quote-title">
-        Lleva tu auto al <span class="text-accent">Siguiente Nivel</span>
-      </h2>
-
-      <label class="apple-label">1. Selecciona el tratamiento</label>
-      <div class="options-grid" data-group="servicio">
-        <div class="option-card" data-value="Cerámico">
-          <i>🛡️</i>
-          <span>Cerámico</span>
-        </div>
-        <div class="option-card" data-value="Polarizado">
-          <i>🕶️</i>
-          <span>Polarizado</span>
-        </div>
-        <div class="option-card" data-value="Grabado">
-          <i>🔢</i>
-          <span>Grabado</span>
-        </div>
-        <div class="option-card" data-value="Full Detail">
-          <i>✨</i>
-          <span>Full Detail</span>
-        </div>
-      </div>
-
-      <label class="apple-label">2. Tamaño del vehículo</label>
-      <div class="options-grid" data-group="tamano">
-        <div class="option-card" data-value="City Car / Sedán">
-          <i>🚗</i>
-          <span>Sedán</span>
-        </div>
-        <div class="option-card" data-value="SUV / Pick-up">
-          <i>🚙</i>
-          <span>SUV / Pick-up</span>
-        </div>
-      </div>
-
-      <label class="apple-label">3. Tus datos</label>
-      <input
-        type="text"
-        id="user-name"
-        class="apple-input"
-        placeholder="Nombre completo"
-      />
-
-      <button class="btn btn-primary" id="send-whatsapp">
-        Cotizar por WhatsApp
-      </button>
-    </div>
-  </div>
-</section>
-
-<script is:inline define:vars={{ phone }}>
-  // Variables de estado
-  let selectedServicio = "";
-  let selectedTamano = "";
-
-  // Seleccion de opciones con delegación de eventos
-  document.querySelectorAll(".options-grid .option-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      const parent = card.parentElement;
-      const group = parent.dataset.group;
-
-      // Limpiar selección del grupo
-      parent
-        .querySelectorAll(".option-card")
-        .forEach((c) => c.classList.remove("selected"));
-
-      // Activar clickeado
-      card.classList.add("selected");
-
-      // Guardar valor
-      if (group === "servicio") selectedServicio = card.dataset.value;
-      if (group === "tamano") selectedTamano = card.dataset.value;
-
-      updateStatus();
-    });
-  });
-
-  function updateStatus() {
-    const statusText = document.getElementById("status-text");
-    if (selectedServicio && selectedTamano) {
-      statusText.innerText = "¡Listo para cotizar!";
-      statusText.style.borderColor = "white";
-      statusText.style.color = "white";
-    }
-  }
-
-  // Lógica de WhatsApp
-  document.getElementById("send-whatsapp").addEventListener("click", () => {
-    const name = document.getElementById("user-name").value;
-
-    if (!selectedServicio || !selectedTamano || !name) {
-      alert(
-        "Por favor completa todos los campos para darte un presupuesto exacto."
-      );
-      return;
-    }
-
-    const baseMsg = `Hola Alfa Detailers! 👋\n\nQuiero cotizar un servicio:\n\n✨ *Servicio:* ${selectedServicio}\n🚗 *Tamaño:* ${selectedTamano}\n👤 *Nombre:* ${name}\n\n¿Me podrían dar más información?`;
-
-    const encodedMsg = encodeURIComponent(baseMsg);
-    window.open(`https://wa.me/${phone}?text=${encodedMsg}`, "_blank");
-  });
-</script>
