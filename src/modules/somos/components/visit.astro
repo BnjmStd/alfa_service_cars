@@ -1,0 +1,189 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const todasLasFotos = await getCollection("somos");
+const fotoHero = todasLasFotos.find((img) => img.id === "taller");
+
+// Datos de contacto (puedes moverlos a tu objeto pageContent si prefieres)
+const contacto = {
+  direccion: "Av. Ejemplo 1234, Talca",
+  horario: "Lunes a Viernes · 09:00 – 18:30",
+  telefono: "+56 9 1234 5678",
+  googleMapsUrl: "https://goo.gl/maps/tu-enlace-aqui"
+};
+---
+
+<section class="visit-section">
+  <div class="wrapper visit-container">
+    
+    <div class="visit-content">
+      <header class="visit-header">
+        <span class="badge">Ubicación Estratégica</span>
+        <h2>Ven a <span class="highlight">Visitarnos</span></h2>
+        <p class="description">
+          Equipamiento profesional y atención personalizada en el corazón de Talca. 
+          Tu vehículo merece un estándar superior.
+        </p>
+      </header>
+
+      <div class="visit-details">
+        <div class="detail-item">
+          <span class="icon">📍</span>
+          <div>
+            <strong>Dirección</strong>
+            <p>{contacto.direccion}</p>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <span class="icon">⏰</span>
+          <div>
+            <strong>Horario</strong>
+            <p>{contacto.horario}</p>
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <span class="icon">📞</span>
+          <div>
+            <strong>Teléfono</strong>
+            <p>{contacto.telefono}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="visit-actions">
+        <a href={contacto.googleMapsUrl} target="_blank" class="btn btn-primary">
+          <span>Ver en Google Maps</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="visit-image-wrapper">
+      {fotoHero && (
+        <Image 
+          src={fotoHero.data.foto} 
+          alt={fotoHero.data.description} 
+          class="main-image"
+        />
+      )}
+      <div class="image-decoration"></div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .visit-section {
+    padding: 100px 0;
+    background-color: var(--color-bg-main);
+  }
+
+  .visit-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 992px) {
+    .visit-container {
+      grid-template-columns: 1fr 1fr; /* División limpia 50/50 */
+    }
+  }
+
+  /* Estética del Texto */
+  .visit-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .visit-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 1rem 0;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Lista de Detalles Estilizada */
+  .visit-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .detail-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .detail-item .icon {
+    font-size: 1.5rem;
+    background: var(--color-bg-surface);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+  }
+
+  .detail-item strong {
+    display: block;
+    color: var(--color-text-bright);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .detail-item p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* El Botón que reemplaza al mapa */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Estética de la Imagen */
+  .visit-image-wrapper {
+    position: relative;
+  }
+
+  .main-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Decoración sutil detrás de la foto */
+  .image-decoration {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary);
+    opacity: 0.1;
+    border-radius: 24px;
+    z-index: 1;
+  }
+</style>

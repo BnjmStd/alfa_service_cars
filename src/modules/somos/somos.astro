@@ -1,58 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import Visit from "./components/visit.astro";
+import { pageContent } from "./getInfo";
+import Porque from "./components/porque.astro";
 
 const todasLasFotos = await getCollection("somos");
 
 const fotoHero = todasLasFotos.find((img) => img.id === "taller");
 const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
-
-const pageContent = {
-  hero: {
-    title: "Pasión por el Detalle,",
-    highlight: "Compromiso con tu Seguridad",
-    subtitle:
-      "En Alfa Detailing Talca elevamos el estándar del cuidado automotriz, combinando estética premium con soluciones de seguridad técnica.",
-  },
-  story: {
-    badge: "Sobre Nosotros",
-    title: "Más que estética,",
-    gradient: "ingeniería aplicada a tu vehículo",
-    paragraphs: [
-      "En Alfa Detailing entendemos que un vehículo es más que un medio de transporte; es una inversión. Nacimos en Talca con una misión clara: profesionalizar el servicio de estética y seguridad automotriz.",
-      "Nos diferenciamos por dejar atrás los métodos invasivos o caseros. Ya sea una limpieza de motor, una reparación de trizadura o un tratamiento cerámico, cada servicio es ejecutado con equipamiento específico y bajo estándares controlados.",
-      "Somos expertos locales atendiendo a particulares y empresas que buscan un resultado superior, respaldado por certificaciones y garantías reales.",
-    ],
-  },
-  values: [
-    {
-      title: "Técnica vs. Improvisación",
-      icon: "🛠️",
-      desc: "No lavamos autos, aplicamos procesos...",
-    },
-    {
-      title: "Seguridad Certificada",
-      icon: "🛡️",
-      desc: "Cumplimos estrictamente la normativa chilena...",
-    },
-    {
-      title: "Honestidad ante todo",
-      icon: "🤝",
-      desc: "Si un parabrisas se puede reparar, lo haremos...",
-    },
-    {
-      title: "Tecnología Avanzada",
-      icon: "🔬",
-      desc: "Usamos Ozono molecular...",
-    },
-  ],
-  cta: {
-    title: "¿Listo para renovar tu vehículo?",
-    desc: "Visítanos en Talca para una evaluación técnica gratuita. Elige calidad, elige seguridad.",
-    primaryBtn: "Agendar Evaluación",
-    secondaryBtn: "Ver Servicios",
-  },
-};
 ---
 
 <section class="about-container">
@@ -101,69 +57,9 @@ const pageContent = {
     </div>
   </div>
 
-  <div class="values-section">
-    <div class="wrapper">
-      <div class="section-header center">
-        <h2>Por qué elegir <span class="highlight">Alfa Detailing</span></h2>
-        <p>Nuestros pilares fundamentales de trabajo</p>
-      </div>
+  <Porque />
 
-      <div class="values-grid">
-        {
-          pageContent.values.map((item) => (
-            <div class="value-card">
-              <div class="icon-wrapper">{item.icon}</div>
-              <h4>{item.title}</h4>
-              <p>{item.desc}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </div>
-
-  <div class="visit-section">
-    <div class="wrapper visit-grid">
-      <div class="visit-info-grid">
-        <div>
-          <span class="badge">Te esperamos</span>
-          <h2>Ven a <span class="highlight">Visitarnos</span></h2>
-          <p>
-            Estamos en el corazón de Talca listos para evaluar tu vehículo con
-            estándares profesionales y atención personalizada.
-          </p>
-
-          <ul class="visit-list">
-            <li><strong>📍 Dirección:</strong> Av. Ejemplo 1234, Talca</li>
-            <li>
-              <strong>⏰ Horario:</strong> Lunes a Viernes · 09:00 – 18:30
-            </li>
-            <li><strong>📞 Teléfono:</strong> +56 9 1234 5678</li>
-          </ul>
-        </div>
-
-        <div>
-          {
-            fotoHero && (
-              <Image
-                src={fotoHero.data.foto}
-                alt={fotoHero.data.description}
-                class=""
-              />
-            )
-          }
-        </div>
-
-        <a
-          href="https://www.google.com/maps/search/?api=1&query=Talca+Chile"
-          target="_blank"
-          class="btn btn-primary"
-        >
-          Cómo llegar
-        </a>
-      </div>
-    </div>
-  </div>
+  <Visit />
 
   <div class="cta-section wrapper center">
     <div class="cta-card">
@@ -181,8 +77,8 @@ const pageContent = {
     </div>
   </div>
 </section>
-<style>
-  /* --- TU TEMA DEFINIDO --- */
+
+<style is:global>
   :root {
     --color-bg-main: #000000;
     --color-bg-surface: #121212;
@@ -198,25 +94,6 @@ const pageContent = {
 
     --font-primary: "Inter", sans-serif;
     --border-radius-lg: 24px;
-  }
-
-  /* --- ESTILOS GENERALES --- */
-  .about-container {
-    font-family: var(--font-primary);
-    color: var(--color-text-main);
-    background-color: var(--color-bg-main);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  .wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 1.5rem;
-  }
-
-  .center {
-    text-align: center;
   }
 
   h1,
@@ -244,6 +121,59 @@ const pageContent = {
   .highlight {
     color: var(--color-accent);
     text-shadow: 0 0 20px var(--color-accent-glow);
+  }
+
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    color: var(--color-accent);
+    background: rgba(217, 4, 41, 0.1); /* Rojo muy suave de fondo */
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-accent-glow);
+  }
+
+  /* Contenedor imagen con estilo */
+  .story-image-container {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+  }
+
+  .story-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .story-image-container:hover img {
+    transform: scale(1.05);
+  }
+</style>
+
+<style>
+  .about-container {
+    font-family: var(--font-primary);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-main);
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
   /* --- 1. HERO SECTION --- */
@@ -324,42 +254,9 @@ const pageContent = {
     }
   }
 
-  .badge {
-    display: inline-block;
-    color: var(--color-accent);
-    background: rgba(217, 4, 41, 0.1); /* Rojo muy suave de fondo */
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid var(--color-accent-glow);
-  }
-
   .text-block p {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
-  }
-
-  /* Contenedor imagen con estilo */
-  .story-image-container {
-    position: relative;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--glass-border);
-  }
-
-  .story-image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.7s ease;
-  }
-
-  .story-image-container:hover img {
-    transform: scale(1.05);
   }
 
   /* Resplandor rojo decorativo detrás de la imagen */
@@ -374,63 +271,6 @@ const pageContent = {
     opacity: 0.4;
     z-index: 1;
     pointer-events: none;
-  }
-
-  /* --- 3. VALUES SECTION (Glassmorphism) --- */
-  .values-section {
-    background-color: var(
-      --color-bg-surface
-    ); /* Fondo un poco más claro que el negro puro */
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  @media (min-width: 640px) {
-    .values-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1024px) {
-    .values-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  .value-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(var(--glass-blur)); /* Efecto borroso detrás */
-    padding: 2rem;
-    border-radius: var(--border-radius-lg);
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .value-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    border-color: var(--color-accent-glow); /* Borde brilla rojo al hover */
-  }
-
-  .icon-wrapper {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    /* Filtro para que los emojis se vean un poco más integrados si quieres */
-    filter: grayscale(0.2);
-  }
-
-  .value-card h4 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    color: var(--color-white);
-  }
-  .value-card p {
-    font-size: 0.95rem;
   }
 
   /* --- 4. CTA SECTION --- */
@@ -470,180 +310,5 @@ const pageContent = {
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 2rem;
-  }
-
-  /* BOTONES */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 2.5rem;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-  }
-
-  .btn-primary {
-    background-color: var(--color-accent);
-    color: var(--color-text-main);
-    box-shadow: 0 0 20px var(--color-accent-glow);
-    border: 1px solid transparent;
-  }
-
-  .btn-primary:hover {
-    background-color: #b00320; /* Un rojo un poco más oscuro */
-    transform: scale(1.05);
-    box-shadow: 0 0 30px var(--color-accent);
-  }
-
-  .btn-outline {
-    background-color: transparent;
-    border: 1px solid var(--glass-border);
-    color: var(--color-text-main);
-  }
-
-  .btn-outline:hover {
-    background-color: var(--glass-bg);
-    border-color: var(--color-text-main);
-  }
-</style>
-
-<style>
-  /* --- 5. VISIT SECTION --- */
-  .visit-section {
-    background: linear-gradient(
-      to bottom,
-      var(--color-bg-main),
-      var(--color-bg-surface)
-    );
-    border-top: 1px solid var(--glass-border);
-  }
-
-  .visit-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-
-  @media (min-width: 900px) {
-    .visit-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .visit-info p {
-    max-width: 480px;
-    margin-bottom: 2rem;
-    display: flex;
-  }
-
-  .visit-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 2rem;
-  }
-
-  .visit-list li {
-    margin-bottom: 0.75rem;
-    color: var(--color-text-muted);
-    font-size: 1rem;
-  }
-
-  .visit-map {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--glass-border);
-  }
-
-  .visit-map iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    filter: grayscale(1) contrast(1.1) brightness(0.8);
-  }
-
-  .visit-info-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
-  @media (min-width: 900px) {
-    .visit-info-grid {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-
-  /* Texto */
-  .visit-info-grid > div:first-child {
-    flex: 1;
-    max-width: 520px;
-  }
-
-  /* Imagen */
-  .visit-info-grid img {
-    width: 100%;
-    max-width: 520px;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--glass-border);
-    object-fit: cover;
-  }
-
-  /* Botón alineado */
-  .visit-info-grid > a {
-    align-self: flex-start;
-  }
-
-  @media (min-width: 900px) {
-    .visit-info-grid > a {
-      align-self: flex-end;
-    }
-  }
-  .visit-info-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
-  @media (min-width: 900px) {
-    .visit-info-grid {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-
-  /* Texto */
-  .visit-info-grid > div:first-child {
-    flex: 1;
-    max-width: 520px;
-  }
-
-  /* Imagen */
-  .visit-info-grid img {
-    width: 100%;
-    max-width: 520px;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--glass-border);
-    object-fit: cover;
-  }
-
-  /* Botón alineado */
-  .visit-info-grid > a {
-    align-self: flex-start;
-  }
-
-  @media (min-width: 900px) {
-    .visit-info-grid > a {
-      align-self: flex-end;
-    }
   }
 </style>

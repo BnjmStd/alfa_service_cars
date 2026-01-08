@@ -1,0 +1,56 @@
+---
+const { jaz } = Astro.props as {
+  jaz: {
+    embedUrl: string;
+    lazy?: boolean | undefined;
+    allowFullscreen?: boolean | undefined;
+    overlay?: boolean | undefined;
+  };
+};
+
+const mapConfig = jaz;
+---
+
+<div class="map-container reveal">
+  <iframe
+    class="map-iframe"
+    src={mapConfig.embedUrl}
+    loading={mapConfig.lazy ? "lazy" : "eager"}
+    allowfullscreen={mapConfig.allowFullscreen}
+  >
+  </iframe>
+
+  {mapConfig.overlay && <div class="map-overlay" />}
+</div>
+
+<style>
+  /* Contenedor del Mapa Estilo Apple */
+  .map-container {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    height: 450px;
+    background: var(--color-bg-surface);
+  }
+
+  /* Capa de diseño sobre el mapa para que se sienta oscuro */
+  .map-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 32px;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* El iframe del mapa */
+  .map-iframe {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(1) invert(0.9) contrast(1.2); /* Truco para mapa oscuro */
+    opacity: 0.8;
+    border: none;
+  }
+</style>
