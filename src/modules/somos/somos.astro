@@ -122,6 +122,49 @@ const pageContent = {
     </div>
   </div>
 
+  <div class="visit-section">
+    <div class="wrapper visit-grid">
+      <div class="visit-info-grid">
+        <div>
+          <span class="badge">Te esperamos</span>
+          <h2>Ven a <span class="highlight">Visitarnos</span></h2>
+          <p>
+            Estamos en el corazón de Talca listos para evaluar tu vehículo con
+            estándares profesionales y atención personalizada.
+          </p>
+
+          <ul class="visit-list">
+            <li><strong>📍 Dirección:</strong> Av. Ejemplo 1234, Talca</li>
+            <li>
+              <strong>⏰ Horario:</strong> Lunes a Viernes · 09:00 – 18:30
+            </li>
+            <li><strong>📞 Teléfono:</strong> +56 9 1234 5678</li>
+          </ul>
+        </div>
+
+        <div>
+          {
+            fotoHero && (
+              <Image
+                src={fotoHero.data.foto}
+                alt={fotoHero.data.description}
+                class=""
+              />
+            )
+          }
+        </div>
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Talca+Chile"
+          target="_blank"
+          class="btn btn-primary"
+        >
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+  </div>
+
   <div class="cta-section wrapper center">
     <div class="cta-card">
       <h2>{pageContent.cta.title}</h2>
@@ -206,7 +249,7 @@ const pageContent = {
   /* --- 1. HERO SECTION --- */
   .hero-section {
     position: relative;
-    height: 50vh;
+    height: 100vh;
     min-height: 400px;
     display: flex;
     align-items: center;
@@ -226,6 +269,18 @@ const pageContent = {
     object-fit: cover;
     opacity: 0.6;
     z-index: 0;
+    object-position: center top;
+    /* FADE A NEGRO ABAJO */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 65%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 65%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
   .hero-overlay {
@@ -452,5 +507,143 @@ const pageContent = {
   .btn-outline:hover {
     background-color: var(--glass-bg);
     border-color: var(--color-text-main);
+  }
+</style>
+
+<style>
+  /* --- 5. VISIT SECTION --- */
+  .visit-section {
+    background: linear-gradient(
+      to bottom,
+      var(--color-bg-main),
+      var(--color-bg-surface)
+    );
+    border-top: 1px solid var(--glass-border);
+  }
+
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .visit-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .visit-info p {
+    max-width: 480px;
+    margin-bottom: 2rem;
+    display: flex;
+  }
+
+  .visit-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .visit-list li {
+    margin-bottom: 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+  }
+
+  .visit-map {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+  }
+
+  .visit-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(1) contrast(1.1) brightness(0.8);
+  }
+
+  .visit-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .visit-info-grid {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  /* Texto */
+  .visit-info-grid > div:first-child {
+    flex: 1;
+    max-width: 520px;
+  }
+
+  /* Imagen */
+  .visit-info-grid img {
+    width: 100%;
+    max-width: 520px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--glass-border);
+    object-fit: cover;
+  }
+
+  /* Botón alineado */
+  .visit-info-grid > a {
+    align-self: flex-start;
+  }
+
+  @media (min-width: 900px) {
+    .visit-info-grid > a {
+      align-self: flex-end;
+    }
+  }
+  .visit-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .visit-info-grid {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  /* Texto */
+  .visit-info-grid > div:first-child {
+    flex: 1;
+    max-width: 520px;
+  }
+
+  /* Imagen */
+  .visit-info-grid img {
+    width: 100%;
+    max-width: 520px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--glass-border);
+    object-fit: cover;
+  }
+
+  /* Botón alineado */
+  .visit-info-grid > a {
+    align-self: flex-start;
+  }
+
+  @media (min-width: 900px) {
+    .visit-info-grid > a {
+      align-self: flex-end;
+    }
   }
 </style>
