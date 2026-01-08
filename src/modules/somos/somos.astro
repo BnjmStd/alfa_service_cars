@@ -1,29 +1,58 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
+const todasLasFotos = await getCollection("somos");
 
+const fotoHero = todasLasFotos.find((img) => img.id === "taller");
+const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
 
-const values = [
-  {
-    title: "Técnica vs. Improvisación",
-    desc: "No lavamos autos, aplicamos procesos. Desde el cuidado de sensores en el motor hasta la inyección de resinas, todo sigue un protocolo técnico riguroso.",
-    icon: "🛠️",
+const pageContent = {
+  hero: {
+    title: "Pasión por el Detalle,",
+    highlight: "Compromiso con tu Seguridad",
+    subtitle:
+      "En Alfa Detailing Talca elevamos el estándar del cuidado automotriz, combinando estética premium con soluciones de seguridad técnica.",
   },
-  {
-    title: "Seguridad Certificada",
-    desc: "Cumplimos estrictamente la normativa chilena en polarizados y láminas de seguridad. Tu tranquilidad ante fiscalizaciones es nuestra prioridad.",
-    icon: "🛡️",
+  story: {
+    badge: "Sobre Nosotros",
+    title: "Más que estética,",
+    gradient: "ingeniería aplicada a tu vehículo",
+    paragraphs: [
+      "En Alfa Detailing entendemos que un vehículo es más que un medio de transporte; es una inversión. Nacimos en Talca con una misión clara: profesionalizar el servicio de estética y seguridad automotriz.",
+      "Nos diferenciamos por dejar atrás los métodos invasivos o caseros. Ya sea una limpieza de motor, una reparación de trizadura o un tratamiento cerámico, cada servicio es ejecutado con equipamiento específico y bajo estándares controlados.",
+      "Somos expertos locales atendiendo a particulares y empresas que buscan un resultado superior, respaldado por certificaciones y garantías reales.",
+    ],
   },
-  {
-    title: "Honestidad ante todo",
-    desc: "Si un parabrisas se puede reparar, lo haremos. Asesoramos según lo que tu vehículo realmente necesita, cuidando tu bolsillo y la originalidad del auto.",
-    icon: "🤝",
+  values: [
+    {
+      title: "Técnica vs. Improvisación",
+      icon: "🛠️",
+      desc: "No lavamos autos, aplicamos procesos...",
+    },
+    {
+      title: "Seguridad Certificada",
+      icon: "🛡️",
+      desc: "Cumplimos estrictamente la normativa chilena...",
+    },
+    {
+      title: "Honestidad ante todo",
+      icon: "🤝",
+      desc: "Si un parabrisas se puede reparar, lo haremos...",
+    },
+    {
+      title: "Tecnología Avanzada",
+      icon: "🔬",
+      desc: "Usamos Ozono molecular...",
+    },
+  ],
+  cta: {
+    title: "¿Listo para renovar tu vehículo?",
+    desc: "Visítanos en Talca para una evaluación técnica gratuita. Elige calidad, elige seguridad.",
+    primaryBtn: "Agendar Evaluación",
+    secondaryBtn: "Ver Servicios",
   },
-  {
-    title: "Tecnología Avanzada",
-    desc: "Usamos Ozono molecular, máquinas rotativas de precisión y selladores cerámicos de última generación. Invertimos en las mejores herramientas.",
-    icon: "🔬",
-  },
-];
+};
 ---
 
 <section class="about-container">
@@ -31,58 +60,43 @@ const values = [
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>
-        Pasión por el Detalle, <span class="highlight"
-          >Compromiso con tu Seguridad</span
-        >
+        {pageContent.hero.title}
+        <span class="highlight">{pageContent.hero.highlight}</span>
       </h1>
-      <p class="hero-subtitle">
-        En Alfa Detailing Talca elevamos el estándar del cuidado automotriz,
-        combinando estética premium con soluciones de seguridad técnica.
-      </p>
+      <p class="hero-subtitle">{pageContent.hero.subtitle}</p>
     </div>
-    <img
-      src="/images/taller-hero.webp"
-      alt="Taller Alfa Detailing"
-      class="hero-bg-img"
-    />
+
+    {
+      fotoHero && (
+        <Image
+          src={fotoHero.data.foto}
+          alt={fotoHero.data.description}
+          class="hero-bg-img"
+        />
+      )
+    }
   </div>
 
   <div class="story-section wrapper">
     <div class="story-text">
-      <span class="badge">Sobre Nosotros</span>
+      <span class="badge">{pageContent.story.badge}</span>
       <h2>
-        Más que estética, <br />
-        <span class="text-gradient">ingeniería aplicada a tu vehículo</span>
+        {pageContent.story.title}
+        <br />
+        <span class="text-gradient">{pageContent.story.gradient}</span>
       </h2>
 
       <div class="text-block">
-        <p>
-          En <strong>Alfa Detailing</strong> entendemos que un vehículo es más que
-          un medio de transporte; es una inversión. Nacimos en <strong
-            >Talca</strong
-          > con una misión clara: profesionalizar el servicio de estética y seguridad
-          automotriz.
-        </p>
-        <p>
-          Nos diferenciamos por dejar atrás los métodos invasivos o caseros. Ya
-          sea una limpieza de motor, una reparación de trizadura o un
-          tratamiento cerámico, cada servicio es ejecutado con <strong
-            >equipamiento específico y bajo estándares controlados</strong
-          >.
-        </p>
-        <p>
-          Somos expertos locales atendiendo a particulares y empresas que buscan
-          un resultado superior, respaldado por certificaciones y garantías
-          reales.
-        </p>
+        {pageContent.story.paragraphs.map((p) => <p>{p}</p>)}
       </div>
     </div>
 
     <div class="story-image-container">
-      <img
-        src="/images/equipo-trabajando.webp"
-        alt="Equipo Alfa Detailing trabajando"
-      />
+      {
+        fotoEquipo && (
+          <Image src={fotoEquipo.data.foto} alt={fotoEquipo.data.description} />
+        )
+      }
       <div class="glow-effect"></div>
     </div>
   </div>
@@ -96,7 +110,7 @@ const values = [
 
       <div class="values-grid">
         {
-          values.map((item) => (
+          pageContent.values.map((item) => (
             <div class="value-card">
               <div class="icon-wrapper">{item.icon}</div>
               <h4>{item.title}</h4>
@@ -110,20 +124,20 @@ const values = [
 
   <div class="cta-section wrapper center">
     <div class="cta-card">
-      <h2>¿Listo para renovar tu vehículo?</h2>
-      <p>
-        Visítanos en Talca para una evaluación técnica gratuita. Elige calidad,
-        elige seguridad.
-      </p>
+      <h2>{pageContent.cta.title}</h2>
+      <p>{pageContent.cta.desc}</p>
 
       <div class="cta-buttons">
-        <a href="/contacto" class="btn btn-primary">Agendar Evaluación</a>
-        <a href="/servicios" class="btn btn-outline">Ver Servicios</a>
+        <a href="/contacto" class="btn btn-primary"
+          >{pageContent.cta.primaryBtn}</a
+        >
+        <a href="/servicios" class="btn btn-outline"
+          >{pageContent.cta.secondaryBtn}</a
+        >
       </div>
     </div>
   </div>
 </section>
-
 <style>
   /* --- TU TEMA DEFINIDO --- */
   :root {

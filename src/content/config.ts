@@ -100,10 +100,22 @@ export const main = defineCollection({
     }),
 });
 
+export const somos = defineCollection({
+  type: "data",
+  schema: ({ image }) =>
+    z.object({
+      id: z.string(),
+      titulo: z.string(),
+      description: z.string(),
+      foto: image(),
+    }),
+});
+
 export const collections = {
   location,
   services,
   details,
   gallery,
   main,
+  somos,
 };
