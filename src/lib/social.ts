@@ -1,3 +1,5 @@
+import { CLIENT_PHONE_NUMBER } from "./getPhoneNumber";
+
 export type SocialPlatform =
   | "instagram"
   | "facebook"
@@ -16,21 +18,22 @@ export const SOCIALS: SocialLink[] = [
   {
     label: "Instagram",
     platform: "instagram",
-    url: "https://instagram.com/alfadetailersstudio",
+    url: "https://www.instagram.com/alfa.detailers?igsh=MW11ODlvMTlocmxkZw%3D%3D&utm_source=qr",
   },
-  {
-    label: "Facebook",
-    platform: "facebook",
-    url: "https://facebook.com/alfadetailersstudio",
-  },
-  {
-    label: "TikTok",
-    platform: "tiktok",
-    url: "https://tiktok.com/@alfadetailersstudio",
-  },
+  // {
+  //   label: "Facebook",
+  //   platform: "facebook",
+  //   url: "https://facebook.com/alfadetailersstudio",
+  // },
+  // {
+  //   label: "TikTok",
+  //   platform: "tiktok",
+  //   url: "https://tiktok.com/@alfadetailersstudio",
+  // },
   {
     label: "WhatsApp",
     platform: "whatsapp",
-    url: "https://wa.me/5210000000000",
+    // Usar el número exportado desde getPhoneNumber.ts
+    url: `https://wa.me/${CLIENT_PHONE_NUMBER.replace(/\D/g, "")}`,
   },
 ];

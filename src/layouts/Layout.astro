@@ -1,5 +1,6 @@
 ---
 import Footer from "~/components/Footer.astro";
+import { pageContent } from "../modules/somos/getInfo";
 import Header from "~/components/Header.astro";
 ---
 
@@ -10,6 +11,53 @@ import Header from "~/components/Header.astro";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Alfa Detailers Studio</title>
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content={`${pageContent.hero.title} ${pageContent.hero.highlight} | Alfa Detailers Studio`}
+    />
+    <meta property="og:description" content={pageContent.hero.subtitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alfadetailers.cl/somos" />
+    <meta property="og:image" content="/assets/somos/taller.webp" />
+    <meta property="og:locale" content="es_CL" />
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content={`${pageContent.hero.title} ${pageContent.hero.highlight} | Alfa Detailers Studio`}
+    />
+    <meta name="twitter:description" content={pageContent.hero.subtitle} />
+    <meta name="twitter:image" content="/assets/somos/taller.webp" />
+    <!-- Preload fuentes Inter locales -->
+    <link
+      rel="preload"
+      href="/fonts/inter/Inter_24pt-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter/Inter_24pt-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter/Inter_24pt-Italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter/Inter_24pt-BoldItalic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
   </head>
   <body>
     <Header />
@@ -43,6 +91,35 @@ import Header from "~/components/Header.astro";
 
       --font-primary: "Inter", sans-serif;
       --border-radius-lg: 24px;
+    }
+
+    @font-face {
+      font-family: "Inter";
+      src: url("/fonts/inter/Inter_24pt-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("/fonts/inter/Inter_24pt-Bold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("/fonts/inter/Inter_24pt-Italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Inter";
+      src: url("/fonts/inter/Inter_24pt-BoldItalic.woff2") format("woff2");
+      font-weight: 700;
+      font-style: italic;
+      font-display: swap;
     }
   }
 
@@ -106,7 +183,7 @@ import Header from "~/components/Header.astro";
     h2,
     h3,
     h4 {
-      text-wrap: balance; /* Evita saltos de línea feos */
+      text-wrap: balance;
       line-height: 1.2;
     }
 
@@ -125,7 +202,7 @@ import Header from "~/components/Header.astro";
       background-color: #fff;
       color: #000;
       text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased; /* Suaviza fuentes en WebKit */
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -195,11 +272,11 @@ import Header from "~/components/Header.astro";
     display: grid;
     grid-template-columns:
       [full-width]
-      minmax(2rem, 1fr)
+      minmax(1rem, 1fr)
       [content-start]
       min(1400px, 100% - 4rem)
       [content-end]
-      minmax(2rem, 1fr)
+      minmax(1rem, 1fr)
       [full-width-end];
   }
 

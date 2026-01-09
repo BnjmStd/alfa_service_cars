@@ -30,7 +30,7 @@ const heroData = {
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <span class="hero-location">
+    <span class="hero-location" style="display: block;">
       {heroData.location}
     </span>
 
@@ -142,7 +142,6 @@ const heroData = {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-
     mask: linear-gradient(to bottom, #000 60%, transparent);
   }
 
@@ -162,14 +161,13 @@ const heroData = {
     z-index: 3;
     text-align: center;
     max-width: 800px;
-    padding-top: 60px; /* Compensar navbar */
+    padding-top: 60px;
   }
 
   .hero-title {
     font-size: clamp(3rem, 6vw, 5.5rem);
     line-height: 1.1;
     margin-bottom: 20px;
-    /* Efecto de texto degradado metálico */
     background: linear-gradient(to bottom right, #ffffff, #aaaaaa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

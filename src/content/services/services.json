@@ -35,7 +35,7 @@
     "id": "moto-detailing",
     "title": "Moto Detailing",
     "description": "Elite Wash, tratamientos acrílicos y cerámicos exclusivos para motocicletas.",
-    "imageSrc": "../../assets/services/car1.jpeg",
+    "imageSrc": "../../assets/services/moto.webp",
     "videoSrc": "/videos/a.mp4",
     "href": "/servicios/moto-detailing"
   },

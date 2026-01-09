@@ -145,7 +145,8 @@ const QUOTE_CONFIG = {
     const baseMsg = `Hola Alfa Detailers! 👋\n\nQuiero cotizar un servicio:\n\n✨ *Servicio:* ${selectedServicio}\n🚗 *Tamaño:* ${selectedTamano}\n👤 *Nombre:* ${name}\n\n¿Me podrían dar más información?`;
 
     const encodedMsg = encodeURIComponent(baseMsg);
-    window.open(`https://wa.me/${phone}?text=${encodedMsg}`, "_blank");
+    // Usar el número exportado desde getPhoneNumber.ts
+    window.open(`https://wa.me/${CLIENT_PHONE_NUMBER.replace(/\D/g, "")}?text=${encodedMsg}`, "_blank");
   });
 </script>
 

@@ -1,0 +1,1 @@
+export const CLIENT_PHONE_NUMBER = "+569 30636488";
