@@ -4,5 +4,14 @@ import Page from "~/modules/services/index.astro";
 ---
 
 <Layout>
-  <Page />
+  <Page
+    section={{
+      type: "hero-video",
+      title: "Título de ejemplo",
+      subtitle: "Subtítulo",
+      description: "Descripción",
+      videoSrc: "",
+      cta: { text: "Cotizar", href: "/cotizar" },
+    }}
+  />
 </Layout>

@@ -1,4 +1,4 @@
-import logo from "~/assets/brand/logo_malo.jpeg";
+import logo from "~/assets/brand/logo.png";
 
 export const BRAND = {
   name: "Alfa Detailing",
