@@ -3,8 +3,6 @@ import { galleryFilters } from "~/lib/galleryFilters";
 ---
 
 <nav class="filter-buttons" aria-label="Filtrar galería">
-  <span class="filter-indicator" aria-hidden="true"></span>
-
   {
     galleryFilters.map((filter, i) => (
       <button
@@ -21,115 +19,115 @@ import { galleryFilters } from "~/lib/galleryFilters";
 
 <script is:inline>
   const container = document.querySelector(".filter-buttons");
-  const indicator = container.querySelector(".filter-indicator");
   const buttons = container.querySelectorAll(".filter-btn");
 
-  function isDesktop() {
-    return window.matchMedia("(min-width: 768px)").matches;
+  // FUNCIÓN DE FILTRADO
+  function filterGallery(category) {
+    const items = document.querySelectorAll(".gallery-item-page");
+    const emptyState = document.querySelector(".empty-state");
+    let visibleCount = 0;
+
+    items.forEach((item) => {
+      const itemCategory = item.dataset.category;
+
+      if (category === "all" || itemCategory === category) {
+        item.style.display = "";
+        // Animación de entrada
+        item.style.animation = "fadeInScale 0.4s ease-out forwards";
+        visibleCount++;
+      } else {
+        // Animación de salida
+        item.style.animation = "fadeOutScale 0.3s ease-in forwards";
+        setTimeout(() => {
+          item.style.display = "none";
+        }, 300);
+      }
+    });
+
+    // Mostrar/ocultar mensaje de empty state
+    if (visibleCount === 0) {
+      setTimeout(() => {
+        emptyState.style.display = "block";
+      }, 300);
+    } else {
+      emptyState.style.display = "none";
+    }
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    if (!isDesktop()) return;
-    function moveIndicator(target) {
-      const containerRect = container.getBoundingClientRect();
-      const rect = target.getBoundingClientRect();
-
-      indicator.style.width = `${rect.width}px`;
-      indicator.style.transform = `translateX(${rect.left - containerRect.left}px)`;
-      indicator.style.opacity = "1";
-    }
-
-    // Hover → sigue el mouse
+    // LISTENERS DE FILTRADO
     buttons.forEach((btn) => {
-      btn.addEventListener("mouseenter", () => moveIndicator(btn));
-
       btn.addEventListener("click", () => {
-        buttons.forEach((b) => b.classList.remove("active"));
+        const filterValue = btn.dataset.filter;
+
+        // Actualizar botones activos
+        buttons.forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-pressed", "false");
+        });
         btn.classList.add("active");
-        moveIndicator(btn);
+        btn.setAttribute("aria-pressed", "true");
+
+        // Aplicar filtro
+        filterGallery(filterValue);
       });
-    });
-
-    // Al salir, vuelve al activo
-    container.addEventListener("mouseleave", () => {
-      const active = container.querySelector(".filter-btn.active");
-      if (active) moveIndicator(active);
-    });
-
-    // Posición inicial
-    window.addEventListener("load", () => {
-      const active = container.querySelector(".filter-btn.active");
-      if (active) moveIndicator(active);
     });
   });
 </script>
 
 <style>
-  /* MOBILE: ocultar efecto slider */
-  @media (max-width: 767px) {
-    .filter-indicator {
-      display: none;
-    }
-  }
-
   .filter-buttons {
-    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     margin-bottom: 60px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .filter-btn {
-    position: relative;
-    z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
 
-    background: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
 
-    background-color: transparent;
+    padding: 10px 20px;
+    border-radius: 8px;
 
-    border: 1px solid var(--glass-border);
-    color: var(--color-text-muted);
-    padding: 10px 25px;
-    border-radius: 999px;
     font-size: 0.9rem;
     font-weight: 500;
+
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   .filter-btn:hover {
     color: white;
+    background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
   }
 
   .filter-btn.active {
     background: var(--color-accent);
     border-color: var(--color-accent);
     color: white;
-    box-shadow: 0 0 15px var(--color-accent-glow);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
   }
 
-  /* INDICADOR DESLIZANTE */
-  .filter-indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
+  /* Mobile */
+  @media (max-width: 640px) {
+    .filter-buttons {
+      max-width: 100%;
+      gap: 8px;
+    }
 
-    background: var(--color-accent);
-    border-radius: 999px;
-
-    box-shadow: 0 0 18px var(--color-accent-glow);
-
-    transition:
-      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-      width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.2s ease;
-
-    opacity: 0;
-    pointer-events: none;
+    .filter-btn {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+    }
   }
 </style>

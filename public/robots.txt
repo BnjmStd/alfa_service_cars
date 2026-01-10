@@ -1,0 +1,15 @@
+# robots.txt para Alfa Detailers Studio
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://alfadetailers.cl/sitemap.xml
+
+# Bloquear archivos sensibles
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /admin/
+
+# Crawl-delay
+Crawl-delay: 1

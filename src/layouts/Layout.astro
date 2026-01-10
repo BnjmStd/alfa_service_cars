@@ -2,33 +2,103 @@
 import Footer from "~/components/Footer.astro";
 import { pageContent } from "../modules/somos/getInfo";
 import Header from "~/components/Header.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Alfa Detailers Studio | Detailing Profesional en Chile",
+  description = "Detailing profesional de alta gama en Chile. Protección cerámica, pulido, restauración y más. Transforma tu vehículo con los mejores especialistas.",
+  ogImage = "/assets/somos/taller.webp",
+  canonical = Astro.url.pathname,
+} = Astro.props;
+
+const fullTitle = title.includes("Alfa Detailers") ? title : `${title} | Alfa Detailers Studio`;
+const siteUrl = "https://alfadetailers.cl";
+const canonicalURL = new URL(canonical, siteUrl).href;
+const ogImageURL = new URL(ogImage, siteUrl).href;
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Alfa Detailers Studio</title>
-    <!-- Open Graph Meta Tags -->
-    <meta
-      property="og:title"
-      content={`${pageContent.hero.title} ${pageContent.hero.highlight} | Alfa Detailers Studio`}
-    />
-    <meta property="og:description" content={pageContent.hero.subtitle} />
+    
+    <!-- SEO Básico -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://alfadetailers.cl/somos" />
-    <meta property="og:image" content="/assets/somos/taller.webp" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:locale" content="es_CL" />
-    <!-- Twitter Card Meta Tags -->
+    <meta property="og:site_name" content="Alfa Detailers Studio" />
+    
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content={`${pageContent.hero.title} ${pageContent.hero.highlight} | Alfa Detailers Studio`}
-    />
-    <meta name="twitter:description" content={pageContent.hero.subtitle} />
-    <meta name="twitter:image" content="/assets/somos/taller.webp" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    
+    <!-- Keywords y geo -->
+    <meta name="keywords" content="detailing chile, protección cerámica, pulido profesional, restauración auto, lavado detailing, detailing santiago" />
+    <meta name="geo.region" content="CL" />
+    <meta name="geo.placename" content="Chile" />
+    
+    <!-- Mobile Web App -->
+    <meta name="theme-color" content="#d90429" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Preconnect para optimización -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AutomotiveBusiness",
+        "name": "Alfa Detailers Studio",
+        "description": "Detailing profesional de alta gama en Chile. Especialistas en protección cerámica, pulido, restauración y más.",
+        "url": "https://alfadetailers.cl",
+        "logo": "https://alfadetailers.cl/favicon.svg",
+        "image": "https://alfadetailers.cl/assets/somos/taller.webp",
+        "telephone": "+56912345678",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CL",
+          "addressLocality": "Chile"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "addressCountry": "CL"
+        },
+        "priceRange": "$$",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        "sameAs": [
+          "https://www.instagram.com/alfadetailers",
+          "https://www.facebook.com/alfadetailers"
+        ]
+      }
+    </script>
+    
     <!-- Preload fuentes Inter locales -->
     <link
       rel="preload"
@@ -286,6 +356,20 @@ import Header from "~/components/Header.astro";
 
   .wrapper-container {
     min-block-size: 100vh;
+  }
+
+  .badge {
+    display: inline-block;
+    color: var(--color-accent);
+    background: rgba(217, 4, 41, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-accent-glow);
   }
 </style>
 

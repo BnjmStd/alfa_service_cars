@@ -9,7 +9,6 @@ const todasLasFotos = await getCollection("somos");
 
 const fotoHero = todasLasFotos.find((img) => img.id === "taller");
 const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
-
 ---
 
 <section class="about-container">
@@ -132,20 +131,6 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
 
   .center {
     text-align: center;
-  }
-
-  .badge {
-    display: inline-block;
-    color: var(--color-accent);
-    background: rgba(217, 4, 41, 0.1); /* Rojo muy suave de fondo */
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid var(--color-accent-glow);
   }
 
   /* Contenedor imagen con estilo */

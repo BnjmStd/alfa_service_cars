@@ -14,6 +14,8 @@ const itemsBento = collectionServices.map((service) => ({
   whatsappTag: service.data.title,
 }));
 
+console.log(phone);
+
 const QUOTE_CONFIG = {
   servicio: {
     label: "1. Selecciona el tratamiento",
@@ -42,7 +44,7 @@ const QUOTE_CONFIG = {
 <section id="cotizar" class="quote-section">
   <div class="container">
     <div class="quote-container reveal">
-      <span class="status-badge" id="status-text">Configura tu solicitud</span>
+      <span class="badge" id="status-text">Configura tu solicitud</span>
       <h2 class="quote-title">
         Lleva tu auto al <span class="text-accent">Siguiente Nivel</span>
       </h2>
@@ -133,31 +135,39 @@ const QUOTE_CONFIG = {
 
   // Lógica de WhatsApp
   document.getElementById("send-whatsapp").addEventListener("click", () => {
-    const name = document.getElementById("user-name").value;
+    const name = document.getElementById("user-name").value.trim();
 
-    if (!selectedServicio || !selectedTamano || !name) {
-      alert(
-        "Por favor completa todos los campos para darte un presupuesto exacto."
-      );
+    if (!selectedServicio || !selectedTamano) {
+      alert("⚠️ Por favor selecciona un servicio y tipo de vehículo");
       return;
     }
 
-    const baseMsg = `Hola Alfa Detailers! 👋\n\nQuiero cotizar un servicio:\n\n✨ *Servicio:* ${selectedServicio}\n🚗 *Tamaño:* ${selectedTamano}\n👤 *Nombre:* ${name}\n\n¿Me podrían dar más información?`;
+    if (!name) {
+      alert("⚠️ Por favor ingresa tu nombre para continuar");
+      return;
+    }
+
+    const baseMsg = `¡Hola Alfa Detailers! 👋
+
+Me gustaría solicitar una cotización:
+
+✨ *Servicio:* ${selectedServicio}
+🚗 *Vehículo:* ${selectedTamano}
+👤 *Mi nombre:* ${name}
+
+¿Podrían darme más información sobre precios y disponibilidad?
+
+¡Gracias!`;
 
     const encodedMsg = encodeURIComponent(baseMsg);
-    // Usar el número exportado desde getPhoneNumber.ts
-    window.open(`https://wa.me/${CLIENT_PHONE_NUMBER.replace(/\D/g, "")}?text=${encodedMsg}`, "_blank");
+    const cleanPhone = phone.replace(/\D/g, "");
+    window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
   });
 </script>
 
 <style>
   @layer components {
     .quote-section {
-      background: linear-gradient(
-        to bottom,
-        var(--color-bg-surface),
-        var(--color-bg-main)
-      );
       padding: 100px 0;
     }
 
@@ -169,19 +179,6 @@ const QUOTE_CONFIG = {
       backdrop-filter: blur(var(--glass-blur));
       border-radius: 32px;
       padding: 50px;
-    }
-
-    .status-badge {
-      color: var(--color-accent);
-      font-weight: 700;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 4px 12px;
-      border: 1px solid var(--color-accent);
-      border-radius: 99px;
     }
 
     .quote-title {

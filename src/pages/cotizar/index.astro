@@ -1,8 +1,13 @@
 ---
 import Layout from "~/layouts/Layout.astro";
+import { CLIENT_PHONE_NUMBER } from "~/lib/getPhoneNumber";
 import Page from "~/modules/price/page.astro";
 ---
 
-<Layout>
-  <Page />
+<Layout
+  title="Cotizar Servicio | Solicita tu Presupuesto de Detailing"
+  description="Solicita una cotización personalizada para servicios de detailing profesional. Protección cerámica, pulido, restauración y más. Presupuesto rápido por WhatsApp."
+  canonical="/cotizar"
+>
+  <Page phone={`${CLIENT_PHONE_NUMBER}`} />
 </Layout>

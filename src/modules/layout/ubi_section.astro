@@ -12,7 +12,7 @@ const { map: mapConfig, badge, title, details, cta } = currentLocation.data;
 <section id="ubicacion" class="location-section">
   <div class="container location-grid">
     <div class="location-info reveal">
-      <span class="address-tag scan-observe">{badge}</span>
+      <span class="badge scan-observe">{badge}</span>
 
       <h2 class="location-title">
         {title.text.replace(title.highlight, "")}
@@ -74,16 +74,6 @@ const { map: mapConfig, badge, title, details, cta } = currentLocation.data;
     /* Tarjeta de Información */
     .location-info {
       padding-right: 20px;
-    }
-
-    .address-tag {
-      color: var(--color-accent);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      margin-bottom: 15px;
-      display: block;
     }
 
     .location-title {
