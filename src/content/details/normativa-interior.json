@@ -4,78 +4,122 @@
       "id": "hero",
       "type": "hero-video",
       "videoSrc": "https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4",
-      "subtitle": "Protección Avanzada",
-      "title": "Tratamiento Cerámico 9H",
-      "description": "La nanotecnología que blinda tu auto contra los elementos, le da un brillo espejo y lo mantiene impecable por años.",
+      "subtitle": "Higiene y Confort Interior",
+      "title": "Detailing Interior Profesional en Talca",
+      "description": "Limpieza profunda de asientos, alfombras y techo, con descontaminación interior con ozono. Eliminación de bacterias, hongos y malos olores sin uso de químicos.",
       "cta": {
-        "text": "Solicitar Cotización",
+        "text": "Cotizar Detailing Interior",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "beneficios",
       "type": "feature-list",
-      "subtitle": "Beneficios Exclusivos",
-      "title": "¿Por qué elegir un Cerámico Alfa?",
+      "subtitle": "Beneficios Reales",
+      "title": "¿Por qué realizar un Detailing Interior?",
       "description": "",
       "features": [
         {
-          "icon": "✨",
-          "title": "Brillo Espejo Duradero",
-          "description": "Intensifica el color y la profundidad de la pintura, creando un acabado de showroom que perdura."
+          "icon": "🌫️",
+          "title": "Sanitización con Ozono",
+          "description": "Elimina bacterias, virus, hongos y olores persistentes a nivel molecular."
         },
         {
-          "icon": "💧",
-          "title": "Repelencia Extrema",
-          "description": "El agua y la suciedad se deslizan, facilitando la limpieza y manteniendo tu auto más limpio por más tiempo."
+          "icon": "🛋️",
+          "title": "Limpieza Profunda de Tapices",
+          "description": "Asientos, alfombras y techo libres de suciedad y manchas."
         },
         {
-          "icon": "🛡️",
-          "title": "Protección 9H",
-          "description": "Resistencia superior a micro-rayas, químicos, UV y oxidación, con hasta 5 años de garantía."
+          "icon": "👶",
+          "title": "Seguro para Familias",
+          "description": "No usamos químicos ni perfumes artificiales."
         },
         {
-          "icon": "🌿",
-          "title": "Mantenimiento Sencillo",
-          "description": "Reduce la necesidad de lavados frecuentes y el uso de productos agresivos, protegiendo el medio ambiente."
+          "icon": "🌬️",
+          "title": "Mejora la Calidad del Aire",
+          "description": "Sanitiza conductos de ventilación y superficies internas."
+        }
+      ]
+    },
+    {
+      "id": "proceso",
+      "type": "process-steps",
+      "subtitle": "Proceso Profesional",
+      "title": "¿Cómo realizamos el Detailing Interior?",
+      "steps": [
+        "Evaluación del estado interior del vehículo",
+        "Limpieza profunda de asientos",
+        "Limpieza de techo y alfombras",
+        "Descontaminación interior con ozono",
+        "Sanitización de conductos de ventilación",
+        "Sellado cerámico de telas o cueros (opcional)",
+        "Inspección final y entrega"
+      ]
+    },
+    {
+      "id": "incluye-premium",
+      "type": "feature-list",
+      "subtitle": "Servicios Disponibles",
+      "title": "¿Qué incluye el Detailing Interior?",
+      "description": "",
+      "features": [
+        {
+          "icon": "🧼",
+          "title": "Limpieza Profunda de Asientos",
+          "description": "Eliminación de manchas, polvo y suciedad incrustada."
+        },
+        {
+          "icon": "🏠",
+          "title": "Limpieza de Alfombras y Techo",
+          "description": "Restauración del aspecto original del interior."
+        },
+        {
+          "icon": "🧴",
+          "title": "Sellado Cerámico de Telas",
+          "description": "Protección contra manchas y derrames."
+        },
+        {
+          "icon": "🪑",
+          "title": "Sellado Cerámico para Cueros",
+          "description": "Hidrata, protege y prolonga la vida del cuero."
         }
       ]
     },
     {
       "id": "faq-ceramico",
       "type": "faq-list",
-      "subtitle": "Dudas Comunes",
-      "title": "Preguntas Frecuentes del Cerámico",
+      "subtitle": "Preguntas Frecuentes",
+      "title": "Todo lo que necesitas saber",
       "description": "",
       "faqs": [
         {
-          "question": "¿Cuánto dura el Tratamiento Cerámico?",
-          "answer": "Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2 y 5 años, dependiendo del producto seleccionado, el mantenimiento del vehículo y las condiciones ambientales."
+          "question": "¿El ozono elimina los malos olores?",
+          "answer": "Sí, el ozono neutraliza los olores desde su origen y no los enmascara."
         },
         {
-          "question": "¿Es necesario pulir el auto antes de aplicarlo?",
-          "answer": "Sí, es esencial. Para asegurar una adhesión perfecta y resultados óptimos, la pintura debe estar en su mejor estado: libre de defectos, hologramas y contaminantes. Realizamos una corrección de pintura profesional previa."
+          "question": "¿Es seguro para niños y mascotas?",
+          "answer": "Sí, el tratamiento no deja residuos químicos y es completamente seguro."
         },
         {
-          "question": "¿Cómo debo mantener mi auto con tratamiento cerámico?",
-          "answer": "Recomendamos lavados regulares con productos de pH neutro, evitar túneles de lavado con cepillos abrasivos y secar el vehículo con toallas de microfibra de alta calidad. Ofrecemos kits de mantenimiento específicos."
+          "question": "¿Cuándo se recomienda este servicio?",
+          "answer": "En autos familiares, de fumadores, con mascotas, después de humedad o al comprar o vender un vehículo."
         }
       ]
     },
     {
       "id": "cta-ceramico",
       "type": "cta-block",
-      "subtitle": "Cotiza Ahora",
-      "title": "Prepara tu auto para el futuro.",
+      "subtitle": "Respira un aire más limpio",
+      "title": "Renueva el Interior de tu Vehículo",
       "button": {
-        "text": "Cotizar Tratamiento Cerámico",
+        "text": "Cotizar Detailing Interior",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "whatsapp-anchor",
       "type": "whatsapp-anchor",
-      "serviceName": "Tratamiento Cerámico 9H"
+      "serviceName": "Detailing Interior Profesional"
     }
   ]
 }

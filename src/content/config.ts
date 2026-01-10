@@ -5,6 +5,8 @@ import {
   faqListSchema,
   featureListSchema,
   heroVideoSchema,
+  processStepsSchema,
+  trustBlockSchema,
   whatsappAnchorSchema,
 } from "./details/schemas";
 import { GALLERY_CATEGORIES } from "~/lib/galleryCategories";
@@ -57,6 +59,8 @@ export const services = defineCollection({
 const sectionSchema = z.discriminatedUnion("type", [
   heroVideoSchema,
   featureListSchema,
+  processStepsSchema,
+  trustBlockSchema,
   faqListSchema,
   ctaBlockSchema,
   whatsappAnchorSchema,

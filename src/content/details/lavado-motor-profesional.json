@@ -4,78 +4,129 @@
       "id": "hero",
       "type": "hero-video",
       "videoSrc": "https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4",
-      "subtitle": "Protección Avanzada",
-      "title": "Tratamiento Cerámico 9H",
-      "description": "La nanotecnología que blinda tu auto contra los elementos, le da un brillo espejo y lo mantiene impecable por años.",
+      "subtitle": "Limpieza Técnica y Segura",
+      "title": "Lavado de Motor Profesional en Talca",
+      "description": "Limpieza controlada del compartimiento del motor, sin dañar sensores ni componentes eléctricos. Servicio seguro, responsable y realizado bajo protocolos técnicos.",
       "cta": {
-        "text": "Solicitar Cotización",
+        "text": "Cotizar Lavado de Motor",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "beneficios",
       "type": "feature-list",
-      "subtitle": "Beneficios Exclusivos",
-      "title": "¿Por qué elegir un Cerámico Alfa?",
+      "subtitle": "Beneficios Reales",
+      "title": "¿Por qué realizar un Lavado de Motor Profesional?",
       "description": "",
       "features": [
         {
-          "icon": "✨",
-          "title": "Brillo Espejo Duradero",
-          "description": "Intensifica el color y la profundidad de la pintura, creando un acabado de showroom que perdura."
+          "icon": "🛠️",
+          "title": "Inspecciones más fáciles",
+          "description": "Elimina grasa y suciedad que ocultan fugas o fallas mecánicas."
         },
         {
-          "icon": "💧",
-          "title": "Repelencia Extrema",
-          "description": "El agua y la suciedad se deslizan, facilitando la limpieza y manteniendo tu auto más limpio por más tiempo."
+          "icon": "💨",
+          "title": "Elimina malos olores",
+          "description": "Quita residuos de aceite y suciedad que generan olores desagradables."
+        },
+        {
+          "icon": "🔍",
+          "title": "Mejor presentación",
+          "description": "Deja el motor limpio y ordenado, ideal antes de vender o mantener tu vehículo."
         },
         {
           "icon": "🛡️",
-          "title": "Protección 9H",
-          "description": "Resistencia superior a micro-rayas, químicos, UV y oxidación, con hasta 5 años de garantía."
+          "title": "Proceso seguro",
+          "description": "Protegemos sensores, conexiones eléctricas y componentes sensibles."
+        }
+      ]
+    },
+    {
+      "id": "seguridad",
+      "type": "trust-block",
+      "subtitle": "Garantía de Seguridad",
+      "title": "¿Por qué nuestro Lavado de Motor es seguro?",
+      "items": [
+        "No utilizamos presión agresiva ni hidrolavadoras directas",
+        "Protección total de sensores y conexiones eléctricas",
+        "Procedimiento manual, técnico y controlado",
+        "Inspección antes y después del servicio",
+        "Técnicos capacitados en limpieza de compartimiento de motor"
+      ]
+    },
+    {
+      "id": "proceso",
+      "type": "process-steps",
+      "subtitle": "Proceso Profesional",
+      "title": "¿Cómo realizamos el Lavado de Motor?",
+      "steps": [
+        "Inspección previa del compartimiento",
+        "Protección de sensores y componentes eléctricos",
+        "Aplicación de productos específicos para motor",
+        "Limpieza manual y controlada sin presión agresiva",
+        "Secado técnico del motor",
+        "Revisión final de seguridad"
+      ]
+    },
+    {
+      "id": "incluye-premium",
+      "type": "feature-list",
+      "subtitle": "Servicio Técnico",
+      "title": "¿Qué incluye el Lavado de Motor?",
+      "description": "Nuestro lavado de motor está enfocado en la seguridad mecánica y el cuidado real de tu vehículo.",
+      "features": [
+        {
+          "icon": "⚡",
+          "title": "Protección de componentes eléctricos",
+          "description": "Cubrición técnica de sensores y conectores sensibles."
         },
         {
-          "icon": "🌿",
-          "title": "Mantenimiento Sencillo",
-          "description": "Reduce la necesidad de lavados frecuentes y el uso de productos agresivos, protegiendo el medio ambiente."
+          "icon": "🧴",
+          "title": "Productos especializados",
+          "description": "Uso exclusivo de químicos formulados para compartimientos de motor."
+        },
+        {
+          "icon": "🔎",
+          "title": "Revisión final",
+          "description": "Chequeo visual posterior para asegurar limpieza y funcionamiento seguro."
         }
       ]
     },
     {
       "id": "faq-ceramico",
       "type": "faq-list",
-      "subtitle": "Dudas Comunes",
-      "title": "Preguntas Frecuentes del Cerámico",
+      "subtitle": "Preguntas Frecuentes",
+      "title": "Todo lo que necesitas saber",
       "description": "",
       "faqs": [
         {
-          "question": "¿Cuánto dura el Tratamiento Cerámico?",
-          "answer": "Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2 y 5 años, dependiendo del producto seleccionado, el mantenimiento del vehículo y las condiciones ambientales."
+          "question": "¿Es peligroso lavar el motor?",
+          "answer": "El riesgo existe solo cuando se hace de forma incorrecta. En Alfa Detailing utilizamos procedimientos técnicos que reducen al mínimo cualquier posibilidad de daño."
         },
         {
-          "question": "¿Es necesario pulir el auto antes de aplicarlo?",
-          "answer": "Sí, es esencial. Para asegurar una adhesión perfecta y resultados óptimos, la pintura debe estar en su mejor estado: libre de defectos, hologramas y contaminantes. Realizamos una corrección de pintura profesional previa."
+          "question": "¿Cuándo se recomienda este servicio?",
+          "answer": "Antes de vender el vehículo, antes o después de mantenciones mecánicas, o cuando el motor presenta acumulación visible de grasa."
         },
         {
-          "question": "¿Cómo debo mantener mi auto con tratamiento cerámico?",
-          "answer": "Recomendamos lavados regulares con productos de pH neutro, evitar túneles de lavado con cepillos abrasivos y secar el vehículo con toallas de microfibra de alta calidad. Ofrecemos kits de mantenimiento específicos."
+          "question": "¿Qué tipo de vehículos atienden?",
+          "answer": "Atendemos autos particulares, SUV y camionetas en Talca."
         }
       ]
     },
     {
       "id": "cta-ceramico",
       "type": "cta-block",
-      "subtitle": "Cotiza Ahora",
-      "title": "Prepara tu auto para el futuro.",
+      "subtitle": "Cuida tu motor",
+      "title": "Agenda tu Lavado de Motor Profesional en Talca",
       "button": {
-        "text": "Cotizar Tratamiento Cerámico",
+        "text": "Cotizar Lavado de Motor",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "whatsapp-anchor",
       "type": "whatsapp-anchor",
-      "serviceName": "Tratamiento Cerámico 9H"
+      "serviceName": "Lavado de Motor Profesional"
     }
   ]
 }

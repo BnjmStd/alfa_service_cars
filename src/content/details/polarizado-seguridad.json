@@ -4,78 +4,128 @@
       "id": "hero",
       "type": "hero-video",
       "videoSrc": "https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4",
-      "subtitle": "Protección Avanzada",
-      "title": "Tratamiento Cerámico 9H",
-      "description": "La nanotecnología que blinda tu auto contra los elementos, le da un brillo espejo y lo mantiene impecable por años.",
+      "subtitle": "Confort, Protección y Seguridad",
+      "title": "Polarizado Certificado y Láminas de Seguridad en Talca",
+      "description": "Instalación profesional de polarizado certificado según normativa chilena y láminas de seguridad de alto espesor para protección de personas y bienes.",
       "cta": {
-        "text": "Solicitar Cotización",
+        "text": "Cotizar Polarizado",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "beneficios",
       "type": "feature-list",
-      "subtitle": "Beneficios Exclusivos",
-      "title": "¿Por qué elegir un Cerámico Alfa?",
+      "subtitle": "Beneficios Reales",
+      "title": "¿Por qué elegir Polarizado Certificado y Láminas de Seguridad?",
       "description": "",
       "features": [
         {
-          "icon": "✨",
-          "title": "Brillo Espejo Duradero",
-          "description": "Intensifica el color y la profundidad de la pintura, creando un acabado de showroom que perdura."
+          "icon": "🌞",
+          "title": "Control Solar",
+          "description": "Reduce el calor interior y bloquea rayos UV dañinos."
         },
         {
-          "icon": "💧",
-          "title": "Repelencia Extrema",
-          "description": "El agua y la suciedad se deslizan, facilitando la limpieza y manteniendo tu auto más limpio por más tiempo."
+          "icon": "🪟",
+          "title": "Cumple Normativa Chilena",
+          "description": "Incluye certificado válido para fiscalización y revisión técnica."
         },
         {
           "icon": "🛡️",
-          "title": "Protección 9H",
-          "description": "Resistencia superior a micro-rayas, químicos, UV y oxidación, con hasta 5 años de garantía."
+          "title": "Mayor Seguridad",
+          "description": "Láminas de seguridad que contienen el vidrio y reducen riesgos ante impactos."
         },
         {
-          "icon": "🌿",
-          "title": "Mantenimiento Sencillo",
-          "description": "Reduce la necesidad de lavados frecuentes y el uso de productos agresivos, protegiendo el medio ambiente."
+          "icon": "🔒",
+          "title": "Prevención de Robos",
+          "description": "Retrasa accesos forzados y protege personas y carga."
+        }
+      ]
+    },
+    {
+      "id": "cumplimiento-legal",
+      "type": "trust-block",
+      "subtitle": "Cumplimiento Legal",
+      "title": "Certificación y Normativa Chilena",
+      "items": [
+        "Polarizados con VLT permitido por ley",
+        "Certificado válido para fiscalización y revisión técnica",
+        "Sellos de instalación en cada vidrio",
+        "Asesoría personalizada para elegir el porcentaje correcto"
+      ]
+    },
+    {
+      "id": "proceso",
+      "type": "process-steps",
+      "subtitle": "Proceso Profesional",
+      "title": "¿Cómo realizamos la instalación?",
+      "steps": [
+        "Evaluación del vehículo",
+        "Selección del porcentaje permitido de polarizado",
+        "Elección del espesor de lámina de seguridad",
+        "Limpieza técnica de los vidrios",
+        "Instalación profesional de láminas",
+        "Entrega de certificado y sellos por vidrio"
+      ]
+    },
+    {
+      "id": "incluye-premium",
+      "type": "feature-list",
+      "subtitle": "Servicios Disponibles",
+      "title": "Polarizado y Láminas de Seguridad",
+      "description": "",
+      "features": [
+        {
+          "icon": "🕶️",
+          "title": "Polarizado Certificado",
+          "description": "Cumple VLT legal, con respaldo técnico y certificado de instalación."
+        },
+        {
+          "icon": "📏",
+          "title": "Láminas de Seguridad",
+          "description": "Espesores 4, 8, 12 y 14 mil, con garantía de 5 y 10 años."
+        },
+        {
+          "icon": "🚗",
+          "title": "Aplicación Vehicular",
+          "description": "Para autos, SUV, camionetas y vehículos comerciales."
         }
       ]
     },
     {
       "id": "faq-ceramico",
       "type": "faq-list",
-      "subtitle": "Dudas Comunes",
-      "title": "Preguntas Frecuentes del Cerámico",
+      "subtitle": "Preguntas Frecuentes",
+      "title": "Todo lo que necesitas saber",
       "description": "",
       "faqs": [
         {
-          "question": "¿Cuánto dura el Tratamiento Cerámico?",
-          "answer": "Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2 y 5 años, dependiendo del producto seleccionado, el mantenimiento del vehículo y las condiciones ambientales."
+          "question": "¿El polarizado pasa revisión técnica?",
+          "answer": "Sí, utilizamos exclusivamente polarizados certificados que cumplen la normativa chilena."
         },
         {
-          "question": "¿Es necesario pulir el auto antes de aplicarlo?",
-          "answer": "Sí, es esencial. Para asegurar una adhesión perfecta y resultados óptimos, la pintura debe estar en su mejor estado: libre de defectos, hologramas y contaminantes. Realizamos una corrección de pintura profesional previa."
+          "question": "¿Qué espesor de lámina de seguridad necesito?",
+          "answer": "Depende del nivel de protección requerido. Te asesoramos según tu tipo de vehículo y uso."
         },
         {
-          "question": "¿Cómo debo mantener mi auto con tratamiento cerámico?",
-          "answer": "Recomendamos lavados regulares con productos de pH neutro, evitar túneles de lavado con cepillos abrasivos y secar el vehículo con toallas de microfibra de alta calidad. Ofrecemos kits de mantenimiento específicos."
+          "question": "¿Incluye certificado?",
+          "answer": "Sí, se entrega certificado de polarizado y sellos por cada vidrio instalado."
         }
       ]
     },
     {
       "id": "cta-ceramico",
       "type": "cta-block",
-      "subtitle": "Cotiza Ahora",
-      "title": "Prepara tu auto para el futuro.",
+      "subtitle": "Conduce protegido",
+      "title": "Instala Polarizado y Láminas de Seguridad Certificadas",
       "button": {
-        "text": "Cotizar Tratamiento Cerámico",
+        "text": "Cotizar Polarizado y Seguridad",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "whatsapp-anchor",
       "type": "whatsapp-anchor",
-      "serviceName": "Tratamiento Cerámico 9H"
+      "serviceName": "Polarizado Certificado y Láminas de Seguridad"
     }
   ]
 }

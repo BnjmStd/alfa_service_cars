@@ -4,78 +4,131 @@
       "id": "hero",
       "type": "hero-video",
       "videoSrc": "https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4",
-      "subtitle": "Protección Avanzada",
-      "title": "Tratamiento Cerámico 9H",
-      "description": "La nanotecnología que blinda tu auto contra los elementos, le da un brillo espejo y lo mantiene impecable por años.",
+      "subtitle": "Estética y Protección para tu Moto",
+      "title": "Moto Detailing Profesional en Talca",
+      "description": "Servicios Elite Wash, Tratamiento Acrílico y Elite Coating para motos. Limpieza profunda, corrección de pintura y protección cerámica hasta 36 meses.",
       "cta": {
-        "text": "Solicitar Cotización",
+        "text": "Cotizar Moto Detailing",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "beneficios",
       "type": "feature-list",
-      "subtitle": "Beneficios Exclusivos",
-      "title": "¿Por qué elegir un Cerámico Alfa?",
+      "subtitle": "Beneficios Reales",
+      "title": "¿Por qué realizar Detailing Profesional en tu Moto?",
       "description": "",
       "features": [
         {
           "icon": "✨",
-          "title": "Brillo Espejo Duradero",
-          "description": "Intensifica el color y la profundidad de la pintura, creando un acabado de showroom que perdura."
-        },
-        {
-          "icon": "💧",
-          "title": "Repelencia Extrema",
-          "description": "El agua y la suciedad se deslizan, facilitando la limpieza y manteniendo tu auto más limpio por más tiempo."
+          "title": "Brillo Premium",
+          "description": "Recupera el color y profundidad de pintura, carenados y focos."
         },
         {
           "icon": "🛡️",
-          "title": "Protección 9H",
-          "description": "Resistencia superior a micro-rayas, químicos, UV y oxidación, con hasta 5 años de garantía."
+          "title": "Protección UV y Química",
+          "description": "Defensa contra rayos UV, fecas de aves, resina de árboles y contaminación."
         },
         {
-          "icon": "🌿",
-          "title": "Mantenimiento Sencillo",
-          "description": "Reduce la necesidad de lavados frecuentes y el uso de productos agresivos, protegiendo el medio ambiente."
+          "icon": "💧",
+          "title": "Hidrofobia Extrema",
+          "description": "El agua resbala inmediatamente, manteniendo la moto limpia por más tiempo."
+        },
+        {
+          "icon": "🔧",
+          "title": "Cuidado Mecánico",
+          "description": "Limpieza segura de motor, transmisión, línea de escape y componentes."
+        }
+      ]
+    },
+    {
+      "id": "seguridad",
+      "type": "trust-block",
+      "subtitle": "Garantía de Seguridad",
+      "title": "Detailing Seguro para tu Moto",
+      "items": [
+        "Limpieza sin presión agresiva",
+        "Protección de conexiones eléctricas",
+        "Procedimiento manual y técnico",
+        "Secado controlado de componentes",
+        "Lubricación profesional de cadena"
+      ]
+    },
+    {
+      "id": "proceso",
+      "type": "process-steps",
+      "subtitle": "Proceso Profesional",
+      "title": "¿Cómo realizamos el Moto Detailing?",
+      "steps": [
+        "Lavado profundo Snow Foam",
+        "Descontaminación de llantas y calipers",
+        "Limpieza de motor, transmisión, escape y focos",
+        "Descontaminación y corrección de pintura",
+        "Limpieza y lubricación de cadena",
+        "Aplicación de sellado acrílico o cerámico según servicio",
+        "Hidratación de cueros y plásticos con protección UV",
+        "Hidratación de neumáticos con protección UV"
+      ]
+    },
+    {
+      "id": "incluye-premium",
+      "type": "feature-list",
+      "subtitle": "Servicios Disponibles",
+      "title": "Planes de Moto Detailing",
+      "description": "",
+      "features": [
+        {
+          "icon": "🏁",
+          "title": "Elite Wash",
+          "description": "Lavado profundo Snow Foam, limpieza de motor, transmisión, escape, focos, sellado con cera cerámica e hidratación completa."
+        },
+        {
+          "icon": "🔵",
+          "title": "Tratamiento Acrílico",
+          "description": "Descontaminación, corrección de pintura y sellado acrílico con protección hasta 12 meses."
+        },
+        {
+          "icon": "🟣",
+          "title": "Elite Coating",
+          "description": "Corrección de pintura + sellado cerámico con 36 meses de protección, hidrofobia extrema y alto brillo."
         }
       ]
     },
     {
       "id": "faq-ceramico",
       "type": "faq-list",
-      "subtitle": "Dudas Comunes",
-      "title": "Preguntas Frecuentes del Cerámico",
+      "subtitle": "Preguntas Frecuentes",
+      "title": "Todo lo que necesitas saber",
       "description": "",
       "faqs": [
         {
-          "question": "¿Cuánto dura el Tratamiento Cerámico?",
-          "answer": "Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2 y 5 años, dependiendo del producto seleccionado, el mantenimiento del vehículo y las condiciones ambientales."
+          "question": "¿Cuánto dura el Elite Coating?",
+          "answer": "El sellado cerámico Elite Coating tiene una duración de hasta 36 meses, dependiendo del uso y mantenimiento."
         },
         {
-          "question": "¿Es necesario pulir el auto antes de aplicarlo?",
-          "answer": "Sí, es esencial. Para asegurar una adhesión perfecta y resultados óptimos, la pintura debe estar en su mejor estado: libre de defectos, hologramas y contaminantes. Realizamos una corrección de pintura profesional previa."
+          "question": "¿Lubrican la cadena?",
+          "answer": "Sí, en los servicios acrílico y Elite Coating realizamos limpieza y lubricación profesional de cadena."
         },
         {
-          "question": "¿Cómo debo mantener mi auto con tratamiento cerámico?",
-          "answer": "Recomendamos lavados regulares con productos de pH neutro, evitar túneles de lavado con cepillos abrasivos y secar el vehículo con toallas de microfibra de alta calidad. Ofrecemos kits de mantenimiento específicos."
+          "question": "¿Es seguro para motos de alta cilindrada?",
+          "answer": "Sí, trabajamos con todo tipo de motos, utilizando protocolos técnicos y limpieza controlada."
         }
       ]
     },
     {
       "id": "cta-ceramico",
       "type": "cta-block",
-      "subtitle": "Cotiza Ahora",
-      "title": "Prepara tu auto para el futuro.",
+      "subtitle": "Protege tu moto",
+      "title": "Lleva tu Moto al Nivel Elite",
       "button": {
-        "text": "Cotizar Tratamiento Cerámico",
+        "text": "Cotizar Moto Detailing",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "whatsapp-anchor",
       "type": "whatsapp-anchor",
-      "serviceName": "Tratamiento Cerámico 9H"
+      "serviceName": "Moto Detailing Profesional"
     }
   ]
 }

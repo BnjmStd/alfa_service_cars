@@ -4,78 +4,137 @@
       "id": "hero",
       "type": "hero-video",
       "videoSrc": "https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4",
-      "subtitle": "Protección Avanzada",
-      "title": "Tratamiento Cerámico 9H",
-      "description": "La nanotecnología que blinda tu auto contra los elementos, le da un brillo espejo y lo mantiene impecable por años.",
+      "subtitle": "Repara Antes que se Quiebre",
+      "title": "Reparación de Piquetes y Trizaduras en Parabrisas en Talca",
+      "description": "Detenemos la propagación de fisuras utilizando resinas especializadas, prolongando la vida útil del vidrio original y evitando el reemplazo completo del parabrisas.",
       "cta": {
-        "text": "Solicitar Cotización",
+        "text": "Cotizar Reparación",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "beneficios",
       "type": "feature-list",
-      "subtitle": "Beneficios Exclusivos",
-      "title": "¿Por qué elegir un Cerámico Alfa?",
+      "subtitle": "Beneficios Reales",
+      "title": "¿Por qué reparar tu parabrisas a tiempo?",
       "description": "",
       "features": [
         {
-          "icon": "✨",
-          "title": "Brillo Espejo Duradero",
-          "description": "Intensifica el color y la profundidad de la pintura, creando un acabado de showroom que perdura."
-        },
-        {
-          "icon": "💧",
-          "title": "Repelencia Extrema",
-          "description": "El agua y la suciedad se deslizan, facilitando la limpieza y manteniendo tu auto más limpio por más tiempo."
+          "icon": "⏱️",
+          "title": "Rápido y Económico",
+          "description": "Reparar un piquete es mucho más barato que cambiar el parabrisas completo."
         },
         {
           "icon": "🛡️",
-          "title": "Protección 9H",
-          "description": "Resistencia superior a micro-rayas, químicos, UV y oxidación, con hasta 5 años de garantía."
+          "title": "Mantiene la Seguridad",
+          "description": "Restaura la resistencia estructural del vidrio."
         },
         {
-          "icon": "🌿",
-          "title": "Mantenimiento Sencillo",
-          "description": "Reduce la necesidad de lavados frecuentes y el uso de productos agresivos, protegiendo el medio ambiente."
+          "icon": "👁️",
+          "title": "Mejora la Visibilidad",
+          "description": "Reduce reflejos y distorsiones en el campo visual."
+        },
+        {
+          "icon": "🚗",
+          "title": "Conserva el Vidrio Original",
+          "description": "Evita reemplazos innecesarios y mantiene la originalidad del vehículo."
         }
+      ]
+    },
+    {
+      "id": "urgencia",
+      "type": "trust-block",
+      "subtitle": "Repara a Tiempo",
+      "title": "Mientras antes repares, mejores serán los resultados",
+      "items": [
+        "Un piquete puede transformarse en trizadura con vibraciones o cambios de temperatura",
+        "Las fisuras crecen con el calor y el frío",
+        "Reparar a tiempo evita el cambio total del parabrisas"
+      ]
+    },
+    {
+      "id": "proceso",
+      "type": "process-steps",
+      "subtitle": "Proceso Profesional",
+      "title": "¿Cómo reparamos tu parabrisas?",
+      "steps": [
+        "Evaluación del impacto",
+        "Limpieza del área afectada",
+        "Aplicación de vacío e inyección de resina",
+        "Curado con luz especializada",
+        "Inspección final del vidrio"
+      ]
+    },
+    {
+      "id": "incluye-premium",
+      "type": "feature-list",
+      "subtitle": "Servicio Técnico",
+      "title": "¿Qué incluye la reparación?",
+      "description": "",
+      "features": [
+        {
+          "icon": "🔬",
+          "title": "Resinas Especializadas",
+          "description": "Materiales diseñados para restaurar resistencia estructural."
+        },
+        {
+          "icon": "💡",
+          "title": "Curado con Luz Profesional",
+          "description": "Endurecimiento correcto de la resina para máxima durabilidad."
+        },
+        {
+          "icon": "🔎",
+          "title": "Inspección Final",
+          "description": "Verificamos visibilidad, sellado y resistencia."
+        }
+      ]
+    },
+    {
+      "id": "reparar-o-cambiar",
+      "type": "trust-block",
+      "subtitle": "Decisión Correcta",
+      "title": "¿Conviene reparar o cambiar el parabrisas?",
+      "items": [
+        "La reparación es viable si el daño es pequeño y se trata a tiempo",
+        "Cambiar el parabrisas es más costoso y afecta la originalidad del vehículo",
+        "Siempre evaluamos previamente para recomendar la mejor opción"
       ]
     },
     {
       "id": "faq-ceramico",
       "type": "faq-list",
-      "subtitle": "Dudas Comunes",
-      "title": "Preguntas Frecuentes del Cerámico",
+      "subtitle": "Preguntas Frecuentes",
+      "title": "Todo lo que necesitas saber",
       "description": "",
       "faqs": [
         {
-          "question": "¿Cuánto dura el Tratamiento Cerámico?",
-          "answer": "Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2 y 5 años, dependiendo del producto seleccionado, el mantenimiento del vehículo y las condiciones ambientales."
+          "question": "¿Qué es un piquete?",
+          "answer": "Es un impacto localizado en el parabrisas provocado generalmente por piedras u objetos pequeños."
         },
         {
-          "question": "¿Es necesario pulir el auto antes de aplicarlo?",
-          "answer": "Sí, es esencial. Para asegurar una adhesión perfecta y resultados óptimos, la pintura debe estar en su mejor estado: libre de defectos, hologramas y contaminantes. Realizamos una corrección de pintura profesional previa."
+          "question": "¿Siempre se puede reparar?",
+          "answer": "No. Depende del tamaño, ubicación y profundidad del daño. Siempre realizamos evaluación previa."
         },
         {
-          "question": "¿Cómo debo mantener mi auto con tratamiento cerámico?",
-          "answer": "Recomendamos lavados regulares con productos de pH neutro, evitar túneles de lavado con cepillos abrasivos y secar el vehículo con toallas de microfibra de alta calidad. Ofrecemos kits de mantenimiento específicos."
+          "question": "¿La reparación queda invisible?",
+          "answer": "El objetivo es mejorar visibilidad y resistencia. Puede quedar una leve marca, pero no afecta seguridad."
         }
       ]
     },
     {
       "id": "cta-ceramico",
       "type": "cta-block",
-      "subtitle": "Cotiza Ahora",
-      "title": "Prepara tu auto para el futuro.",
+      "subtitle": "Evita el reemplazo",
+      "title": "Agenda hoy la reparación de tu parabrisas",
       "button": {
-        "text": "Cotizar Tratamiento Cerámico",
+        "text": "Cotizar Reparación de Parabrisas",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "whatsapp-anchor",
       "type": "whatsapp-anchor",
-      "serviceName": "Tratamiento Cerámico 9H"
+      "serviceName": "Reparación de Piquetes y Trizaduras en Parabrisas"
     }
   ]
 }

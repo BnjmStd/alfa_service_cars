@@ -4,69 +4,114 @@
       "id": "hero",
       "type": "hero-video",
       "videoSrc": "https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4",
-      "subtitle": "Protección Avanzada",
-      "title": "Tratamiento Cerámico 9H",
-      "description": "La nanotecnología que blinda tu auto contra los elementos, le da un brillo espejo y lo mantiene impecable por años.",
+      "subtitle": "Protección Máxima para tu Vehículo",
+      "title": "Tratamiento Cerámico Profesional en Talca",
+      "description": "Recubrimiento cerámico de alta resistencia con 36 meses de protección real. Brillo profundo, efecto hidrofóbico extremo y defensa total contra rayos UV, químicos y contaminación ambiental.",
       "cta": {
-        "text": "Solicitar Cotización",
+        "text": "Cotizar Cerámico",
         "href": "#cotizar-whatsapp"
       }
     },
     {
       "id": "beneficios",
       "type": "feature-list",
-      "subtitle": "Beneficios Exclusivos",
-      "title": "¿Por qué elegir un Cerámico Alfa?",
+      "subtitle": "Beneficios Reales",
+      "title": "¿Por qué elegir el Tratamiento Cerámico Alfa?",
       "description": "",
       "features": [
         {
           "icon": "✨",
-          "title": "Brillo Espejo Duradero",
-          "description": "Intensifica el color y la profundidad de la pintura, creando un acabado de showroom que perdura."
+          "title": "Brillo High Gloss",
+          "description": "Realza el color y profundidad de la pintura logrando un acabado espejo de nivel premium."
         },
         {
           "icon": "💧",
-          "title": "Repelencia Extrema",
-          "description": "El agua y la suciedad se deslizan, facilitando la limpieza y manteniendo tu auto más limpio por más tiempo."
+          "title": "Hidrofobia Extrema",
+          "description": "El agua se convierte en perlas y resbala de inmediato, manteniendo tu auto limpio por más tiempo."
         },
         {
           "icon": "🛡️",
-          "title": "Protección 9H",
-          "description": "Resistencia superior a micro-rayas, químicos, UV y oxidación, con hasta 5 años de garantía."
+          "title": "Protección Química y Ambiental",
+          "description": "Defensa contra rayos UV, fecas de aves, resina de árboles y contaminantes del ambiente."
         },
         {
-          "icon": "🌿",
-          "title": "Mantenimiento Sencillo",
-          "description": "Reduce la necesidad de lavados frecuentes y el uso de productos agresivos, protegiendo el medio ambiente."
+          "icon": "🔒",
+          "title": "36 Meses de Duración",
+          "description": "Protección de largo plazo con excelente resistencia a micro-rayones y desgaste diario."
+        }
+      ]
+    },
+    {
+      "id": "proceso",
+      "type": "process-steps",
+      "subtitle": "Proceso Profesional",
+      "title": "¿Cómo aplicamos tu Tratamiento Cerámico?",
+      "steps": [
+        "Lavado Snow Foam",
+        "Descontaminación química y mecánica de pintura",
+        "Descontaminación química de llantas y calipers",
+        "Descontaminación de vidrios",
+        "Corrección de pintura en 3 pasos",
+        "Aplicación de sellador cerámico en pintura (36 meses)",
+        "Sellado cerámico de plásticos exteriores",
+        "Sellado cerámico de llantas",
+        "Sellado cerámico de vidrios",
+        "Hidratación de plásticos y molduras con protección UV",
+        "Hidratación de neumáticos con protección UV",
+        "Limpieza interior de cortesía",
+        "Lavado de motor de cortesía"
+      ]
+    },
+    {
+      "id": "incluye-premium",
+      "type": "feature-list",
+      "subtitle": "Cobertura Total",
+      "title": "Tratamiento Cerámico Premium",
+      "description": "Este servicio no solo protege la pintura, también cubre superficies clave del vehículo.",
+      "features": [
+        {
+          "icon": "🪟",
+          "title": "Sellado Cerámico de Vidrios",
+          "description": "Mejora la visibilidad en lluvia, reduce sarro y facilita el deslizamiento del agua."
+        },
+        {
+          "icon": "🛞",
+          "title": "Sellado de Llantas",
+          "description": "Protección resistente a altas temperaturas, menor adherencia de polvo de frenos."
+        },
+        {
+          "icon": "🧴",
+          "title": "Sellado de Plásticos Exteriores",
+          "description": "Restaura el color original, evita resequedad y protege contra rayos UV."
         }
       ]
     },
     {
       "id": "faq-ceramico",
       "type": "faq-list",
-      "subtitle": "Dudas Comunes",
-      "title": "Preguntas Frecuentes del Cerámico",
+      "subtitle": "Preguntas Frecuentes",
+      "title": "Todo lo que necesitas saber",
       "description": "",
       "faqs": [
         {
-          "question": "¿Cuánto dura el Tratamiento Cerámico?",
-          "answer": "Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2 y 5 años, dependiendo del producto seleccionado, el mantenimiento del vehículo y las condiciones ambientales."
+          "question": "¿Cuánto dura el tratamiento cerámico?",
+          "answer": "Nuestro tratamiento cerámico tiene una duración real de hasta 36 meses, dependiendo del mantenimiento y uso del vehículo."
         },
         {
-          "question": "¿Es necesario pulir el auto antes de aplicarlo?",
-          "answer": "Sí, es esencial. Para asegurar una adhesión perfecta y resultados óptimos, la pintura debe estar en su mejor estado: libre de defectos, hologramas y contaminantes. Realizamos una corrección de pintura profesional previa."
+          "question": "¿Se puede aplicar en autos nuevos?",
+          "answer": "Sí, es ideal para vehículos nuevos y usados, especialmente después de una corrección de pintura."
         },
         {
-          "question": "¿Cómo debo mantener mi auto con tratamiento cerámico?",
-          "answer": "Recomendamos lavados regulares con productos de pH neutro, evitar túneles de lavado con cepillos abrasivos y secar el vehículo con toallas de microfibra de alta calidad. Ofrecemos kits de mantenimiento específicos."
+          "question": "¿Es solo estética?",
+          "answer": "No. Además del brillo, protege contra químicos, sol, contaminación, fecas de aves y facilita la limpieza diaria."
         }
       ]
     },
     {
       "id": "cta-ceramico",
       "type": "cta-block",
-      "subtitle": "Cotiza Ahora",
-      "title": "Prepara tu auto para el futuro.",
+      "subtitle": "Protege tu inversión",
+      "title": "Lleva tu auto al siguiente nivel de protección",
       "button": {
         "text": "Cotizar Tratamiento Cerámico",
         "href": "#cotizar-whatsapp"
@@ -75,7 +120,7 @@
     {
       "id": "whatsapp-anchor",
       "type": "whatsapp-anchor",
-      "serviceName": "Tratamiento Cerámico 9H"
+      "serviceName": "Tratamiento Cerámico Profesional"
     }
   ]
 }

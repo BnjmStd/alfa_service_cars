@@ -58,3 +58,20 @@ export const whatsappAnchorSchema = z.object({
   type: z.literal("whatsapp-anchor"),
   serviceName: z.string(),
 });
+
+// new schemas
+export const processStepsSchema = z.object({
+  id: z.string(),
+  type: z.literal("process-steps"),
+  subtitle: z.string().optional(),
+  title: z.string(),
+  steps: z.array(z.string()),
+});
+
+export const trustBlockSchema = z.object({
+  id: z.string(),
+  type: z.literal("trust-block"),
+  subtitle: z.string().optional(),
+  title: z.string(),
+  items: z.array(z.string()),
+});
