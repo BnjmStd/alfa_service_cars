@@ -1,52 +1,35 @@
 ---
-const processData = {
-  title: "Nuestro",
-  titleAccent: "Proceso",
-  subtitle: "Calidad artesanal con tecnología de punta.",
-  steps: [
-    {
-      title: "Descontaminado Profundo",
-      description:
-        "Eliminamos impurezas férricas y minerales incrustados en los poros de la laca mediante descontaminación química y mecánica (Clay Bar).",
-    },
-    {
-      title: "Corrección de Pintura",
-      description:
-        "Pulido en múltiples etapas para eliminar micro-rayas (swirls) y devolver la profundidad original al color del vehículo.",
-    },
-    {
-      title: "Blindaje Cerámico",
-      description:
-        "Aplicación de recubrimientos de SiO2 que crean una capa rígida, ultra-brillante y repelente a líquidos sobre la superficie.",
-    },
-  ],
-};
+interface ProcessSection {
+  id: string;
+  type: "process-steps";
+  subtitle: string;
+  title: string;
+  steps: string[];
+}
+
+const section = Astro.props as ProcessSection;
+const { id, subtitle, title, steps } = section;
 ---
 
-<section id="proceso" class="section">
+<section id={id} class="section">
   <div class="container">
-    <div class="section-header">
-      <h2 style="font-size: 3rem;">
-        {processData.title}{" "}
-        <span class="text-accent">{processData.titleAccent}</span>
+    <div class="section-header reveal">
+      <p class="service-hero-subtitle">{subtitle}</p>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
+        {title}
       </h2>
-
-      <p style="color: var(--color-text-muted);">
-        {processData.subtitle}
-      </p>
     </div>
 
     <div class="steps-container">
       {
-        processData.steps.map((step, index) => (
-          <div class="step-item">
+        steps.map((step, index) => (
+          <div class="step-item reveal">
             <div class="step-num">
               {(index + 1).toString().padStart(2, "0")}
             </div>
 
             <div class="step-text">
-              <h4>{step.title}</h4>
-              <p>{step.description}</p>
+              <p>{step}</p>
             </div>
           </div>
         ))
@@ -61,30 +44,65 @@ const processData = {
     z-index: 10;
     position: relative;
     margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 40px;
   }
+  
   .step-item {
     display: flex;
-    gap: 30px;
-    margin-bottom: 60px;
+    gap: 15px;
     opacity: 1;
     transform: translateY(30px);
     transition: 0.8s ease-out;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-md);
+    transition: all 0.3s ease;
   }
+  
+  .step-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-accent);
+  }
+  
   .step-item.visible {
     opacity: 1;
-    transform: translateY(0);
   }
+  
   .step-num {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: var(--color-accent);
-    min-width: 40px;
+    min-width: 35px;
+    flex-shrink: 0;
   }
-  .step-text h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
+  
   .step-text p {
-    color: var(--color-text-muted);
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .steps-container {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    .step-item {
+      padding: 15px;
+    }
+    
+    .step-num {
+      font-size: 1.1rem;
+      min-width: 30px;
+    }
+    
+    .step-text p {
+      font-size: 0.9rem;
+    }
   }
 </style>

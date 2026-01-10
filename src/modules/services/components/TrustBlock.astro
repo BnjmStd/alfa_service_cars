@@ -1,0 +1,98 @@
+---
+interface TrustBlockSection {
+  id: string;
+  type: "trust-block";
+  subtitle: string;
+  title: string;
+  items: string[];
+}
+
+const section = Astro.props as TrustBlockSection;
+const { id, subtitle, title, items } = section;
+---
+
+<section class="section trust-block" id={id}>
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="service-hero-subtitle">{subtitle}</p>
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
+        {title}
+      </h2>
+    </div>
+
+    <div class="trust-items-grid">
+      {
+        items.map((item) => (
+          <div class="trust-item reveal">
+            <div class="trust-check">✓</div>
+            <p class="trust-text">{item}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-block {
+    background: var(--glass-bg);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .trust-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-md);
+    transition: all 0.3s ease;
+  }
+
+  .trust-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-accent);
+    transform: translateX(5px);
+  }
+
+  .trust-check {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    color: var(--color-bg-main);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .trust-text {
+    color: var(--color-text-main);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .trust-items-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .trust-item {
+      padding: 15px;
+    }
+  }
+</style>
