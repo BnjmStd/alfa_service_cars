@@ -117,7 +117,6 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     font-weight: 600;
   }
 
-  /* Texto resaltado en ROJO */
   .highlight {
     color: var(--color-accent);
     text-shadow: 0 0 20px var(--color-accent-glow);
@@ -133,7 +132,6 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     text-align: center;
   }
 
-  /* Contenedor imagen con estilo */
   .story-image-container {
     position: relative;
     border-radius: var(--border-radius-lg);
@@ -162,7 +160,6 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     overflow-x: hidden;
   }
 
-  /* --- 1. HERO SECTION --- */
   .hero-section {
     position: relative;
     height: 100vh;
@@ -186,12 +183,13 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     opacity: 0.6;
     z-index: 0;
     object-position: center top;
-    /* FADE A NEGRO ABAJO */
+
     -webkit-mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1) 65%,
       rgba(0, 0, 0, 0) 100%
     );
+
     mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1) 65%,
@@ -205,7 +203,6 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     left: 0;
     width: 100%;
     height: 100%;
-    /* Degradado para que el texto se lea bien sobre el negro */
     background: linear-gradient(to top, var(--color-bg-main), transparent);
     z-index: 1;
   }
@@ -217,13 +214,13 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
   }
 
   .hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive typography */
+    font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 1rem;
   }
 
   .hero-subtitle {
     font-size: 1.25rem;
-    color: #e5e5e5; /* Un poco más blanco que el muted para leer mejor */
+    color: #e5e5e5;
   }
 
   /* --- 2. STORY SECTION --- */
@@ -245,7 +242,6 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     font-size: 1.1rem;
   }
 
-  /* Resplandor rojo decorativo detrás de la imagen */
   .glow-effect {
     position: absolute;
     top: -50px;
@@ -277,7 +273,6 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     overflow: hidden;
   }
 
-  /* Decoración roja sutil en el CTA */
   .cta-card::before {
     content: "";
     position: absolute;
