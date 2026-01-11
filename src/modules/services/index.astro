@@ -6,6 +6,7 @@ import Last from "~/modules/services/components/last.astro";
 import WhatsappAnchor from "./components/whatsappAnchor.astro";
 import Process_section from "./components/process_section.astro";
 import TrustBlock from "./components/TrustBlock.astro";
+import Comparison_section from "./components/comparison_section.astro";
 const { section } = Astro.props;
 ---
 
@@ -15,4 +16,6 @@ const { section } = Astro.props;
 {section.type === "feature-list" && <Benefit {...section} />}
 {section.type === "faq-list" && <Faqs {...section} />}
 {section.type === "cta-block" && <Last {...section} />}
+{section.type === "comparative" && <Comparison_section {...section} />}
+{section.type === "cta-block" && <Comparison_section {...section} />}
 {section.type === "whatsapp-anchor" && <WhatsappAnchor {...section} />}
