@@ -1,20 +1,27 @@
 ---
 const statsData = [
   {
-    label: "Autos Protegidos",
-    value: 550,
+    label: "Años de experiencia",
+    value: 5,
+    suffix: "+",
+    animated: true,
   },
   {
-    label: "Años de Garantía",
-    value: 9,
+    label: "Garantía en cada trabajo",
+    text: "100%",
+    animated: false,
   },
   {
-    label: "% Brillo Espejo",
+    label: "Trabajo Profesional",
     value: 100,
+    suffix: "%",
+    animated: true,
   },
   {
-    label: "Horas de Curado",
+    label: "Atención personalizada",
     value: 24,
+    suffix: "/7",
+    animated: true,
   },
 ];
 ---
@@ -24,13 +31,21 @@ const statsData = [
   class="section"
   style="background: var(--color-bg-surface);"
 >
-  <div class="container stats-grid">
+  <div class="container stats-grid reveal">
     {
       statsData.map((stat) => (
         <div>
-          <span class="stat-number" data-target={stat.value}>
-            0
-          </span>
+          {stat.animated ? (
+            <span
+              class="stat-number"
+              data-target={stat.value}
+              data-suffix={stat.suffix ?? ""}
+            >
+              0
+            </span>
+          ) : (
+            <span class="stat-number">{stat.text}</span>
+          )}
           <span class="stat-label">{stat.label}</span>
         </div>
       ))
@@ -64,33 +79,39 @@ const statsData = [
 <script is:inline>
   // --- ANIMACIÓN DE CONTADORES ---
   const countUp = (el) => {
-    const target = +el.getAttribute("data-target");
-    const count = +el.innerText;
-    const speed = target / 100;
+    const target = Number(el.dataset.target);
+    const suffix = el.dataset.suffix || "";
+    let count = Number(el.innerText);
+    const increment = target / 60;
 
     if (count < target) {
-      el.innerText = Math.ceil(count + speed);
-      setTimeout(() => countUp(el), 30);
+      el.innerText = Math.ceil(count + increment);
+      requestAnimationFrame(() => countUp(el));
     } else {
-      el.innerText = target + (target === 100 ? "%" : "+");
+      el.innerText = target + suffix;
     }
   };
 
   // --- INTERSECTION OBSERVER PARA REVELAR ELEMENTOS ---
-  const observerOptions = { threshold: 0.2 };
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-        entry.target.classList.add("visible"); // Para los pasos
+        const numbers = entry.target.querySelectorAll(
+          ".stat-number[data-target]",
+        );
 
-        // Si es un número, empezar cuenta
-        const numbers = entry.target.querySelectorAll(".stat-number");
         numbers.forEach((num) => countUp(num));
-      }
-    });
-  }, observerOptions);
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  document
+    .querySelectorAll(".stats-grid")
+    .forEach((el) => observer.observe(el));
 
   document
     .querySelectorAll(".reveal, .stats-grid")
