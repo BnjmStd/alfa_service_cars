@@ -79,7 +79,6 @@ const gallery = defineCollection({
   type: "data",
   schema: ({ image }) =>
     z.object({
-      id: z.string(),
       titulo: z.string(),
       description: z.string().optional(),
       foto: image(),
