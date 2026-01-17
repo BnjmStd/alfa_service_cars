@@ -29,12 +29,17 @@ import { galleryFilters } from "~/lib/galleryFilters";
 
     items.forEach((item) => {
       const itemCategory = item.dataset.category;
+      const itemIndex = parseInt(item.dataset.index);
 
       if (category === "all" || itemCategory === category) {
-        item.style.display = "";
-        // Animación de entrada
-        item.style.animation = "fadeInScale 0.4s ease-out forwards";
-        visibleCount++;
+        // Mostrar solo los primeros 12 items del filtro
+        if (visibleCount < 12) {
+          item.style.display = "";
+          item.style.animation = "fadeInScale 0.4s ease-out forwards";
+          visibleCount++;
+        } else {
+          item.style.display = "none";
+        }
       } else {
         // Animación de salida
         item.style.animation = "fadeOutScale 0.3s ease-in forwards";
@@ -52,6 +57,13 @@ import { galleryFilters } from "~/lib/galleryFilters";
     } else {
       emptyState.style.display = "none";
     }
+
+    // Disparar evento para que gallery.astro actualice contador
+    window.dispatchEvent(
+      new CustomEvent("gallery:filter", {
+        detail: { filter: category },
+      })
+    );
   }
 
   document.addEventListener("DOMContentLoaded", () => {
