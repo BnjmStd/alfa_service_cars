@@ -7,7 +7,8 @@ import WhatsappAnchor from "./components/whatsappAnchor.astro";
 import Process_section from "./components/process_section.astro";
 import TrustBlock from "./components/TrustBlock.astro";
 import Comparison_section from "./components/comparison_section.astro";
-const { section } = Astro.props;
+import Carousel_section from "./components/carousel_section.astro";
+const { section, serviceType } = Astro.props;
 ---
 
 {section.type === "hero-video" && <Hero {...section} />}
@@ -15,7 +16,19 @@ const { section } = Astro.props;
 {section.type === "process-steps" && <Process_section {...section} />}
 {section.type === "feature-list" && <Benefit {...section} />}
 {section.type === "faq-list" && <Faqs {...section} />}
+{
+  section.type === "comparative" && (
+    <Comparison_section {...section} serviceId={Astro.params.id} />
+  )
+}
+{
+  section.type === "carrousel" && (
+    <Carousel_section
+      {...section}
+      serviceId={Astro.params.id}
+      categoria={serviceType}
+    />
+  )
+}
 {section.type === "cta-block" && <Last {...section} />}
-{section.type === "comparative" && <Comparison_section {...section} />}
-{section.type === "cta-block" && <Comparison_section {...section} />}
 {section.type === "whatsapp-anchor" && <WhatsappAnchor {...section} />}

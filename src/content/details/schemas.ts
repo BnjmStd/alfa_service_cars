@@ -75,3 +75,21 @@ export const trustBlockSchema = z.object({
   title: z.string(),
   items: z.array(z.string()),
 });
+
+export const comparativeSchema = ({ image }: { image: any }) =>
+  z.object({
+    id: z.string(),
+    type: z.literal("comparative"),
+    subtitle: z.string().optional(),
+    title: z.string(),
+    description: z.string().optional(),
+    imagenAntes: image().optional(),
+    imagenDespues: image().optional(),
+  });
+
+export const carrouselSchema = z.object({
+  id: z.string(),
+  type: z.literal("carrousel"),
+  subtitle: z.string().optional(),
+  title: z.string(),
+});

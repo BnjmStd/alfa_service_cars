@@ -1,0 +1,407 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+// Recibir props del schema
+const { subtitle, title, description, categoria } = Astro.props;
+
+// Filtrar imágenes por categoría (sin comparative)
+const imagenesCarrusel = (await getCollection("gallery"))
+  .filter((item) => {
+    const matchCategoria = categoria ? item.data.categoria === categoria : true;
+    const noComparative = !item.id.includes("comparative");
+    return matchCategoria && noComparative;
+  })
+  .slice(0, 6);
+
+console.log(`Carrusel: ${imagenesCarrusel.length} imágenes de categoría "${categoria}"`);
+---
+
+<section class="carousel-section" id="carousel-gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      {subtitle && (
+        <p class="service-hero-subtitle">{subtitle}</p>
+      )}
+      <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
+        {title || "Galería de Trabajos"}
+      </h2>
+      {description && <p class="section-description">{description}</p>}
+    </div>
+
+    {imagenesCarrusel.length > 0 ? (
+      <div class="carousel-wrapper reveal">
+        <button class="carousel-btn carousel-prev" aria-label="Anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        
+        <div class="carousel-container">
+          <div class="carousel-track">
+            {imagenesCarrusel.map((item, index) => (
+              <div class="carousel-item">
+                <div class="carousel-image-wrapper">
+                  <Image
+                    src={item.data.foto}
+                    alt={item.data.titulo}
+                    width={400}
+                    height={300}
+                    class="carousel-image"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority={index < 3 ? "low" : "low"}
+                    quality={75}
+                  />
+                  <div class="carousel-overlay">
+                    <h3 class="carousel-title">{item.data.titulo}</h3>
+                    {item.data.description && (
+                      <p class="carousel-description">{item.data.description}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button class="carousel-btn carousel-next" aria-label="Siguiente">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="carousel-dots"></div>
+    ) : (
+      <div class="no-images">
+        <p>No hay imágenes disponibles para esta categoría.</p>
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector('.carousel-track') as HTMLElement;
+  const items = document.querySelectorAll('.carousel-item');
+  const prevBtn = document.querySelector('.carousel-prev') as HTMLButtonElement;
+  const nextBtn = document.querySelector('.carousel-next') as HTMLButtonElement;
+  const dotsContainer = document.querySelector('.carousel-dots') as HTMLElement;
+  
+  if (track && items.length > 0) {
+    let currentIndex = 0;
+
+    function getItemsPerView() {
+      if (window.innerWidth >= 1024) return 3;
+      if (window.innerWidth >= 768) return 2;
+      return 1;
+    }
+
+    function getTotalSlides() {
+      return Math.ceil(items.length / getItemsPerView());
+    }
+
+    // Crear dots
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      const totalSlides = getTotalSlides();
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.setAttribute('aria-label', `Ir a slide ${i + 1}`);
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    createDots();
+
+    function updateCarousel() {
+      const itemsPerView = getItemsPerView();
+      const totalSlides = getTotalSlides();
+      const dots = document.querySelectorAll('.carousel-dot');
+      const itemWidth = (items[0] as HTMLElement).offsetWidth;
+      const gap = 24; // 1.5rem en px
+      const offset = -(currentIndex * itemsPerView * (itemWidth + gap));
+      
+      track.style.transform = `translateX(${offset}px)`;
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+
+      // Update buttons
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= totalSlides - 1;
+    }
+
+    function goToSlide(index: number) {
+      const totalSlides = getTotalSlides();
+      currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+      updateCarousel();
+    }
+
+    prevBtn.addEventListener('click', () => {
+      const totalSlides = getTotalSlides();
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const totalSlides = getTotalSlides();
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    // Touch/Swipe support
+    let startX = 0;
+    let isDragging = false;
+
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+
+    track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+    });
+
+    track.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+
+      if (Math.abs(diff) > 50) {
+        const totalSlides = getTotalSlides();
+        if (diff > 0 && currentIndex < totalSlides - 1) {
+          currentIndex++;
+        } else if (diff < 0 && currentIndex > 0) {
+          currentIndex--;
+        }
+        updateCarousel();
+      }
+      isDragging = false;
+    });
+
+    // Responsive
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        currentIndex = 0; // Reset al cambiar tamaño
+        createDots(); // Recrear dots con nuevo total
+        updateCarousel();
+      }, 250);
+    });
+
+    // Initial update
+    updateCarousel();
+  }
+</script>
+
+<style>
+  .carousel-section {
+    padding: 100px 0;
+    background: var(--color-bg-main);
+  }
+
+  .section-description {
+    max-width: 700px;
+    margin: 20px auto 0;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    margin-top: 60px;
+    padding: 0 60px;
+  }
+
+  .carousel-container {
+    overflow: hidden;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .carousel-item {
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: 0;
+  }
+
+  .carousel-image-wrapper {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-image-wrapper:hover {
+    transform: scale(1.02);
+  }
+
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .carousel-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 20px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.6),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .carousel-image-wrapper:hover .carousel-overlay {
+    opacity: 1;
+  }
+
+  .carousel-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 5px;
+  }
+
+  .carousel-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Botones de navegación */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-btn:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .carousel-prev {
+    left: 0;
+  }
+
+  .carousel-next {
+    right: 0;
+  }
+
+  /* Dots */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+
+  .carousel-dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .carousel-dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: var(--color-accent);
+  }
+
+  .no-images {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--color-text-muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .carousel-item {
+      flex: 0 0 calc(50% - 0.75rem);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .carousel-item {
+      flex: 0 0 100%;
+    }
+
+    .carousel-wrapper {
+      padding: 0 50px;
+    }
+
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+    }
+
+    .carousel-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .carousel-wrapper {
+      padding: 0 40px;
+    }
+  }
+</style>

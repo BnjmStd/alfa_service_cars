@@ -2,9 +2,9 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
-const todasLasFotos = await getCollection("gallery");
+const todasLasFotos = (await getCollection("gallery"))
+  .filter(item => !item.id.includes("comparative") && !item.data.foto.src.includes("comparative"));
 
-// Configuración de paginación
 const ITEMS_PER_PAGE = 12;
 ---
 

@@ -118,6 +118,21 @@
       }
     },
     {
+      "id": "comparative-ceramico",
+      "type": "comparative",
+      "subtitle": "Comparativa de Protección",
+      "title": "Resultado antes y después del Tratamiento Cerámico  Alfa",
+      "description": "Observa la diferencia en brillo, profundidad y resistencia después de nuestro tratamiento cerámico profesional.",
+      "imagenAntes": "../../assets/gallery/pulido_11_comparative.webp",
+      "imagenDespues": "../../assets/gallery/pulido_12_comparative.webp"
+    },
+    {
+      "id": "carrousel-ceramico",
+      "type": "carrousel",
+      "title": "Galería de Resultados - Tratamiento Cerámico",
+      "subtitle": "Descubre el brillo y protección en cada detalle"
+    },
+    {
       "id": "whatsapp-anchor",
       "type": "whatsapp-anchor",
       "serviceName": "Tratamiento Cerámico Profesional"

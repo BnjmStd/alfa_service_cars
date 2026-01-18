@@ -6,18 +6,27 @@ import Sub from "~/layouts/sub.astro";
 
 export async function getStaticPaths() {
   const details = await getCollection("details");
+  const services = await getCollection("services");
 
-  return details.map((entry) => ({
-    params: { id: entry.id },
-    props: { servicio: entry.data },
-  }));
+  return details.map((entry) => {
+    // Encontrar el servicio correspondiente por ID
+    const service = services.find((s) => s.id === entry.id);
+    
+    return {
+      params: { id: entry.id },
+      props: { 
+        servicio: entry.data,
+        serviceType: service?.data.type || null,
+      },
+    };
+  });
 }
 
-const { servicio } = Astro.props;
+const { servicio, serviceType } = Astro.props;
 ---
 
 <Layout>
-  <Sub sections={servicio.sections} />
+  <Sub sections={servicio.sections} serviceType={serviceType} />
 </Layout>
 
 <style is:global>

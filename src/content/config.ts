@@ -1,6 +1,8 @@
 import { defineCollection, z } from "astro:content";
 import { file, glob } from "astro/loaders";
 import {
+  carrouselSchema,
+  comparativeSchema,
   ctaBlockSchema,
   faqListSchema,
   featureListSchema,
@@ -27,7 +29,7 @@ export const location = defineCollection({
         icon: z.string(),
         label: z.string(),
         content: z.array(z.string()),
-      })
+      }),
     ),
     cta: z.object({
       text: z.string(),
@@ -53,22 +55,27 @@ export const services = defineCollection({
       imageSrc: image(),
       videoSrc: z.string().optional(),
       href: z.string(),
+      type: z.enum(GALLERY_CATEGORIES)
     }),
 });
 
-const sectionSchema = z.discriminatedUnion("type", [
-  heroVideoSchema,
-  featureListSchema,
-  processStepsSchema,
-  trustBlockSchema,
-  faqListSchema,
-  ctaBlockSchema,
-  whatsappAnchorSchema,
-]);
+const sectionSchema = ({ image }: { image: any }) =>
+  z.discriminatedUnion("type", [
+    heroVideoSchema,
+    featureListSchema,
+    processStepsSchema,
+    trustBlockSchema,
+    faqListSchema,
+    ctaBlockSchema,
+    comparativeSchema({ image }),
+    whatsappAnchorSchema,
+    carrouselSchema
+  ]);
 
-const pageDetailsSchema = z.object({
-  sections: z.array(sectionSchema),
-});
+const pageDetailsSchema = ({ image }: { image: any }) =>
+  z.object({
+    sections: z.array(sectionSchema({ image })),
+  });
 
 export const details = defineCollection({
   loader: glob({ pattern: "**/*.json", base: "./src/content/details" }),
