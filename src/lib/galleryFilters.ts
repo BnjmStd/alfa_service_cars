@@ -8,15 +8,11 @@ export type GalleryFilter = {
 };
 
 const CATEGORY_LABELS: Record<GalleryCategory, string> = {
-  interiores: "Interiores",
-  exteriores: "Exteriores",
-  ceramico: "Cerámico",
-  restauracion: "Restauración",
-  grabado: "Grabado",
+  grabado: "Grabado de Patentes",
+  motor: "Lavado de Motor",
   polarizado: "Polarizado",
-  motorized: "Motorizado",
-  pulido: "Pulido",
-  motor: "Motor",
+  pulido: "Pulido & Detailing",
+  restauracion: "Reparación & Restauración",
 };
 
 export const galleryFilters: GalleryFilter[] = [

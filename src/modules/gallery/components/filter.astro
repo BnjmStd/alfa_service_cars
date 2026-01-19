@@ -18,55 +18,57 @@ import { galleryFilters } from "~/lib/galleryFilters";
 </nav>
 
 <script is:inline>
-  const container = document.querySelector(".filter-buttons");
-  const buttons = container.querySelectorAll(".filter-btn");
+  function initGalleryFilters() {
+    const container = document.querySelector(".filter-buttons");
+    const buttons = container?.querySelectorAll(".filter-btn");
+    
+    if (!container || !buttons) return;
 
-  // FUNCIÓN DE FILTRADO
-  function filterGallery(category) {
-    const items = document.querySelectorAll(".gallery-item-page");
-    const emptyState = document.querySelector(".empty-state");
-    let visibleCount = 0;
+    // FUNCIÓN DE FILTRADO
+    function filterGallery(category) {
+      const items = document.querySelectorAll(".gallery-item-page");
+      const emptyState = document.querySelector(".empty-state");
+      let visibleCount = 0;
 
-    items.forEach((item) => {
-      const itemCategory = item.dataset.category;
-      const itemIndex = parseInt(item.dataset.index);
+      items.forEach((item) => {
+        const itemCategory = item.dataset.category;
+        const itemIndex = parseInt(item.dataset.index);
 
-      if (category === "all" || itemCategory === category) {
-        // Mostrar solo los primeros 12 items del filtro
-        if (visibleCount < 12) {
-          item.style.display = "";
-          item.style.animation = "fadeInScale 0.4s ease-out forwards";
-          visibleCount++;
+        if (category === "all" || itemCategory === category) {
+          // Mostrar solo los primeros 12 items del filtro
+          if (visibleCount < 12) {
+            item.style.display = "";
+            item.style.animation = "fadeInScale 0.4s ease-out forwards";
+            visibleCount++;
+          } else {
+            item.style.display = "none";
+          }
         } else {
-          item.style.display = "none";
+          // Animación de salida
+          item.style.animation = "fadeOutScale 0.3s ease-in forwards";
+          setTimeout(() => {
+            item.style.display = "none";
+          }, 300);
         }
-      } else {
-        // Animación de salida
-        item.style.animation = "fadeOutScale 0.3s ease-in forwards";
-        setTimeout(() => {
-          item.style.display = "none";
-        }, 300);
-      }
-    });
+      });
 
-    // Mostrar/ocultar mensaje de empty state
-    if (visibleCount === 0) {
-      setTimeout(() => {
-        emptyState.style.display = "block";
-      }, 300);
-    } else {
-      emptyState.style.display = "none";
+      // Mostrar/ocultar mensaje de empty state
+      if (visibleCount === 0) {
+        setTimeout(() => {
+          emptyState.style.display = "block";
+        }, 300);
+      } else {
+        emptyState.style.display = "none";
+      }
+
+      // Disparar evento para que gallery.astro actualice contador
+      window.dispatchEvent(
+        new CustomEvent("gallery:filter", {
+          detail: { filter: category },
+        })
+      );
     }
 
-    // Disparar evento para que gallery.astro actualice contador
-    window.dispatchEvent(
-      new CustomEvent("gallery:filter", {
-        detail: { filter: category },
-      })
-    );
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
     // LISTENERS DE FILTRADO
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -84,7 +86,13 @@ import { galleryFilters } from "~/lib/galleryFilters";
         filterGallery(filterValue);
       });
     });
-  });
+  }
+
+  // Ejecutar en carga inicial
+  initGalleryFilters();
+
+  // Re-ejecutar después de cada navegación con View Transitions
+  document.addEventListener("astro:page-load", initGalleryFilters);
 </script>
 
 <style>

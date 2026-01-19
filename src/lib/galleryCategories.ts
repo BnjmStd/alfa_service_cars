@@ -1,15 +1,9 @@
 export const GALLERY_CATEGORIES = [
-  "interiores",
-  "exteriores",
-  "ceramico",
-  "restauracion",
   "grabado",
-  "polarizado",
-  "motorized",
-  "pulido",
   "motor",
-  "lavado",
-  "moto",
+  "polarizado",
+  "pulido",
+  "restauracion",
 ] as const;
 
 export type GalleryCategory = (typeof GALLERY_CATEGORIES)[number];

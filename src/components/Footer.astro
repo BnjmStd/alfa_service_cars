@@ -24,8 +24,8 @@ export const FOOTER = {
 };
 ---
 
-<footer class="footer" id="contacto">
-  <div class="container footer-content">
+<footer class="container footer" id="contacto">
+  <div class="footer-content">
     <Social />
     <Image
       width={FOOTER.logo.width}
@@ -57,37 +57,28 @@ export const FOOTER = {
   .footer {
     background: var(--color-bg-surface);
     border-top: 1px solid var(--glass-border);
-    padding: 80px 0 40px;
     text-align: center;
     color: var(--color-text-muted);
+
+    padding-block: 50px;
   }
 
   .footer-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
   }
 
   .footer-logo {
     height: 50px;
-    margin: 0 auto 30px;
+    object-fit: cover;
+    aspect-ratio: 1/1;
     opacity: 0.8;
   }
 
-  .footer-title {
-    margin-bottom: 20px;
-  }
-
-  .footer-text {
-    margin-bottom: 30px;
-  }
-
-  .footer-btn {
-    margin-bottom: 60px;
-  }
-
   .footer-copy {
-    margin-top: 60px;
     font-size: 0.9rem;
     opacity: 0.5;
   }
