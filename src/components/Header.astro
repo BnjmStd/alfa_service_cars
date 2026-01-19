@@ -60,23 +60,11 @@ import "~/styles/button.css";
 </header>
 
 <script>
-  function initHeaderWhatsApp() {
-    const agendarButtons = document.querySelectorAll(".navbar .btn-primary");
+  import { initWhatsAppButton } from "~/lib/whatsapp";
 
-    agendarButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const phone = (button as HTMLElement).dataset.phone || "56930636488";
-
-        const message = `¡Hola! 👋\n\nQuiero agendar un servicio.`;
-
-        const encodedMsg = encodeURIComponent(message);
-        const cleanPhone = phone.replace(/\D/g, "");
-        window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
-      });
-    });
-  }
-
-  document.addEventListener("astro:page-load", initHeaderWhatsApp);
+  document.addEventListener("astro:page-load", () => {
+    initWhatsAppButton(".navbar .btn-primary");
+  });
 </script>
 
 <style>

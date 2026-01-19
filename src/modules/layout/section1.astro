@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { CLIENT_PHONE_NUMBER } from "~/lib/getPhoneNumber";
 
 const [hero] = await getCollection("main");
 const data = hero.data;
@@ -49,12 +50,20 @@ const heroData = {
     </p>
 
     <div>
-      <a href={heroData.cta.href} class="btn btn-primary">
+      <button class="btn btn-primary hero-cta" data-phone={CLIENT_PHONE_NUMBER}>
         {heroData.cta.text}
-      </a>
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  import { initWhatsAppButton } from "~/lib/whatsapp";
+
+  document.addEventListener("astro:page-load", () => {
+    initWhatsAppButton(".hero-cta");
+  });
+</script>
 
 <style>
   .hero-location {
