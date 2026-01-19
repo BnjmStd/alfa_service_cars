@@ -33,7 +33,7 @@
     "imageSrc": "../../assets/services/lavado.webp",
     "videoSrc": "/videos/a.mp4",
     "href": "/servicios/lavado-motor-profesional",
-    "type": "lavado"
+    "type": "motor"
   },
   {
     "id": "moto-detailing",
@@ -42,7 +42,7 @@
     "imageSrc": "../../assets/services/moto.webp",
     "videoSrc": "/videos/a.mp4",
     "href": "/servicios/moto-detailing",
-    "type": "moto"
+    "type": "pulido"
   },
   {
     "id": "normativa-interior",
