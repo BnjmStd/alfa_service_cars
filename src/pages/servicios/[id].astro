@@ -17,16 +17,18 @@ export async function getStaticPaths() {
       props: { 
         servicio: entry.data,
         serviceType: service?.data.type || null,
+        serviceImage: service?.data.imageSrc,
+        serviceId: entry.id,
       },
     };
   });
 }
 
-const { servicio, serviceType } = Astro.props;
+const { servicio, serviceType, serviceImage, serviceId } = Astro.props;
 ---
 
 <Layout>
-  <Sub sections={servicio.sections} serviceType={serviceType} />
+  <Sub sections={servicio.sections} serviceType={serviceType} serviceImage={serviceImage} serviceId={serviceId} />
 </Layout>
 
 <style is:global>
@@ -56,13 +58,21 @@ const { servicio, serviceType } = Astro.props;
 </style>
 
 <script>
-  const observerOptions = { threshold: 0.2 };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-      }
-    });
-  }, observerOptions);
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  function initRevealAnimations() {
+    const observerOptions = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  }
+
+  // Ejecutar en carga inicial
+  initRevealAnimations();
+
+  // Re-ejecutar después de cada navegación con View Transitions
+  document.addEventListener("astro:page-load", initRevealAnimations);
 </script>

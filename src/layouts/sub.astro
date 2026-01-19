@@ -51,7 +51,19 @@ export type CtaSection = {
 
 export type Section = HeroSection | FeatureSection | FaqSection | CtaSection;
 
-const { sections, serviceType } = Astro.props as { sections: Section[]; serviceType?: string };
+const { sections, serviceType, serviceImage, serviceId } = Astro.props as { 
+  sections: Section[]; 
+  serviceType?: string;
+  serviceImage?: any;
+  serviceId?: string;
+};
 ---
 
-{sections.map((section) => <Index section={section} serviceType={serviceType} />)}
+{sections.map((section) => (
+  <Index 
+    section={section} 
+    serviceType={serviceType} 
+    serviceImage={serviceImage}
+    serviceId={serviceId}
+  />
+))}

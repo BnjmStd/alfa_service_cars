@@ -3,6 +3,7 @@ import Footer from "~/components/Footer.astro";
 import { pageContent } from "../modules/somos/getInfo";
 import Header from "~/components/Header.astro";
 import { SITE_CONFIG, getAbsoluteUrl } from "~/lib/siteConfig";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -31,6 +32,9 @@ const ogImageURL = getAbsoluteUrl(ogImage);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- View Transitions -->
+    <ViewTransitions />
 
     <!-- SEO Básico -->
     <title>{fullTitle}</title>

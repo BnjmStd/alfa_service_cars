@@ -3,7 +3,7 @@
     "id": "detailing-proteccion-ceramica",
     "title": "Detailing & Protección Cerámica",
     "description": "Corrección de pintura, brillo espejo y tratamientos cerámicos de hasta 36 meses de duración.",
-    "imageSrc": "../../assets/services/car1.jpeg",
+    "imageSrc": "../../assets/gallery/pulido_7.webp",
     "videoSrc": "/videos/a.mp4",
     "href": "/servicios/detailing-proteccion-ceramica",
     "type": "pulido"
@@ -12,7 +12,7 @@
     "id": "polarizado-seguridad",
     "title": "Polarizado & Seguridad",
     "description": "Polarizado certificado legal y láminas de seguridad (4 a 14 mil) anti-robo.",
-    "imageSrc": "../../assets/services/car1.jpeg",
+    "imageSrc": "../../assets/gallery/polarizado_2.webp",
     "videoSrc": "/videos/a.mp4",
     "href": "/servicios/polarizado-seguridad",
     "type": "polarizado"
@@ -21,7 +21,7 @@
     "id": "reparacion-parabrisas",
     "title": "Reparación de Parabrisas",
     "description": "Solución técnica a piquetes y trizaduras. Evita el cambio del vidrio original.",
-    "imageSrc": "../../assets/services/car1.jpeg",
+    "imageSrc": "../../assets/services/reparacion.webp",
     "videoSrc": "/videos/a.mp4",
     "href": "/servicios/reparacion-parabrisas",
     "type": "grabado"
@@ -30,7 +30,7 @@
     "id": "lavado-motor-profesional",
     "title": "Lavado de Motor Profesional",
     "description": "Limpieza técnica, segura y detallada sin dañar sensores ni componentes.",
-    "imageSrc": "../../assets/services/car1.jpeg",
+    "imageSrc": "../../assets/services/lavado.webp",
     "videoSrc": "/videos/a.mp4",
     "href": "/servicios/lavado-motor-profesional",
     "type": "lavado"
@@ -50,6 +50,7 @@
     "description": "Grabado de patentes, borrado técnico y descontaminación con Ozono.",
     "imageSrc": "../../assets/services/car1.jpeg",
     "videoSrc": "/videos/a.mp4",
-    "href": "/servicios/normativa-interior"
+    "href": "/servicios/normativa-interior",
+    "type": "grabado"
   }
 ]

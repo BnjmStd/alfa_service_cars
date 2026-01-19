@@ -1,13 +1,21 @@
 ---
+import { Image } from "astro:assets";
 import type { HeroSection } from "~/layouts/sub.astro";
 const section = Astro.props as HeroSection;
-const { title, subtitle, description, videoSrc, cta } = section;
+const { title, subtitle, description, videoSrc, cta, serviceImage, serviceId } = Astro.props;
 ---
 
 <section class="service-hero" id={section.id}>
-  <video class="service-hero-video" autoplay muted loop playsinline>
-    <source src={videoSrc} type="video/mp4" />
-  </video>
+  {serviceImage && (
+    <Image
+      src={serviceImage}
+      alt={title}
+      class="service-hero-image"
+      width={1920}
+      height={1080}
+      transition:name={`service-hero-${serviceId}`}
+    />
+  )}
 
   <div class="service-hero-overlay"></div>
 
@@ -29,13 +37,14 @@ const { title, subtitle, description, videoSrc, cta } = section;
     overflow: hidden;
     text-align: center;
   }
-  .service-hero-video {
+  
+  .service-hero-image {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: 0;
     opacity: 0.4;
   }
   .service-hero-overlay {
@@ -48,11 +57,11 @@ const { title, subtitle, description, videoSrc, cta } = section;
         var(--color-accent-glow),
         transparent 50%
       );
-    z-index: 0;
+    z-index: 1;
   }
   .service-hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 900px;
     padding-top: 60px;
   }

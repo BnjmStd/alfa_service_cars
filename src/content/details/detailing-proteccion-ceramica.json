@@ -108,16 +108,6 @@
       ]
     },
     {
-      "id": "cta-ceramico",
-      "type": "cta-block",
-      "subtitle": "Protege tu inversión",
-      "title": "Lleva tu auto al siguiente nivel de protección",
-      "button": {
-        "text": "Cotizar Tratamiento Cerámico",
-        "href": "#cotizar-whatsapp"
-      }
-    },
-    {
       "id": "comparative-ceramico",
       "type": "comparative",
       "subtitle": "Comparativa de Protección",
@@ -131,6 +121,16 @@
       "type": "carrousel",
       "title": "Galería de Resultados - Tratamiento Cerámico",
       "subtitle": "Descubre el brillo y protección en cada detalle"
+    },
+    {
+      "id": "cta-ceramico",
+      "type": "cta-block",
+      "subtitle": "Protege tu inversión",
+      "title": "Lleva tu auto al siguiente nivel de protección",
+      "button": {
+        "text": "Cotizar Tratamiento Cerámico",
+        "href": "#cotizar-whatsapp"
+      }
     },
     {
       "id": "whatsapp-anchor",
