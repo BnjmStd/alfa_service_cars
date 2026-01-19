@@ -41,7 +41,7 @@ const QUOTE_CONFIG = {
 };
 ---
 
-<section id="cotizar" class="quote-section">
+<section id="cotizar" class="quote-section" data-phone={phone}>
   <div class="container">
     <div class="quote-container reveal">
       <span class="badge" id="status-text">Configura tu solicitud</span>
@@ -55,7 +55,9 @@ const QUOTE_CONFIG = {
           itemsBento.map((item) => (
             <div class="option-card" data-value={item.whatsappTag}>
               {item.imageSrc ? (
-                <Image src={item.imageSrc} alt={item.title} />
+                <div class="service-image-wrapper">
+                  <Image src={item.imageSrc} alt={item.title} />
+                </div>
               ) : (
                 <i>✨</i>
               )}
@@ -97,57 +99,73 @@ const QUOTE_CONFIG = {
   </div>
 </section>
 
-<script is:inline define:vars={{ phone }}>
-  // Variables de estado
-  let selectedServicio = "";
-  let selectedTamano = "";
+<script>
+  function initQuoteForm() {
+    // Variables de estado encapsuladas
+    let selectedServicio = "";
+    let selectedTamano = "";
 
-  // Seleccion de opciones con delegación de eventos
-  document.querySelectorAll(".options-grid .option-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      const parent = card.parentElement;
-      const group = parent.dataset.group;
+    // Obtener el teléfono del data attribute
+    const quoteSection = document.querySelector(
+      ".quote-section",
+    ) as HTMLElement | null;
+    const phone = quoteSection?.dataset.phone || "56912345678";
 
-      // Limpiar selección del grupo
-      parent
-        .querySelectorAll(".option-card")
-        .forEach((c) => c.classList.remove("selected"));
+    // Delegación de eventos para los grids de opciones
+    document.querySelectorAll(".options-grid").forEach((grid) => {
+      grid.addEventListener("click", (e) => {
+        const card = (e.target as HTMLElement).closest(".option-card");
+        if (!card) return;
 
-      // Activar clickeado
-      card.classList.add("selected");
+        const group = (grid as HTMLElement).dataset.group;
+        const value = (card as HTMLElement).dataset.value;
 
-      // Guardar valor
-      if (group === "servicio") selectedServicio = card.dataset.value;
-      if (group === "tamano") selectedTamano = card.dataset.value;
+        // Limpiar selección del grupo
+        grid
+          .querySelectorAll(".option-card")
+          .forEach((c) => c.classList.remove("selected"));
 
-      updateStatus();
+        // Activar clickeado
+        card.classList.add("selected");
+
+        // Guardar valor
+        if (group === "servicio" && value) selectedServicio = value;
+        if (group === "tamano" && value) selectedTamano = value;
+
+        updateStatus();
+      });
     });
-  });
 
-  function updateStatus() {
-    const statusText = document.getElementById("status-text");
-    if (selectedServicio && selectedTamano) {
-      statusText.innerText = "¡Listo para cotizar!";
-      statusText.style.borderColor = "white";
-      statusText.style.color = "white";
-    }
-  }
-
-  // Lógica de WhatsApp
-  document.getElementById("send-whatsapp").addEventListener("click", () => {
-    const name = document.getElementById("user-name").value.trim();
-
-    if (!selectedServicio || !selectedTamano) {
-      alert("⚠️ Por favor selecciona un servicio y tipo de vehículo");
-      return;
+    function updateStatus() {
+      const statusText = document.getElementById("status-text");
+      if (statusText && selectedServicio && selectedTamano) {
+        statusText.innerText = "¡Listo para cotizar!";
+        statusText.style.borderColor = "white";
+        statusText.style.color = "white";
+      }
     }
 
-    if (!name) {
-      alert("⚠️ Por favor ingresa tu nombre para continuar");
-      return;
-    }
+    // Lógica de WhatsApp
+    const sendButton = document.getElementById("send-whatsapp");
+    if (!sendButton) return;
 
-    const baseMsg = `¡Hola Alfa Detailers! 👋
+    sendButton.addEventListener("click", () => {
+      const nameInput = document.getElementById(
+        "user-name",
+      ) as HTMLInputElement | null;
+      const name = nameInput?.value.trim() || "";
+
+      if (!selectedServicio || !selectedTamano) {
+        alert("⚠️ Por favor selecciona un servicio y tipo de vehículo");
+        return;
+      }
+
+      if (!name) {
+        alert("⚠️ Por favor ingresa tu nombre para continuar");
+        return;
+      }
+
+      const baseMsg = `¡Hola Alfa Detailers! 👋
 
 Me gustaría solicitar una cotización:
 
@@ -159,10 +177,14 @@ Me gustaría solicitar una cotización:
 
 ¡Gracias!`;
 
-    const encodedMsg = encodeURIComponent(baseMsg);
-    const cleanPhone = phone.replace(/\D/g, "");
-    window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
-  });
+      const encodedMsg = encodeURIComponent(baseMsg);
+      const cleanPhone = phone.replace(/\D/g, "");
+      window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
+    });
+  }
+
+  // Inicializar en carga de página y navegaciones SPA
+  document.addEventListener("astro:page-load", initQuoteForm);
 </script>
 
 <style>
@@ -223,6 +245,24 @@ Me gustaría solicitar una cotización:
     }
     .option-card:hover i {
       transform: translateY(-5px);
+    }
+
+    .service-image-wrapper {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .service-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     .apple-input {

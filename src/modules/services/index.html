@@ -1,420 +1,655 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tratamiento Cerámico 9H | Alfa Detailers Studio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        /* Copia tus @layer theme, @layer reset, @layer base, @layer layout, @layer utilities aquí */
-        /* O simplemente enlaza a un archivo CSS global. */
-        @layer theme {
-            :root {
-                --color-bg-main: #000000;
-                --color-bg-surface: #0a0a0a;
-                --color-text-main: #ffffff;
-                --color-text-muted: #86868b;
-                --color-accent: #D90429;
-                --color-accent-glow: rgba(217, 4, 41, 0.3);
-                --glass-bg: rgba(255, 255, 255, 0.03);
-                --glass-border: rgba(255, 255, 255, 0.08);
-                --border-radius-lg: 28px;
-            }
+      /* Copia tus @layer theme, @layer reset, @layer base, @layer layout, @layer utilities aquí */
+      /* O simplemente enlaza a un archivo CSS global. */
+      @layer theme {
+        :root {
+          --color-bg-main: #000000;
+          --color-bg-surface: #0a0a0a;
+          --color-text-main: #ffffff;
+          --color-text-muted: #86868b;
+          --color-accent: #d90429;
+          --color-accent-glow: rgba(217, 4, 41, 0.3);
+          --glass-bg: rgba(255, 255, 255, 0.03);
+          --glass-border: rgba(255, 255, 255, 0.08);
+          --border-radius-lg: 28px;
+        }
+      }
+
+      @layer reset {
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        html {
+          scroll-behavior: smooth;
+        }
+        body {
+          background: var(--color-bg-main);
+          color: var(--color-text-main);
+          font-family: "Inter", sans-serif;
+          overflow-x: hidden;
+        }
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+
+      @layer layout {
+        .container {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 24px;
+        }
+        .section {
+          padding: 120px 0;
+        }
+        .section-header {
+          text-align: center;
+          margin-bottom: 60px;
+        }
+      }
+
+      @layer utilities {
+        .text-accent {
+          color: var(--color-accent);
+        }
+        .reveal {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: 0.8s ease-out;
+        }
+        .reveal.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @layer components {
+        /* --- NAVBAR (Copia de tu index.html) --- */
+        .navbar {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+          backdrop-filter: blur(20px);
+          border-bottom: 1px solid var(--glass-border);
+          padding: 15px 0;
+        }
+        .nav-flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .nav-links {
+          display: flex;
+          gap: 30px;
+        }
+        .nav-link {
+          font-size: 0.85rem;
+          font-weight: 500;
+          color: var(--color-text-muted);
+          transition: 0.3s;
+        }
+        .nav-link:hover {
+          color: white;
+        }
+        .logo-img {
+          height: 40px;
         }
 
-        @layer reset {
-            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-            html { scroll-behavior: smooth; }
-            body { background: var(--color-bg-main); color: var(--color-text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
-            a { text-decoration: none; color: inherit; }
+        /* --- HERO ESPECÍFICO DEL SERVICIO --- */
+        .service-hero {
+          position: relative;
+          height: 85vh; /* Un poco menos que el hero principal */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          text-align: center;
+        }
+        .service-hero-video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: -1;
+          opacity: 0.4; /* Video más sutil */
+        }
+        .service-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(
+              to top,
+              var(--color-bg-main) 10%,
+              rgba(0, 0, 0, 0.6) 80%
+            ),
+            radial-gradient(
+              circle at top right,
+              var(--color-accent-glow),
+              transparent 50%
+            );
+          z-index: 0;
+        }
+        .service-hero-content {
+          position: relative;
+          z-index: 1;
+          max-width: 900px;
+          padding-top: 60px;
         }
 
-        @layer layout {
-            .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-            .section { padding: 120px 0; }
-            .section-header { text-align: center; margin-bottom: 60px; }
+        .service-hero-title {
+          font-size: clamp(3rem, 7vw, 5rem);
+          font-weight: 800;
+          line-height: 1.1;
+          margin-bottom: 25px;
+          background: linear-gradient(to bottom right, #ffffff, #aaaaaa);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .service-hero-desc {
+          font-size: 1.25rem;
+          color: var(--color-text-muted);
+          margin-bottom: 40px;
         }
 
-        @layer utilities {
-            .text-accent { color: var(--color-accent); }
-            .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-            .reveal.active { opacity: 1; transform: translateY(0); }
+        /* --- BENEFICIOS (Grid de Iconos Grandes) --- */
+        .benefits-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 30px;
+          text-align: center;
+        }
+        .benefit-item {
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          border-radius: var(--border-radius-lg);
+          padding: 40px 20px;
+          transition: transform 0.3s ease;
+        }
+        .benefit-item:hover {
+          transform: translateY(-10px);
+          border-color: var(--color-accent);
+        }
+        .benefit-icon {
+          font-size: 3rem;
+          color: var(--color-accent);
+          margin-bottom: 20px;
+          display: inline-block;
+        }
+        .benefit-title {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+        .benefit-desc {
+          color: var(--color-text-muted);
+          font-size: 0.95rem;
         }
 
-
-        @layer components {
-            /* --- NAVBAR (Copia de tu index.html) --- */
-            .navbar {
-                position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 15px 0;
-            }
-            .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-            .nav-links { display: flex; gap: 30px; }
-            .nav-link { font-size: 0.85rem; font-weight: 500; color: var(--color-text-muted); transition: 0.3s; }
-            .nav-link:hover { color: white; }
-            .logo-img { height: 40px; }
-
-            /* --- HERO ESPECÍFICO DEL SERVICIO --- */
-            .service-hero {
-                position: relative;
-                height: 85vh; /* Un poco menos que el hero principal */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                text-align: center;
-            }
-            .service-hero-video {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                z-index: -1;
-                opacity: 0.4; /* Video más sutil */
-            }
-            .service-hero-overlay {
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(to top, var(--color-bg-main) 10%, rgba(0,0,0,0.6) 80%),
-                            radial-gradient(circle at top right, var(--color-accent-glow), transparent 50%);
-                z-index: 0;
-            }
-            .service-hero-content {
-                position: relative;
-                z-index: 1;
-                max-width: 900px;
-                padding-top: 60px;
-            }
-            .service-hero-subtitle {
-                color: var(--color-accent);
-                font-weight: 700;
-                font-size: 1rem;
-                letter-spacing: 2px;
-                text-transform: uppercase;
-                margin-bottom: 15px;
-            }
-            .service-hero-title {
-                font-size: clamp(3rem, 7vw, 5rem);
-                font-weight: 800;
-                line-height: 1.1;
-                margin-bottom: 25px;
-                background: linear-gradient(to bottom right, #ffffff, #aaaaaa);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            .service-hero-desc {
-                font-size: 1.25rem;
-                color: var(--color-text-muted);
-                margin-bottom: 40px;
-            }
-
-            /* --- BENEFICIOS (Grid de Iconos Grandes) --- */
-            .benefits-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 30px;
-                text-align: center;
-            }
-            .benefit-item {
-                background: var(--glass-bg);
-                border: 1px solid var(--glass-border);
-                border-radius: var(--border-radius-lg);
-                padding: 40px 20px;
-                transition: transform 0.3s ease;
-            }
-            .benefit-item:hover {
-                transform: translateY(-10px);
-                border-color: var(--color-accent);
-            }
-            .benefit-icon {
-                font-size: 3rem;
-                color: var(--color-accent);
-                margin-bottom: 20px;
-                display: inline-block;
-            }
-            .benefit-title {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-            }
-            .benefit-desc {
-                color: var(--color-text-muted);
-                font-size: 0.95rem;
-            }
-
-            /* --- COMPARISON SLIDER (Copia de tu index.html) --- */
-            .comparison-container {
-                position: relative; width: 100%; max-width: 900px; aspect-ratio: 16 / 9; margin: 0 auto;
-                border-radius: var(--border-radius-lg); overflow: hidden; border: 1px solid var(--glass-border);
-                box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            }
-            .comparison-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-            .img-before { z-index: 2; clip-path: inset(0 50% 0 0); }
-            .comparison-slider { position: absolute; inset: 0; z-index: 3; cursor: ew-resize; appearance: none; background: transparent; width: 100%; }
-            .slider-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: white; z-index: 4; pointer-events: none; box-shadow: 0 0 15px var(--color-accent-glow); }
-            .slider-button {
-                position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; background: white; border-radius: 50%;
-                transform: translate(-50%, -50%); z-index: 5; display: flex; align-items: center; justify-content: center;
-                box-shadow: 0 0 20px rgba(0,0,0,0.5); pointer-events: none;
-            }
-            .slider-button::before, .slider-button::after { content: ''; border: 6px solid transparent; }
-            .slider-button::before { border-right-color: var(--color-accent); margin-right: 4px; }
-            .slider-button::after { border-left-color: var(--color-accent); margin-left: 4px; }
-            .label-comparison {
-                position: absolute; bottom: 20px; padding: 5px 15px; background: rgba(0,0,0,0.6);
-                backdrop-filter: blur(5px); border-radius: 5px; font-size: 0.7rem; text-transform: uppercase;
-                letter-spacing: 1px; z-index: 6;
-            }
-
-
-            /* --- PREGUNTAS FRECUENTES (FAQ) --- */
-            .faq-section {
-                background: var(--color-bg-main);
-            }
-            .faq-item {
-                border-bottom: 1px solid var(--glass-border);
-                padding: 30px 0;
-            }
-            .faq-question {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                cursor: pointer;
-                font-size: 1.3rem;
-                font-weight: 600;
-                color: var(--color-text-main);
-                transition: color 0.3s ease;
-            }
-            .faq-question:hover { color: var(--color-accent); }
-            .faq-question.active { color: var(--color-accent); }
-
-            .faq-question span {
-                font-size: 1.8rem;
-                margin-left: 20px;
-                color: var(--color-text-muted);
-                transition: transform 0.3s ease;
-            }
-            .faq-question.active span {
-                transform: rotate(45deg); /* Gira el '+' a una 'x' */
-            }
-
-            .faq-answer {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-                color: var(--color-text-muted);
-                padding-top: 0;
-                font-size: 1rem;
-            }
-            .faq-answer.active {
-                max-height: 200px; /* Suficientemente grande para el contenido */
-                padding-top: 20px;
-            }
-
-            /* --- BOTÓN FINAL (Copia de tu index.html, el btn-alfa) --- */
-            .btn-alfa {
-                position: relative; overflow: hidden; background: #000; color: #fff; padding: 16px 40px;
-                border-radius: 999px; border: 1px solid var(--color-accent); font-weight: 600;
-                cursor: pointer; display: inline-block; text-transform: uppercase; letter-spacing: 1px;
-                transition: all 0.3s ease; z-index: 1;
-            }
-            .btn-alfa::after {
-                content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-                background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
-                transform: skewX(-25deg); z-index: 2; pointer-events: none;
-            }
-            .btn-alfa:hover {
-                background-color: var(--color-accent); border-color: #fff; transform: translateY(-3px);
-                box-shadow: 0 10px 30px var(--color-accent-glow); transition: background-color 0.3s ease 0s;
-            }
-            .btn-alfa:hover::after { left: 150%; transition: left 0.4s cubic-bezier(0.3, 1, 0.2, 1); }
+        /* --- COMPARISON SLIDER (Copia de tu index.html) --- */
+        .comparison-container {
+          position: relative;
+          width: 100%;
+          max-width: 900px;
+          aspect-ratio: 16 / 9;
+          margin: 0 auto;
+          border-radius: var(--border-radius-lg);
+          overflow: hidden;
+          border: 1px solid var(--glass-border);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
+        .comparison-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          pointer-events: none;
+        }
+        .img-before {
+          z-index: 2;
+          clip-path: inset(0 50% 0 0);
+        }
+        .comparison-slider {
+          position: absolute;
+          inset: 0;
+          z-index: 3;
+          cursor: ew-resize;
+          appearance: none;
+          background: transparent;
+          width: 100%;
+        }
+        .slider-line {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          width: 2px;
+          background: white;
+          z-index: 4;
+          pointer-events: none;
+          box-shadow: 0 0 15px var(--color-accent-glow);
+        }
+        .slider-button {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 44px;
+          height: 44px;
+          background: white;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+          pointer-events: none;
+        }
+        .slider-button::before,
+        .slider-button::after {
+          content: "";
+          border: 6px solid transparent;
+        }
+        .slider-button::before {
+          border-right-color: var(--color-accent);
+          margin-right: 4px;
+        }
+        .slider-button::after {
+          border-left-color: var(--color-accent);
+          margin-left: 4px;
+        }
+        .label-comparison {
+          position: absolute;
+          bottom: 20px;
+          padding: 5px 15px;
+          background: rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(5px);
+          border-radius: 5px;
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          z-index: 6;
+        }
+
+        /* --- PREGUNTAS FRECUENTES (FAQ) --- */
+        .faq-section {
+          background: var(--color-bg-main);
+        }
+        .faq-item {
+          border-bottom: 1px solid var(--glass-border);
+          padding: 30px 0;
+        }
+        .faq-question {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: var(--color-text-main);
+          transition: color 0.3s ease;
+        }
+        .faq-question:hover {
+          color: var(--color-accent);
+        }
+        .faq-question.active {
+          color: var(--color-accent);
+        }
+
+        .faq-question span {
+          font-size: 1.8rem;
+          margin-left: 20px;
+          color: var(--color-text-muted);
+          transition: transform 0.3s ease;
+        }
+        .faq-question.active span {
+          transform: rotate(45deg); /* Gira el '+' a una 'x' */
+        }
+
+        .faq-answer {
+          max-height: 0;
+          overflow: hidden;
+          transition:
+            max-height 0.4s ease-out,
+            padding 0.4s ease-out;
+          color: var(--color-text-muted);
+          padding-top: 0;
+          font-size: 1rem;
+        }
+        .faq-answer.active {
+          max-height: 200px; /* Suficientemente grande para el contenido */
+          padding-top: 20px;
+        }
+
+        /* --- BOTÓN FINAL (Copia de tu index.html, el btn-alfa) --- */
+        .btn-alfa {
+          position: relative;
+          overflow: hidden;
+          background: #000;
+          color: #fff;
+          padding: 16px 40px;
+          border-radius: 999px;
+          border: 1px solid var(--color-accent);
+          font-weight: 600;
+          cursor: pointer;
+          display: inline-block;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          transition: all 0.3s ease;
+          z-index: 1;
+        }
+        .btn-alfa::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(255, 255, 255, 0.8) 50%,
+            transparent 100%
+          );
+          transform: skewX(-25deg);
+          z-index: 2;
+          pointer-events: none;
+        }
+        .btn-alfa:hover {
+          background-color: var(--color-accent);
+          border-color: #fff;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 30px var(--color-accent-glow);
+          transition: background-color 0.3s ease 0s;
+        }
+        .btn-alfa:hover::after {
+          left: 150%;
+          transition: left 0.4s cubic-bezier(0.3, 1, 0.2, 1);
+        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="container nav-flex">
-            <div style="font-weight: 800; font-size: 1.2rem;">ALFA<span class="text-accent">.</span></div>
-            <div class="nav-links">
-                <a href="index.html#servicios" class="nav-link active">Servicios</a>
-                <a href="index.html#proceso" class="nav-link">Proceso</a>
-                <a href="gallery.html" class="nav-link">Galería</a>
-            </div>
-            <a href="#cotizar-whatsapp" class="btn-alfa" style="padding: 12px 25px; font-size: 0.9rem;">Cotizar</a>
+      <div class="container nav-flex">
+        <div style="font-weight: 800; font-size: 1.2rem">
+          ALFA<span class="text-accent">.</span>
         </div>
+        <div class="nav-links">
+          <a href="index.html#servicios" class="nav-link active">Servicios</a>
+          <a href="index.html#proceso" class="nav-link">Proceso</a>
+          <a href="gallery.html" class="nav-link">Galería</a>
+        </div>
+        <a
+          href="#cotizar-whatsapp"
+          class="btn-alfa"
+          style="padding: 12px 25px; font-size: 0.9rem"
+          >Cotizar</a
+        >
+      </div>
     </nav>
 
     <section class="service-hero">
-        <video class="service-hero-video" autoplay muted loop playsinline>
-            <source src="https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4" type="video/mp4">
-        </video>
-        <div class="service-hero-overlay"></div>
-        <div class="service-hero-content reveal">
-            <p class="service-hero-subtitle">Protección Avanzada</p>
-            <h1 class="service-hero-title">Tratamiento Cerámico 9H</h1>
-            <p class="service-hero-desc">
-                La nanotecnología que blinda tu auto contra los elementos, le da un brillo espejo y lo mantiene impecable por años.
-            </p>
-            <a href="#cotizar-whatsapp" class="btn-alfa">Solicitar Cotización</a>
-        </div>
+      <video class="service-hero-video" autoplay muted loop playsinline>
+        <source
+          src="https://cdn.pixabay.com/video/2023/07/28/172675-850930438_large.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="service-hero-overlay"></div>
+      <div class="service-hero-content reveal">
+        <p class="service-hero-subtitle">Protección Avanzada</p>
+        <h1 class="service-hero-title">Tratamiento Cerámico 9H</h1>
+        <p class="service-hero-desc">
+          La nanotecnología que blinda tu auto contra los elementos, le da un
+          brillo espejo y lo mantiene impecable por años.
+        </p>
+        <a href="#cotizar-whatsapp" class="btn-alfa">Solicitar Cotización</a>
+      </div>
     </section>
 
-    <section class="section" style="background: var(--color-bg-surface);">
-        <div class="container">
-            <div class="section-header reveal">
-                <p class="service-hero-subtitle">Beneficios Exclusivos</p>
-                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">¿Por qué elegir un <span class="text-accent">Cerámico Alfa</span>?</h2>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-item reveal">
-                    <span class="benefit-icon">✨</span>
-                    <h3 class="benefit-title">Brillo Espejo Duradero</h3>
-                    <p class="benefit-desc">Intensifica el color y la profundidad de la pintura, creando un acabado de showroom que perdura.</p>
-                </div>
-                <div class="benefit-item reveal">
-                    <span class="benefit-icon">💧</span>
-                    <h3 class="benefit-title">Repelencia Extrema</h3>
-                    <p class="benefit-desc">El agua y la suciedad se deslizan, facilitando la limpieza y manteniendo tu auto más limpio por más tiempo.</p>
-                </div>
-                <div class="benefit-item reveal">
-                    <span class="benefit-icon">🛡️</span>
-                    <h3 class="benefit-title">Protección 9H</h3>
-                    <p class="benefit-desc">Resistencia superior a micro-rayas, químicos, UV y oxidación, con hasta 5 años de garantía.</p>
-                </div>
-                <div class="benefit-item reveal">
-                    <span class="benefit-icon">🌿</span>
-                    <h3 class="benefit-title">Mantenimiento Sencillo</h3>
-                    <p class="benefit-desc">Reduce la necesidad de lavados frecuentes y el uso de productos agresivos, protegiendo el medio ambiente.</p>
-                </div>
-            </div>
+    <section class="section" style="background: var(--color-bg-surface)">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="service-hero-subtitle">Beneficios Exclusivos</p>
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem)">
+            ¿Por qué elegir un <span class="text-accent">Cerámico Alfa</span>?
+          </h2>
         </div>
+        <div class="benefits-grid">
+          <div class="benefit-item reveal">
+            <span class="benefit-icon">✨</span>
+            <h3 class="benefit-title">Brillo Espejo Duradero</h3>
+            <p class="benefit-desc">
+              Intensifica el color y la profundidad de la pintura, creando un
+              acabado de showroom que perdura.
+            </p>
+          </div>
+          <div class="benefit-item reveal">
+            <span class="benefit-icon">💧</span>
+            <h3 class="benefit-title">Repelencia Extrema</h3>
+            <p class="benefit-desc">
+              El agua y la suciedad se deslizan, facilitando la limpieza y
+              manteniendo tu auto más limpio por más tiempo.
+            </p>
+          </div>
+          <div class="benefit-item reveal">
+            <span class="benefit-icon">🛡️</span>
+            <h3 class="benefit-title">Protección 9H</h3>
+            <p class="benefit-desc">
+              Resistencia superior a micro-rayas, químicos, UV y oxidación, con
+              hasta 5 años de garantía.
+            </p>
+          </div>
+          <div class="benefit-item reveal">
+            <span class="benefit-icon">🌿</span>
+            <h3 class="benefit-title">Mantenimiento Sencillo</h3>
+            <p class="benefit-desc">
+              Reduce la necesidad de lavados frecuentes y el uso de productos
+              agresivos, protegiendo el medio ambiente.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <p class="service-hero-subtitle">Mira la Transformación</p>
-                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Antes y Después del <span class="text-accent">Cerámico</span></h2>
-            </div>
-
-            <div class="comparison-container reveal">
-                <img src="https://images.unsplash.com/photo-1620573772274-142f36d3969a?q=80&w=1000&auto=format&fit=crop" class="comparison-img" alt="Auto con Cerámico (Después)">
-                <span class="label-comparison" style="right: 20px;">Después</span>
-
-                <img id="beforeImgService" src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop" class="comparison-img img-before" alt="Auto sin Cerámico (Antes)">
-                <span class="label-comparison" style="left: 20px;">Antes</span>
-
-                <div id="lineService" class="slider-line"></div>
-                <div id="buttonService" class="slider-button"></div>
-
-                <input type="range" min="0" max="100" value="50" class="comparison-slider" id="sliderService">
-            </div>
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="service-hero-subtitle">Mira la Transformación</p>
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem)">
+            Antes y Después del <span class="text-accent">Cerámico</span>
+          </h2>
         </div>
+
+        <div class="comparison-container reveal">
+          <img
+            src="https://images.unsplash.com/photo-1620573772274-142f36d3969a?q=80&w=1000&auto=format&fit=crop"
+            class="comparison-img"
+            alt="Auto con Cerámico (Después)"
+          />
+          <span class="label-comparison" style="right: 20px">Después</span>
+
+          <img
+            id="beforeImgService"
+            src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000&auto=format&fit=crop"
+            class="comparison-img img-before"
+            alt="Auto sin Cerámico (Antes)"
+          />
+          <span class="label-comparison" style="left: 20px">Antes</span>
+
+          <div id="lineService" class="slider-line"></div>
+          <div id="buttonService" class="slider-button"></div>
+
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+            class="comparison-slider"
+            id="sliderService"
+          />
+        </div>
+      </div>
     </section>
 
-    <section class="section faq-section" style="background: var(--color-bg-surface);">
-        <div class="container">
-            <div class="section-header reveal">
-                <p class="service-hero-subtitle">Dudas Comunes</p>
-                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Preguntas Frecuentes del <span class="text-accent">Cerámico</span></h2>
-            </div>
-
-            <div class="faq-list">
-                <div class="faq-item reveal">
-                    <div class="faq-question">
-                        <span>+</span> ¿Cuánto dura el Tratamiento Cerámico?
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nuestros tratamientos cerámicos de alta calidad pueden durar entre 2 y 5 años, dependiendo del producto seleccionado, el mantenimiento del vehículo y las condiciones ambientales.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question">
-                        <span>+</span> ¿Es necesario pulir el auto antes de aplicarlo?
-                    </div>
-                    <div class="faq-answer">
-                        <p>Sí, es esencial. Para asegurar una adhesión perfecta y resultados óptimos, la pintura debe estar en su mejor estado: libre de defectos, hologramas y contaminantes. Realizamos una corrección de pintura profesional previa.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question">
-                        <span>+</span> ¿Cómo debo mantener mi auto con tratamiento cerámico?
-                    </div>
-                    <div class="faq-answer">
-                        <p>Recomendamos lavados regulares con productos de pH neutro, evitar túneles de lavado con cepillos abrasivos y secar el vehículo con toallas de microfibra de alta calidad. Ofrecemos kits de mantenimiento específicos.</p>
-                    </div>
-                </div>
-            </div>
+    <section
+      class="section faq-section"
+      style="background: var(--color-bg-surface)"
+    >
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="service-hero-subtitle">Dudas Comunes</p>
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem)">
+            Preguntas Frecuentes del <span class="text-accent">Cerámico</span>
+          </h2>
         </div>
+
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <div class="faq-question">
+              <span>+</span> ¿Cuánto dura el Tratamiento Cerámico?
+            </div>
+            <div class="faq-answer">
+              <p>
+                Nuestros tratamientos cerámicos de alta calidad pueden durar
+                entre 2 y 5 años, dependiendo del producto seleccionado, el
+                mantenimiento del vehículo y las condiciones ambientales.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <div class="faq-question">
+              <span>+</span> ¿Es necesario pulir el auto antes de aplicarlo?
+            </div>
+            <div class="faq-answer">
+              <p>
+                Sí, es esencial. Para asegurar una adhesión perfecta y
+                resultados óptimos, la pintura debe estar en su mejor estado:
+                libre de defectos, hologramas y contaminantes. Realizamos una
+                corrección de pintura profesional previa.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <div class="faq-question">
+              <span>+</span> ¿Cómo debo mantener mi auto con tratamiento
+              cerámico?
+            </div>
+            <div class="faq-answer">
+              <p>
+                Recomendamos lavados regulares con productos de pH neutro,
+                evitar túneles de lavado con cepillos abrasivos y secar el
+                vehículo con toallas de microfibra de alta calidad. Ofrecemos
+                kits de mantenimiento específicos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="section" style="text-align: center;">
-        <div class="container reveal">
-            <p class="service-hero-subtitle">Cotiza Ahora</p>
-            <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px;">Prepara tu auto para el futuro.</h2>
-            <a href="#cotizar-whatsapp" class="btn-alfa">Cotizar Tratamiento Cerámico</a>
-        </div>
+    <section class="section" style="text-align: center">
+      <div class="container reveal">
+        <p class="service-hero-subtitle">Cotiza Ahora</p>
+        <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px">
+          Prepara tu auto para el futuro.
+        </h2>
+        <a href="#cotizar-whatsapp" class="btn-alfa"
+          >Cotizar Tratamiento Cerámico</a
+        >
+      </div>
     </section>
 
-    <div id="cotizar-whatsapp" style="display: none;" data-service="Tratamiento Cerámico 9H"></div>
-
+    <div
+      id="cotizar-whatsapp"
+      style="display: none"
+      data-service="Tratamiento Cerámico 9H"
+    ></div>
 
     <script>
-        // --- SCROLL REVEAL (PARA TODAS LAS SECCIONES) ---
-        const observerOptions = { threshold: 0.2 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // --- COMPARISON SLIDER ESPECÍFICO DEL SERVICIO ---
-        const sliderService = document.getElementById('sliderService');
-        const beforeImgService = document.getElementById('beforeImgService');
-        const lineService = document.getElementById('lineService');
-        const buttonService = document.getElementById('buttonService');
-
-        if (sliderService) { // Asegúrate de que el slider exista en la página
-            sliderService.addEventListener('input', (e) => {
-                const value = e.target.value;
-                beforeImgService.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
-                lineService.style.left = `${value}%`;
-                buttonService.style.left = `${value}%`;
-            });
-        }
-
-        // --- FAQ ACORDEÓN ---
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                question.classList.toggle('active');
-                answer.classList.toggle('active');
-            });
+      // --- SCROLL REVEAL (PARA TODAS LAS SECCIONES) ---
+      const observerOptions = { threshold: 0.2 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
         });
+      }, observerOptions);
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
 
-        // --- LÓGICA DE WHATSAPP PARA EL BOTÓN DE COTIZAR ---
-        document.querySelectorAll('a[href="#cotizar-whatsapp"]').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault(); // Evita el salto instantáneo
-                
-                const serviceElement = document.getElementById('cotizar-whatsapp');
-                const serviceName = serviceElement ? serviceElement.dataset.service : 'Servicio General';
-                const phoneNumber = '56912345678'; // Reemplaza con tu número de WhatsApp
+      // --- COMPARISON SLIDER ESPECÍFICO DEL SERVICIO ---
+      const sliderService = document.getElementById("sliderService");
+      const beforeImgService = document.getElementById("beforeImgService");
+      const lineService = document.getElementById("lineService");
+      const buttonService = document.getElementById("buttonService");
 
-                const message = `Hola Alfa Detailers! 👋\n\nEstoy interesado en el servicio: *${serviceName}*.\n\n¿Podrían darme más información y un presupuesto?`;
-                const encodedMessage = encodeURIComponent(message);
-                
-                window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
-            });
+      if (sliderService) {
+        // Asegúrate de que el slider exista en la página
+        sliderService.addEventListener("input", (e) => {
+          const value = e.target.value;
+          beforeImgService.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+          lineService.style.left = `${value}%`;
+          buttonService.style.left = `${value}%`;
         });
+      }
 
+      // --- FAQ ACORDEÓN ---
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          const answer = question.nextElementSibling;
+          question.classList.toggle("active");
+          answer.classList.toggle("active");
+        });
+      });
+
+      // --- LÓGICA DE WHATSAPP PARA EL BOTÓN DE COTIZAR ---
+      document
+        .querySelectorAll('a[href="#cotizar-whatsapp"]')
+        .forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault(); // Evita el salto instantáneo
+
+            const serviceElement = document.getElementById("cotizar-whatsapp");
+            const serviceName = serviceElement
+              ? serviceElement.dataset.service
+              : "Servicio General";
+            const phoneNumber = "56912345678"; // Reemplaza con tu número de WhatsApp
+
+            const message = `Hola Alfa Detailers! 👋\n\nEstoy interesado en el servicio: *${serviceName}*.\n\n¿Podrían darme más información y un presupuesto?`;
+            const encodedMessage = encodeURIComponent(message);
+
+            window.open(
+              `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
+              "_blank",
+            );
+          });
+        });
     </script>
-</body>
+  </body>
 </html>

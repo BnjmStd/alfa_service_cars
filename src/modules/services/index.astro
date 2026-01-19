@@ -11,7 +11,11 @@ import Carousel_section from "./components/carousel_section.astro";
 const { section, serviceType, serviceImage, serviceId } = Astro.props;
 ---
 
-{section.type === "hero-video" && <Hero {...section} serviceImage={serviceImage} serviceId={serviceId} />}
+{
+  section.type === "hero-video" && (
+    <Hero {...section} serviceImage={serviceImage} serviceId={serviceId} />
+  )
+}
 {section.type === "trust-block" && <TrustBlock {...section} />}
 {section.type === "process-steps" && <Process_section {...section} />}
 {section.type === "feature-list" && <Benefit {...section} />}

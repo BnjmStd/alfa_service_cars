@@ -12,7 +12,7 @@ const { title, subtitle, faqs } = section;
 >
   <div class="container">
     <div class="section-header reveal">
-      <p class="service-hero-subtitle">{subtitle}</p>
+      <span class="badge">{subtitle}</span>
       <h2 style="font-size: clamp(2rem, 4vw, 3rem);">
         {title}
       </h2>
@@ -36,7 +36,6 @@ const { title, subtitle, faqs } = section;
 </section>
 
 <style>
-  /* --- PREGUNTAS FRECUENTES (FAQ) --- */
   .faq-section {
     background: var(--color-bg-main);
   }
@@ -68,7 +67,7 @@ const { title, subtitle, faqs } = section;
     transition: transform 0.3s ease;
   }
   .faq-question.active span {
-    transform: rotate(45deg); /* Gira el '+' a una 'x' */
+    transform: rotate(45deg);
   }
 
   .faq-answer {
@@ -82,18 +81,25 @@ const { title, subtitle, faqs } = section;
     font-size: 1rem;
   }
   .faq-answer.active {
-    max-height: 200px; /* Suficientemente grande para el contenido */
+    max-height: 200px;
     padding-top: 20px;
   }
 </style>
 
-<script is:inline>
+<script>
   // --- FAQ ACORDEÓN ---
-  document.querySelectorAll(".faq-question").forEach((question) => {
-    question.addEventListener("click", () => {
-      const answer = question.nextElementSibling;
-      question.classList.toggle("active");
-      answer.classList.toggle("active");
+  function initFAQ() {
+    document.querySelectorAll(".faq-question").forEach((question) => {
+      question.addEventListener("click", () => {
+        const answer = question.nextElementSibling;
+        if (answer) {
+          question.classList.toggle("active");
+          answer.classList.toggle("active");
+        }
+      });
     });
-  });
+  }
+
+  // Ejecutar al cargar la página (incluyendo navegaciones SPA)
+  document.addEventListener("astro:page-load", initFAQ);
 </script>
