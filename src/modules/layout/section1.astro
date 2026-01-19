@@ -26,6 +26,10 @@ const heroData = {
     class="hero-video"
     src={heroData.background.src}
     alt={heroData.background.alt}
+    width={1920}
+    height={1080}
+    loading="eager"
+    quality={70}
   />
 
   <div class="hero-overlay"></div>
@@ -152,6 +156,7 @@ const heroData = {
     object-fit: cover;
     z-index: 1;
     mask: linear-gradient(to bottom, #000 60%, transparent);
+    will-change: opacity;
   }
 
   .hero-overlay {

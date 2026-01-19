@@ -2,8 +2,7 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
-const todasLasFotos = await getCollection("somos");
-const fotoHero = todasLasFotos.find((img) => img.id === "taller");
+const { fotoTaller } = Astro.props;
 
 const [currentLocation] = await getCollection("location");
 if (!currentLocation || !currentLocation.data.visible) return;
@@ -64,11 +63,15 @@ const { badge, title, details, cta } = currentLocation.data;
 
     <div class="visit-image-wrapper">
       {
-        fotoHero && (
+        fotoTaller && (
           <Image
-            src={fotoHero.data.foto}
-            alt={fotoHero.data.description}
+            src={fotoTaller.data.foto}
+            alt={fotoTaller.data.description}
             class="main-image"
+            width={800}
+            height={600}
+            loading="lazy"
+            quality={75}
           />
         )
       }
@@ -152,6 +155,7 @@ const { badge, title, details, cta } = currentLocation.data;
     padding: 1rem 2rem;
     font-weight: 600;
     transition: transform 0.2s ease;
+    will-change: transform;
   }
 
   .btn-primary:hover {

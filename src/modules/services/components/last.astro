@@ -13,7 +13,7 @@ const { serviceId } = Astro.props;
     <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px;">
       {title} 
     </h2>
-    <button class="btn btn-primary" data-service={title} data-phone={CLIENT_PHONE_NUMBER}>
+    <button class="btn btn-primary" data-service={serviceId} data-phone={CLIENT_PHONE_NUMBER}>
       {button.text}
     </button>
   </div>
@@ -42,6 +42,5 @@ Quiero solicitar más información sobre *${serviceName}*.
     });
   }
 
-  // Inicializar en carga de página y navegaciones SPA
   document.addEventListener("astro:page-load", initCtaWhatsApp);
 </script>

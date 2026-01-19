@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import Visit from "./components/visit.astro";
 import { pageContent } from "./getInfo";
 import Porque from "./components/porque.astro";
+import { CLIENT_PHONE_NUMBER } from "~/lib/getPhoneNumber";
 
 const todasLasFotos = await getCollection("somos");
 
@@ -28,6 +29,10 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
           src={fotoHero.data.foto}
           alt={fotoHero.data.description}
           class="hero-bg-img"
+          width={1920}
+          height={1080}
+          loading="eager"
+          quality={70}
         />
       )
     }
@@ -50,7 +55,14 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     <div class="story-image-container">
       {
         fotoEquipo && (
-          <Image src={fotoEquipo.data.foto} alt={fotoEquipo.data.description} />
+          <Image 
+            src={fotoEquipo.data.foto} 
+            alt={fotoEquipo.data.description}
+            width={800}
+            height={600}
+            loading="lazy"
+            quality={75}
+          />
         )
       }
       <div class="glow-effect"></div>
@@ -59,7 +71,7 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
 
   <Porque />
 
-  <Visit />
+  <Visit fotoTaller={fotoHero} />
 
   <div class="cta-section wrapper center">
     <div class="cta-card">
@@ -67,16 +79,34 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
       <p>{pageContent.cta.desc}</p>
 
       <div class="cta-buttons">
-        <a href="/contacto" class="btn btn-primary"
-          >{pageContent.cta.primaryBtn}</a
-        >
-        <a href="/servicios" class="btn btn-outline"
-          >{pageContent.cta.secondaryBtn}</a
-        >
+        <button class="btn btn-primary cta-whatsapp-btn" data-phone={CLIENT_PHONE_NUMBER}>
+          {pageContent.cta.primaryBtn}
+        </button>
+        <a href="/servicios" class="btn btn-outline">
+          {pageContent.cta.secondaryBtn}
+        </a>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const ctaBtn = document.querySelector(".cta-whatsapp-btn") as HTMLButtonElement | null;
+    if (!ctaBtn) return;
+
+    ctaBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const phone = ctaBtn.dataset.phone || "56930636488";
+
+      const message = `¡Hola Alfa Detailers! 👋\n\nQuiero agendar una evaluación técnica para mi vehículo.\n\n¿Cuándo podrían atenderme?\n\n¡Gracias!`;
+
+      const encodedMsg = encodeURIComponent(message);
+      const cleanPhone = phone.replace(/\D/g, "");
+      window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
+    });
+  });
+</script>
 
 <style is:global>
   :root {
@@ -144,6 +174,7 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     height: auto;
     display: block;
     transition: transform 0.7s ease;
+    will-change: transform;
   }
 
   .story-image-container:hover img {
@@ -249,8 +280,9 @@ const fotoEquipo = todasLasFotos.find((img) => img.id === "team");
     width: 150px;
     height: 150px;
     background: var(--color-accent);
-    filter: blur(80px);
-    opacity: 0.4;
+    box-shadow: 0 0 100px 50px var(--color-accent-glow);
+    opacity: 0.3;
+    border-radius: 50%;
     z-index: 1;
     pointer-events: none;
   }

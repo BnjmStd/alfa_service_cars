@@ -32,6 +32,8 @@ const itemsBento = collectionServices.map((service) => ({
                 alt={item.title}
                 width={800}
                 height={600}
+                loading="lazy"
+                quality={70}
                 class="bento-img"
                 transition:name={`service-hero-${item.id}`}
               />
@@ -65,6 +67,7 @@ const itemsBento = collectionServices.map((service) => ({
       transform 0.4s ease,
       border-color 0.4s ease,
       background 0.4s ease;
+    will-change: transform;
   }
 
   .card-content {
@@ -97,6 +100,7 @@ const itemsBento = collectionServices.map((service) => ({
     object-fit: cover;
     transition: transform 0.6s ease, filter 0.6s ease;
     filter: grayscale(60%);
+    will-change: transform, filter;
   }
 
   .bento-card::before {

@@ -76,44 +76,40 @@ const statsData = [
   }
 </style>
 
-<script is:inline>
-  // --- ANIMACIÓN DE CONTADORES ---
-  const countUp = (el) => {
+<script>
+  function countUp(el: HTMLElement) {
     const target = Number(el.dataset.target);
     const suffix = el.dataset.suffix || "";
     let count = Number(el.innerText);
     const increment = target / 60;
 
     if (count < target) {
-      el.innerText = Math.ceil(count + increment);
+      el.innerText = Math.ceil(count + increment).toString();
       requestAnimationFrame(() => countUp(el));
     } else {
       el.innerText = target + suffix;
     }
-  };
+  }
 
-  // --- INTERSECTION OBSERVER PARA REVELAR ELEMENTOS ---
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
+  function initStats() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-        const numbers = entry.target.querySelectorAll(
-          ".stat-number[data-target]",
-        );
+          const numbers = entry.target.querySelectorAll(
+            ".stat-number[data-target]"
+          );
 
-        numbers.forEach((num) => countUp(num));
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.2 },
-  );
+          numbers.forEach((num) => countUp(num as HTMLElement));
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-  document
-    .querySelectorAll(".stats-grid")
-    .forEach((el) => observer.observe(el));
+    document.querySelectorAll(".stats-grid").forEach((el) => observer.observe(el));
+  }
 
-  document
-    .querySelectorAll(".reveal, .stats-grid")
-    .forEach((el) => observer.observe(el));
+  document.addEventListener("astro:page-load", initStats);
 </script>

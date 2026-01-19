@@ -37,6 +37,8 @@ const galleryData = {
                 alt={item.data.titulo}
                 width={600}
                 height={400}
+                loading="lazy"
+                quality={70}
                 class="gallery-img"
               />
 
@@ -105,6 +107,7 @@ const galleryData = {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    will-change: transform;
   }
 
   /* Hover imagen */
@@ -115,5 +118,9 @@ const galleryData = {
   .gallery-item:hover .gallery-overlay {
     transform: translateY(0);
     opacity: 1;
+  }
+
+  .gallery-overlay {
+    will-change: transform, opacity;
   }
 </style>

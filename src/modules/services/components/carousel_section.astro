@@ -13,8 +13,6 @@ const imagenesCarrusel = (await getCollection("gallery"))
     return matchCategoria && noComparative;
   })
   .slice(0, 6);
-
-console.log(`Carrusel: ${imagenesCarrusel.length} imágenes de categoría "${categoria}"`);
 ---
 
 <section class="carousel-section" id="carousel-gallery">
@@ -50,8 +48,7 @@ console.log(`Carrusel: ${imagenesCarrusel.length} imágenes de categoría "${cat
                     class="carousel-image"
                     loading="lazy"
                     decoding="async"
-                    fetchpriority={index < 3 ? "low" : "low"}
-                    quality={75}
+                    quality={60}
                   />
                   <div class="carousel-overlay">
                     <h3 class="carousel-title">{item.data.titulo}</h3>
@@ -195,10 +192,13 @@ console.log(`Carrusel: ${imagenesCarrusel.length} imágenes de categoría "${cat
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        currentIndex = 0; // Reset al cambiar tamaño
-        createDots(); // Recrear dots con nuevo total
+        const prevTotalSlides = getTotalSlides();
+        if (currentIndex >= prevTotalSlides) {
+          currentIndex = Math.max(0, prevTotalSlides - 1);
+        }
+        createDots();
         updateCarousel();
-      }, 250);
+      }, 150);
     });
 
     // Initial update
@@ -236,6 +236,7 @@ console.log(`Carrusel: ${imagenesCarrusel.length} imágenes de categoría "${cat
     display: flex;
     gap: 1.5rem;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
 
   .carousel-item {
@@ -250,6 +251,7 @@ console.log(`Carrusel: ${imagenesCarrusel.length} imágenes de categoría "${cat
     aspect-ratio: 4 / 3;
     cursor: pointer;
     transition: transform 0.3s ease;
+    will-change: transform;
   }
 
   .carousel-image-wrapper:hover {
@@ -275,6 +277,7 @@ console.log(`Carrusel: ${imagenesCarrusel.length} imágenes de categoría "${cat
     );
     opacity: 0;
     transition: opacity 0.3s ease;
+    will-change: opacity;
   }
 
   .carousel-image-wrapper:hover .carousel-overlay {

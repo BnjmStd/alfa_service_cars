@@ -49,8 +49,14 @@ const mapConfig = jaz;
   .map-iframe {
     width: 100%;
     height: 100%;
-    filter: grayscale(1) invert(0.9) contrast(1.2); /* Truco para mapa oscuro */
-    opacity: 0.8;
+    opacity: 0.7;
     border: none;
+    mix-blend-mode: luminosity;
+  }
+
+  @supports not (mix-blend-mode: luminosity) {
+    .map-iframe {
+      filter: grayscale(0.8) brightness(0.9);
+    }
   }
 </style>
