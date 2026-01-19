@@ -34,5 +34,5 @@ const { section, serviceType, serviceImage, serviceId } = Astro.props;
     />
   )
 }
-{section.type === "cta-block" && <Last {...section} />}
+{section.type === "cta-block" && <Last {...section} serviceId={serviceId} />}
 {section.type === "whatsapp-anchor" && <WhatsappAnchor {...section} />}

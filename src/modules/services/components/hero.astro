@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { HeroSection } from "~/layouts/sub.astro";
+import { CLIENT_PHONE_NUMBER } from "~/lib/getPhoneNumber";
 const section = Astro.props as HeroSection;
 const { title, subtitle, description, videoSrc, cta, serviceImage, serviceId } = Astro.props;
 ---
@@ -23,9 +24,38 @@ const { title, subtitle, description, videoSrc, cta, serviceImage, serviceId } =
     <span class="badge">{subtitle}</span>
     <h1 class="service-hero-title">{title}</h1>
     <p class="service-hero-desc">{description}</p>
-    <a href={cta.href} class="btn btn-primary">{cta.text}</a>
+    <button class="btn btn-primary" data-service={title} data-phone={CLIENT_PHONE_NUMBER}>
+      {cta.text}
+    </button>
   </div>
 </section>
+
+<script>
+  function initHeroWhatsApp() {
+    const heroButton = document.querySelector(".service-hero .btn-primary") as HTMLButtonElement | null;
+    if (!heroButton) return;
+
+    heroButton.addEventListener("click", () => {
+      const serviceName = heroButton.dataset.service || "este servicio";
+      const phone = heroButton.dataset.phone || "56930636488";
+
+      const message = `¡Hola Alfa Detailers! 👋
+
+Estoy interesado en el servicio de *${serviceName}*.
+
+¿Podrían darme más información sobre precios, disponibilidad y detalles?
+
+¡Gracias!`;
+
+      const encodedMsg = encodeURIComponent(message);
+      const cleanPhone = phone.replace(/\D/g, "");
+      window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
+    });
+  }
+
+  // Inicializar en carga de página y navegaciones SPA
+  document.addEventListener("astro:page-load", initHeroWhatsApp);
+</script>
 
 <style>
   .service-hero {

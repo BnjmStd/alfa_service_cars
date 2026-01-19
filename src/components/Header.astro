@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { BRAND } from "~/lib/brand";
+import { CLIENT_PHONE_NUMBER } from "~/lib/getPhoneNumber";
 import "~/styles/button.css";
 ---
 
@@ -39,17 +40,44 @@ import "~/styles/button.css";
       </label>
       <a href="/" class="nav-link">Inicio</a>
       <a href="/somos" class="nav-link">Nosotros</a>
-      <!-- <a href="#servicios" class="nav-link">Servicios</a> -->
       <a href="/cotizar" class="nav-link">Cotización</a>
       <a href="/galeria" class="nav-link">Galería</a>
       <a href="/servicios" class="nav-link">Servicios</a>
-      <a href="#contacto" class="btn btn-primary mobile-btn">Agendar</a>
+      <button
+        class="btn btn-primary mobile-btn"
+        data-phone={CLIENT_PHONE_NUMBER}>Agendar</button
+      >
     </div>
 
     <!-- Botón desktop -->
-    <a href="#contacto" class="btn btn-primary desktop-btn"> Agendar </a>
+    <button
+      class="btn btn-primary desktop-btn"
+      data-phone={CLIENT_PHONE_NUMBER}
+    >
+      Agendar
+    </button>
   </nav>
 </header>
+
+<script>
+  function initHeaderWhatsApp() {
+    const agendarButtons = document.querySelectorAll(".navbar .btn-primary");
+
+    agendarButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const phone = (button as HTMLElement).dataset.phone || "56930636488";
+
+        const message = `¡Hola! 👋\n\nQuiero agendar un servicio.`;
+
+        const encodedMsg = encodeURIComponent(message);
+        const cleanPhone = phone.replace(/\D/g, "");
+        window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initHeaderWhatsApp);
+</script>
 
 <style>
   .navbar {
@@ -87,7 +115,10 @@ import "~/styles/button.css";
   }
 
   .logo-img {
-    height: 40px;
+    height: 60px;
+    width: 80px;
+    aspect-ratio: 1 / 2;
+    object-fit: cover;
   }
 </style>
 

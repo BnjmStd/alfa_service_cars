@@ -1,18 +1,47 @@
 ---
 import type { CtaSection } from "~/layouts/sub.astro";
+import { CLIENT_PHONE_NUMBER } from "~/lib/getPhoneNumber";
 
 const section = Astro.props as CtaSection;
 const { title, subtitle, button } = section;
+const { serviceId } = Astro.props;
 ---
 
-<section class="section" style="text-align: center;" id={section.id}>
+<section class="section cta-section" style="text-align: center;" id={section.id}>
   <div class="container reveal">
     <span class="badge">{subtitle}</span>
     <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 30px;">
-      {title} hola
+      {title} 
     </h2>
-    <a href={button.href} class="btn btn-primary">
+    <button class="btn btn-primary" data-service={title} data-phone={CLIENT_PHONE_NUMBER}>
       {button.text}
-    </a>
+    </button>
   </div>
 </section>
+
+<script>
+  function initCtaWhatsApp() {
+    const ctaButton = document.querySelector(".cta-section .btn-primary") as HTMLButtonElement | null;
+    if (!ctaButton) return;
+
+    ctaButton.addEventListener("click", () => {
+      const serviceName = ctaButton.dataset.service || "nuestros servicios";
+      const phone = ctaButton.dataset.phone || "56930636488";
+
+      const message = `¡Hola Alfa Detailers! 👋
+
+Quiero solicitar más información sobre *${serviceName}*.
+
+¿Podrían ayudarme con detalles y cotización?
+
+¡Muchas gracias!`;
+
+      const encodedMsg = encodeURIComponent(message);
+      const cleanPhone = phone.replace(/\D/g, "");
+      window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
+    });
+  }
+
+  // Inicializar en carga de página y navegaciones SPA
+  document.addEventListener("astro:page-load", initCtaWhatsApp);
+</script>

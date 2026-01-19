@@ -114,6 +114,21 @@
       ]
     },
     {
+      "id": "comparative-ceramico",
+      "type": "comparative",
+      "subtitle": "Comparativa de Protección",
+      "title": "Resultado antes y después del Lavado de Motor Profesional",
+      "description": "Limpieza profunda y segura que mejora la apariencia y facilita el mantenimiento del motor.",
+      "imagenAntes": "../../assets/gallery/lavado_motor_2_comparative.webp",
+      "imagenDespues": "../../assets/gallery/lavado_motor_4_comparative.webp"
+    },
+    {
+      "id": "carrousel-ceramico",
+      "type": "carrousel",
+      "title": "Galería de Resultados - Lavado de Motor Profesional",
+      "subtitle": "Descubre la limpieza y cuidado en cada detalle"
+    },
+    {
       "id": "cta-ceramico",
       "type": "cta-block",
       "subtitle": "Cuida tu motor",

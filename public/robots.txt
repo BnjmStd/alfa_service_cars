@@ -5,7 +5,7 @@ Allow: /
 
 # Sitemap
 # Nota: La URL se construye dinámicamente desde src/lib/siteConfig.ts
-Sitemap: https://alfadetailers.cl/sitemap.xml
+Sitemap: https://alfadetailer.cl/sitemap.xml
 
 # Bloquear archivos sensibles
 Disallow: /api/

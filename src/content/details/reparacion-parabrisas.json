@@ -122,6 +122,21 @@
       ]
     },
     {
+      "id": "comparative-ceramico",
+      "type": "comparative",
+      "subtitle": "Comparativa de Protección",
+      "title": "Resultado antes y después de la Reparación de Parabrisas",
+      "description": "Mejora la visibilidad y la integridad estructural de tu parabrisas con nuestra reparación profesional.",
+      "imagenAntes": "../../assets/gallery/reparacion_10_comparative.webp",
+      "imagenDespues": "../../assets/gallery/reparacion_11_comparative.webp"
+    },
+    {
+      "id": "carrousel-ceramico",
+      "type": "carrousel",
+      "title": "Galería de Resultados - Reparación de Parabrisas",
+      "subtitle": "Descubre la limpieza y cuidado en cada detalle"
+    },
+    {
       "id": "cta-ceramico",
       "type": "cta-block",
       "subtitle": "Evita el reemplazo",

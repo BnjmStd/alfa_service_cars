@@ -81,20 +81,27 @@ if (propImagenAntes && propImagenDespues) {
   </div>
 </section>
 
-<script is:inline>
-  const slider = document.getElementById("slider");
-  const beforeImg = document.getElementById("beforeImg");
-  const line = document.getElementById("line");
-  const button = document.getElementById("button");
+<script>
+  function initComparison() {
+    const slider = document.getElementById("slider") as HTMLInputElement | null;
+    const beforeImg = document.getElementById("beforeImg") as HTMLElement | null;
+    const line = document.getElementById("line") as HTMLElement | null;
+    const button = document.getElementById("button") as HTMLElement | null;
 
-  slider.addEventListener("input", (e) => {
-    const value = e.target.value;
-    // Cortamos la imagen de la derecha basándonos en el slider
-    beforeImg.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
-    // Movemos la línea y el botón
-    line.style.left = `${value}%`;
-    button.style.left = `${value}%`;
-  });
+    if (!slider || !beforeImg || !line || !button) return;
+
+    slider.addEventListener("input", (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      // Cortamos la imagen de la derecha basándonos en el slider
+      beforeImg.style.clipPath = `inset(0 ${100 - Number(value)}% 0 0)`;
+      // Movemos la línea y el botón
+      line.style.left = `${value}%`;
+      button.style.left = `${value}%`;
+    });
+  }
+
+  // Inicializar en carga de página y navegaciones SPA
+  document.addEventListener("astro:page-load", initComparison);
 </script>
 
 <style>
